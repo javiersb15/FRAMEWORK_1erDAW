@@ -1,13 +1,12 @@
 package Framework.Modules.Users.User_register.View;
 
-import Framework.Modules.Users.Admin.View.*;
-import Framework.Modules.Users.Admin.Model.Utils.autocomplete.AutocompleteJComboBox;
-import Framework.Modules.Users.Admin.Model.Clases.miniSimpleTableModel_admin;
+import Framework.Modules.Users.User_register.Model.Clases.miniSimpleTableModel_user_register;
+import Framework.Modules.Users.User_register.Model.Utils.autocomplete.AutocompleteJComboBox;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 public class pager_user_register extends javax.swing.JFrame {
-    public static TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(new miniSimpleTableModel_admin());
+    public static TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(new miniSimpleTableModel_user_register());
     public static AutocompleteJComboBox combo = null;
     
     public pager_user_register() {  

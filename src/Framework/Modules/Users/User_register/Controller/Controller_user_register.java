@@ -180,7 +180,7 @@ public class Controller_user_register implements ActionListener, MouseListener, 
         }
 
 	StringSearchable searchable = new StringSearchable(myWords);
-	combo = new AutocompleteJComboBox(searchable);
+        combo = new AutocompleteJComboBox(searchable);
         //JPanel5 se utiliza solamente para que JPanel3 que contendrá combo, no se redimensione
         jPanel3.setLayout(new java.awt.BorderLayout());
         jPanel3.add(combo);

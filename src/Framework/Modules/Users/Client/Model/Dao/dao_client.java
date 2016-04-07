@@ -42,6 +42,12 @@ public class dao_client {
             client_jframe_update.eti_pass_update.setText(a_1.getpass());
             client_jframe_update.eti_date_start_update.setCalendar(a_1.getdate_start().stringtocalendar());
             client_jframe_update.eti_buy_update.setText(a_1.getbuy()+"");
+            if (a_1.getpremium()==true){
+                client_jframe_update.eti_premi_true_update.setSelected(true);
+            }else{ 
+                client_jframe_update.eti_premi_false_update.setSelected(true);
+            }
+            client_jframe_update.eti_tipeclient_update.setText(a_1.getclient_type());
             	
             }
         }
@@ -132,8 +138,7 @@ public class dao_client {
         correct7=givepassword_update();
         correct8=give_date_start(client_jframe_update.eti_date_birthday_update.getCalendar(), client_jframe_create.eti_date_start_create.getCalendar());
         correct9=givebuy_update();
-        correct10=givetypeclient_update();
-        
+        correct10=givetypeclient_update();        
 
         if (correct== true && correct1==true && correct2==true && correct3==true && correct4==true && correct5==true && correct6==true && correct7==true && correct8==true && correct9==true && correct10==true) {
             DNI=client_jframe_update.eti_dni_update.getText();

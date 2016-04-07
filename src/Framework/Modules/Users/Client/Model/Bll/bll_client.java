@@ -6,6 +6,7 @@ import Framework.Modules.Users.Client.Controller.Controller_client;
 import Framework.Modules.Users.Client.Model.Clases.Class_client;
 import Framework.Modules.Users.Client.Model.Clases.miniSimpleTableModel_client;
 import Framework.Modules.Users.Client.Model.Dao.dao_client;
+import static Framework.Modules.Users.Client.Model.Dao.dao_client.givetypeclient;
 import Framework.Modules.Users.Client.Model.Utils.Extensions.Json;
 import Framework.Modules.Users.Client.Model.Utils.Pager.pagina;
 import Framework.Modules.Users.Client.View.client_jframe_create;
@@ -22,9 +23,9 @@ import javax.swing.JOptionPane;
 
 public class bll_client {
 	
-	/**ADMIN*/
+	/**CLIENT*/
 	
-	/**SEARCH ADMIN*/
+	/**SEARCH CLIENT*/
 	public static int search_client(Class_client cli){ 
             
 		for (int i = 0; i<=(Singleton.Client_array.size()-1); i++){
@@ -34,7 +35,7 @@ public class bll_client {
 		return -1;
 	}
         	
-	/**GIVE DNI ADMIN*/
+	/**GIVE DNI CLIENT*/
 	public static Class_client give_dni_client() {
             
             int selection, inicio, selection1;
@@ -66,7 +67,7 @@ public class bll_client {
         
        
        	
-	/**CREATE ADMIN*/
+	/**CREATE CLIENT*/
 	public static void create_client(){
 		int position=-1;
 		
@@ -87,7 +88,7 @@ public class bll_client {
                 }
 	}
         
-        /**CREATE ADMIN update*/
+        /**CREATE CLIENT update*/
 	public static void create_client_update(){
 		int position=-1;
 		
@@ -108,7 +109,7 @@ public class bll_client {
                
 	}
 	
-	/**PRINT ADMIN*/
+	/**PRINT CLIENT*/
 	public static void print_client (){
 		int menu=0, position=-1;
                 Class_client cli=null;
@@ -140,7 +141,7 @@ public class bll_client {
 		}
 	}      
         
-	/**UPDATE ADMIN*/
+	/**UPDATE CLIENT*/
 	 public static void update_client() {
             
             int position1=-1, position2=-1;               
@@ -162,7 +163,7 @@ public class bll_client {
                 }
         }      
         
-	/**DELETE ADMIN*/
+	/**DELETE CLIENT*/
 	        
          public static void delete_client() {
         String dni;
@@ -255,6 +256,9 @@ public class bll_client {
                 break;
             case "buy":
                  givebuy();
+                break;
+            case "type client":
+                 givetypeclient();
                 break;
         }
     }
@@ -366,6 +370,19 @@ public class bll_client {
                 
             }
         }
+         
+         public static void givetypeclient() {
+               
+            if (dao_client.givetypeclient()==false) {
+            client_jframe_create.eti_tipeclient_create.setBackground(Color.red);
+            client_jframe_create.lab_typeclient.setIcon(cancel);
+                     
+            } else {
+                client_jframe_create.eti_tipeclient_create.setBackground(Color.CYAN);
+                client_jframe_create.lab_typeclient.setIcon(okey);
+               
+            }
+        }
        
         public static void Validatedatebirthday(Calendar birthdate) {
             if (dao_client.give_date_birthday(birthdate)==false) {
@@ -428,6 +445,9 @@ public class bll_client {
                 break;
             case "buy":
                  givebuy_update();
+                break;
+            case "type client":
+                 givetypeclient_update();
                 break;
         }
     }
@@ -537,6 +557,19 @@ public class bll_client {
                 client_jframe_update.eti_buy_update.setBackground(Color.CYAN);
                 client_jframe_update.lab_buy.setIcon(okey);
                 
+            }
+        }
+         
+         public static void givetypeclient_update() {
+               
+            if (dao_client.givetypeclient()==false) {
+            client_jframe_update.eti_tipeclient_update.setBackground(Color.red);
+            client_jframe_update.lab_typeclient.setIcon(cancel);
+                     
+            } else {
+                client_jframe_update.eti_tipeclient_update.setBackground(Color.CYAN);
+                client_jframe_update.lab_typeclient.setIcon(okey);
+               
             }
         }
        
