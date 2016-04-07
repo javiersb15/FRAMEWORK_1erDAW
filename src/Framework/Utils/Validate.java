@@ -1,14 +1,8 @@
 package Framework.Utils;
 
 import Framework.Modules.Config.Model.Class_config;
-import javax.swing.JOptionPane;
 
 public class Validate {
-
-    /**
-     * CONTROL DNI
-     */
-    private static final String control_dni = "^([0-9]{8})[A-Za-z]{1}$";
 
     /**
      * CONTROL USER
@@ -41,17 +35,20 @@ public class Validate {
      */
     private static final String control_password = "(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$";
 
+    /**
+     CONTROL DATE
+     */    
     private static final String pattern_date1 = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/(19|20)\\d{2}$";
     private static final String pattern_date2 = "^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[012])-(19|20)\\d{2}$";
     private static final String pattern_date3 = "^(19|20)\\d{2}/(0[1-9]|1[012])/(0[1-9]|[12][0-9]|3[01])$";
     private static final String pattern_date4 = "^(19|20)\\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$";
 
     /**
-     * VALIDATE DNI
+     * CONTROL TYPE OF CLIENT
      */
-    //public static boolean validate_dni(String dni) {
-    //return dni.matches(control_dni);
-    //}
+    private static final String control_typeofclient= "^([0-9A-Za-z]*)$";
+    
+
     /**
      * VALIDATE DNI
      */
@@ -136,5 +133,12 @@ public class Validate {
      */
     public static boolean validate_password(String password) {
         return password.matches(control_password);
+    }
+    
+    /**
+     * VALIDATE TYPE OF CLIENT
+     */
+    public static boolean validate_typeofclient(String typeofclient) {
+        return typeofclient.matches(control_typeofclient);
     }
 }

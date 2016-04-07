@@ -63,7 +63,7 @@ public class dao_client {
         float buy;
         boolean premium;
         String client_type;
-        boolean correct, correct1, correct2, correct3, correct4, correct5, correct6, correct7, correct8, correct9, correct10, correct11, correct12, correct13;
+        boolean correct, correct1, correct2, correct3, correct4, correct5, correct6, correct7, correct8, correct9, correct10;
 
         correct=givedni();
         correct1=givename();
@@ -75,8 +75,9 @@ public class dao_client {
         correct7=givepassword();
         correct8=give_date_start(client_jframe_create.eti_date_start_create.getCalendar(), client_jframe_create.eti_date_start_create.getCalendar());
         correct9=givebuy();
+        correct10=givetypeclient();
 
-        if (correct== true && correct1==true && correct2==true && correct3==true && correct4==true && correct5==true && correct6==true && correct7==true && correct8==true && correct9==true && correct10==true && correct11==true && correct12==true) {
+        if (correct== true && correct1==true && correct2==true && correct3==true && correct4==true && correct5==true && correct6==true && correct7==true && correct8==true && correct9==true && correct10==true) {
             dni=client_jframe_create.eti_dni_create.getText();
             name=client_jframe_create.eti_name_create.getText();
             surname=client_jframe_create.eti_surname_create.getText();
@@ -90,10 +91,11 @@ public class dao_client {
             date_start=new Class_date (((JTextFieldDateEditor)client_jframe_create.eti_date_start_create.getDateEditor()).getText());
             buy=Float.parseFloat(client_jframe_create.eti_buy_create.getText());
             premium=premium();
+            client_type=client_jframe_create.eti_tipeclient_create.getText();
             
 
 
-            client= new Class_client(dni, name, surname, date_birthday, mobile, avatar, state, email, user, pass, date_start, buy, premium, client_type);
+            client= new Class_client(dni, name, surname, date_birthday, mobile, avatar, state, email, user, pass, buy, premium, date_start, client_type);
         } else {
             client= null;
 
@@ -104,7 +106,7 @@ public class dao_client {
         public static Class_client create_update() {
            Class_client client_update=null;           
        
-        String DNI =" ";
+        String DNI=" ";
         String name;
         String surname;
         Class_date date_birthday=null;
@@ -116,7 +118,9 @@ public class dao_client {
         String pass;
         Class_date date_start=null;
         float buy;
-        boolean correct, correct1, correct2, correct3, correct4, correct5, correct6, correct7, correct8, correct9, correct10, correct11, correct12;
+        boolean premium;
+        String client_type;
+        boolean correct, correct1, correct2, correct3, correct4, correct5, correct6, correct7, correct8, correct9, correct10;
 
         correct=givedni_update();
         correct1=givename_update();
@@ -128,9 +132,10 @@ public class dao_client {
         correct7=givepassword_update();
         correct8=give_date_start(client_jframe_update.eti_date_birthday_update.getCalendar(), client_jframe_create.eti_date_start_create.getCalendar());
         correct9=givebuy_update();
+        correct10=givetypeclient_update();
         
 
-        if (correct== true && correct1==true && correct2==true && correct3==true && correct4==true && correct5==true && correct6==true && correct7==true && correct8==true && correct9==true) {
+        if (correct== true && correct1==true && correct2==true && correct3==true && correct4==true && correct5==true && correct6==true && correct7==true && correct8==true && correct9==true && correct10==true) {
             DNI=client_jframe_update.eti_dni_update.getText();
             name=client_jframe_update.eti_name_update.getText();
             surname=client_jframe_update.eti_surname_update.getText();
@@ -143,10 +148,11 @@ public class dao_client {
             pass=client_jframe_update.eti_pass_update.getText();
             date_start=new Class_date (((JTextFieldDateEditor)client_jframe_update.eti_date_start_update.getDateEditor()).getText());
             buy=Float.parseFloat(client_jframe_update.eti_buy_update.getText());
-            
+            premium=premium();
+            client_type=client_jframe_update.eti_tipeclient_update.getText();
 
 
-            client_update= new Class_client(DNI, name, surname, date_birthday, mobile, avatar, state, email, user, pass, date_start, buy);
+            client_update= new Class_client(DNI, name, surname, date_birthday, mobile, avatar, state, email, user, pass, buy, premium, date_start, client_type);
         } else {
             client_update= null;
 
@@ -361,6 +367,26 @@ public class dao_client {
         return correct;
        }
        
+       public static boolean givetypeclient() {
+        boolean correct = false;
+        
+        if (client_jframe_create.eti_tipeclient_create.getText().equals("")) {
+            
+            correct = false;
+           
+        } else {
+            if (Validate.validate_typeofclient(client_jframe_create.eti_tipeclient_create.getText()) == false) {
+                
+                correct = false;
+                
+            } else {
+               
+                correct = true;
+            }
+        }
+        return correct;
+    }
+       
        public static String dialogoSelectorImagen() {
         String img = "";
 
@@ -560,6 +586,26 @@ public class dao_client {
         }
         return correct;
        }
+       
+       public static boolean givetypeclient_update() {
+        boolean correct = false;
+        
+        if (client_jframe_update.eti_tipeclient_update.getText().equals("")) {
+            
+            correct = false;
+           
+        } else {
+            if (Validate.validate_typeofclient(client_jframe_update.eti_tipeclient_update.getText()) == false) {
+                
+                correct = false;
+                
+            } else {
+               
+                correct = true;
+            }
+        }
+        return correct;
+    }
        
        
        public static String dialogoSelectorImagen_update() {
