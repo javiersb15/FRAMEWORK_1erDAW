@@ -452,11 +452,11 @@ public class Controller_user_register implements ActionListener, MouseListener, 
             break;
             
             case btn_pager_xml:
-                Xml.create_xml_usr_reg();
+                Xml.auto_open_xml_usr_reg();
             break;
             
             case btn_pager_txt:
-                Txt.create_txt_usr_reg();
+                Txt.auto_open_txt_usr_reg();
             break;
             
             case primero:
