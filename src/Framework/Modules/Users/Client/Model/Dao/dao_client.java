@@ -63,7 +63,7 @@ public class dao_client {
         float buy;
         boolean premium;
         String client_type;
-        boolean correct, correct1, correct2, correct3, correct4, correct5, correct6, correct7, correct8, correct9, correct10, correct11, correct12;
+        boolean correct, correct1, correct2, correct3, correct4, correct5, correct6, correct7, correct8, correct9, correct10, correct11, correct12, correct13;
 
         correct=givedni();
         correct1=givename();
@@ -89,7 +89,8 @@ public class dao_client {
             pass=client_jframe_create.eti_pass_create.getText();
             date_start=new Class_date (((JTextFieldDateEditor)client_jframe_create.eti_date_start_create.getDateEditor()).getText());
             buy=Float.parseFloat(client_jframe_create.eti_buy_create.getText());
-           
+            premium=premium();
+            
 
 
             client= new Class_client(dni, name, surname, date_birthday, mobile, avatar, state, email, user, pass, date_start, buy, premium, client_type);
@@ -285,17 +286,12 @@ public class dao_client {
          public static boolean givemobile() {
         boolean correct = false;
        
-        if (client_jframe_create.eti_mobile_create.getText().equals("")){
-            
-            correct = false;
-            
+        if (client_jframe_create.eti_mobile_create.getText().equals("")){            
+            correct = false;            
         } else {
-            if (Validate.validate_mobile(client_jframe_create.eti_mobile_create.getText()) == false) {
-                
-                correct = false;
-                
-            } else {
-               
+            if (Validate.validate_mobile(client_jframe_create.eti_mobile_create.getText()) == false) {                
+                correct = false;                
+            } else {               
                 correct = true;
             }
         }
@@ -305,17 +301,12 @@ public class dao_client {
          public static boolean givemail() {
         boolean correct = false;
        
-        if (client_jframe_create.eti_email_create.getText().equals("")) {
-            
-            correct = false;
-            
+        if (client_jframe_create.eti_email_create.getText().equals("")) {            
+            correct = false;            
         } else {
-            if (Validate.validate_mail(client_jframe_create.eti_email_create.getText()) == false) {
-                
-                correct = false;
-                
-            } else {
-                
+            if (Validate.validate_mail(client_jframe_create.eti_email_create.getText()) == false) {                
+                correct = false;                
+            } else {                
                 correct = true;
             }
         }
@@ -345,17 +336,12 @@ public class dao_client {
         public static boolean givepassword() {
         boolean correct = false;
         
-        if (client_jframe_create.eti_pass_create.getText().equals("")) {
-            
-            correct = false;
-         
+        if (client_jframe_create.eti_pass_create.getText().equals("")) {            
+            correct = false;         
         } else {
-            if (Validate.validate_password(client_jframe_create.eti_pass_create.getText()) == false) {
-                
-                correct = false;
-                
-            } else {
-                
+            if (Validate.validate_password(client_jframe_create.eti_pass_create.getText()) == false) {                
+                correct = false;                
+            } else {                
                 correct = true;
             }
         }
@@ -367,11 +353,9 @@ public class dao_client {
         boolean correct = false;
         
         try {
-            buy= Float.parseFloat(client_jframe_create.eti_buy_create.getText());
-            
+            buy= Float.parseFloat(client_jframe_create.eti_buy_create.getText());            
             correct = true;
-        }   catch (Exception e) {
-           
+        }   catch (Exception e) {           
             correct = false;
         }
         return correct;
@@ -399,30 +383,21 @@ public class dao_client {
         return img;
     }
        
-       
-       
        public static void giveavatar(String img){
            ImageIcon temporal=new ImageIcon(img);
            ImageIcon imagen=new ImageIcon(temporal.getImage().getScaledInstance(160, -1, Image.SCALE_DEFAULT));
             client_jframe_create.lab_avatar.setIcon(imagen);
        }
        
-       
-       
        public static boolean givedni_update() {
         boolean correct = false;
         
-        if (client_jframe_update.eti_dni_update.getText().equals("")) {
-            
-            correct = false;
-            
+        if (client_jframe_update.eti_dni_update.getText().equals("")) {            
+            correct = false;            
         } else {
-            if (Validate.validate_dni(client_jframe_update.eti_dni_update.getText()) == false) {
-               
-                correct = false;
-                
-            } else {
-                
+            if (Validate.validate_dni(client_jframe_update.eti_dni_update.getText()) == false) {               
+                correct = false;                
+            } else {                
                 correct = true;
             }
         }
@@ -432,17 +407,12 @@ public class dao_client {
         public static boolean givename_update() {
         boolean correct = false;
         
-        if (client_jframe_update.eti_name_update.getText().equals("")) {
-            
-            correct = false;
-            
+        if (client_jframe_update.eti_name_update.getText().equals("")) {            
+            correct = false;            
         } else {
-            if (Validate.validate_name(client_jframe_update.eti_name_update.getText()) == false) {
-                
-                correct = false;
-               
-            } else {
-                
+            if (Validate.validate_name(client_jframe_update.eti_name_update.getText()) == false) {                
+                correct = false;               
+            } else {                
                 correct = true;
             }
         }
@@ -452,39 +422,32 @@ public class dao_client {
         public static boolean givesurname_update() {
         boolean correct = false;
         
-        if (client_jframe_update.eti_surname_update.getText().equals("")) {
-            
-            correct = false;
-           
+        if (client_jframe_update.eti_surname_update.getText().equals("")) {            
+            correct = false;           
         } else {
-            if (Validate.validate_surname(client_jframe_update.eti_surname_update.getText()) == false) {
-                
-                correct = false;
-                
-            } else {
-               
+            if (Validate.validate_surname(client_jframe_update.eti_surname_update.getText()) == false) {                
+                correct = false;                
+            } else {               
                 correct = true;
             }
         }
         return correct;
     }
+        
         public static boolean Validatedatebirthday_update(Calendar birthdate) {
             boolean check = false;
-            Class_date fecha = new Class_date(birthdate);
-            Class_date factualMenos16Anyos = Class_date.Factual();
             
+            Class_date fecha = new Class_date(birthdate);
+            Class_date factualMenos16Anyos = Class_date.Factual();            
             try {
             factualMenos16Anyos.setyear(factualMenos16Anyos.getyear() - 18);
             } catch (Exception e) {
                 e.printStackTrace();
-            }
-            
+            }            
             if (fecha.comparedate(factualMenos16Anyos) > 0) {
-                check = false;
-			
+                check = false;			
             } else {
-                check = true;
-                
+                check = true;                
             }                    
             return check;
         }
@@ -495,45 +458,33 @@ public class dao_client {
             Class_date fstart = new Class_date(datestart);
             Class_date factualMenos16Anyos = null;
 
-            try {
-            
+            try {            
             factualMenos16Anyos = new Class_date(fbirthday.getday(), fbirthday.getmonth(), fbirthday.getyear() + 18);
             } catch (Exception e) {
                 e.printStackTrace();
-            }
-            
+            }            
             if ((fstart.comparedate(factualMenos16Anyos) < 0) || (fstart.comparedate(Class_date.Factual()) > 0)) {
-                check = false;
-                
+                check = false;                
             } else {
-                check = true;
-                
-            }
-            
+                check = true;                
+            }            
             return check;
         }
-        
-        
-        
-         public static boolean givemobile_update() {
-        boolean correct = false;
+                
+        public static boolean givemobile_update() {
+            boolean correct = false;
        
-        if (client_jframe_update.eti_mobile_update.getText().equals("")){
-            
-            correct = false;
-            
-        } else {
-            if (Validate.validate_mobile(client_jframe_update.eti_mobile_update.getText()) == false) {
-                
-                correct = false;
-                
+            if (client_jframe_update.eti_mobile_update.getText().equals("")){            
+                correct = false;            
             } else {
-               
-                correct = true;
+                if (Validate.validate_mobile(client_jframe_update.eti_mobile_update.getText()) == false) {                
+                    correct = false;                
+                } else {               
+                    correct = true;
+                }
             }
+            return correct;
         }
-        return correct;
-    }
          
          public static boolean givemail_update() {
         boolean correct = false;
