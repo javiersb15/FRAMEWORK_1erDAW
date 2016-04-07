@@ -1,13 +1,8 @@
 package Framework.Modules.Users.Admin.View;
 
-import Framework.Modules.Users.Admin.Model.Utils.autocomplete.AutocompleteJComboBox;
-import Framework.Modules.Users.Admin.Model.Clases.miniSimpleTableModel_admin;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 
 public class pager_adm extends javax.swing.JFrame {
-    public static TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(new miniSimpleTableModel_admin());
-    public static AutocompleteJComboBox combo = null;
+    
     
     public pager_adm() {  
         initComponents();   
@@ -274,7 +269,7 @@ public class pager_adm extends javax.swing.JFrame {
     public static javax.swing.JPanel jPanel3;
     public static javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JScrollPane jScrollPane1;
     public static javax.swing.JButton primero;
     public static javax.swing.JButton ultimo;
     // End of variables declaration//GEN-END:variables

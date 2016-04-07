@@ -1,6 +1,7 @@
 package Framework.Modules.Users.Admin.Model.Utils.Pager;
 
 
+import Framework.Modules.Users.Admin.Controller.Controller_admin;
 import Framework.Modules.Users.Admin.Model.Clases.miniSimpleTableModel_admin;
 import Framework.Modules.Users.Admin.View.pager_adm;
 import java.awt.BorderLayout;
@@ -42,7 +43,7 @@ public class pagina {
 
     public static void initLinkBox() {
 
-        pager_adm.sorter.setRowFilter(new RowFilter<TableModel, Integer>() {
+        Controller_admin.sorter.setRowFilter(new RowFilter<TableModel, Integer>() {
             @Override
             public boolean include(RowFilter.Entry<? extends TableModel, ? extends Integer> entry) {
                 int ti = currentPageIndex - 1;

@@ -24,7 +24,7 @@ public class Main {
        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 JFrame choose_frame;
-                new Controller_menu(new choose_frame()).begin();      
+                new Controller_menu(new choose_frame()).began();      
             }
         });
     }

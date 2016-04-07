@@ -1,8 +1,9 @@
 package Framework.Modules.Users.Admin.Model.Clases;
+
 import Framework.Class.Class_date;
+import static Framework.Modules.Users.Admin.Controller.Controller_admin.combo;
 import Framework.Modules.Users.Admin.Model.Utils.Pager.pagina;
 import Framework.Modules.Users.Admin.View.pager_adm;
-import static Framework.Modules.Users.Admin.View.pager_adm.combo;
 import Framework.Modules.Users.User.Model.Clases.Singleton;
 import java.util.ArrayList;
 import javax.swing.JComboBox;

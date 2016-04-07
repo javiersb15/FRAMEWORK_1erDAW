@@ -6,14 +6,15 @@
 package Framework.Modules.Menu.Controller;
 
 import Framework.Modules.Menu.View.choose_frame;
+import Framework.Modules.Users.Admin.Controller.Controller_admin;
 import Framework.Modules.Users.Admin.View.pager_adm;
-import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 
 /**
  *
@@ -31,24 +32,23 @@ public class Controller_menu implements ActionListener {
         btn_adm
     }
 
-    public void begin() {
+    public void began() {
         begin.setVisible(true);
         begin.setTitle("Choose User");
 	begin.setLocationRelativeTo(null);
 	//this.setSize(525,425);//ancho x alto
 	begin.setResizable(true);
        
-        
-        addWindowListener(new WindowAdapter() {
+        this.begin.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        this.begin.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 JOptionPane.showMessageDialog(null,"Exit to the aplication");
-                dispose();
+                begin.dispose();
                 System.exit(0);
             }
 
-            private void dispose() {
-            }
+          
        }
         );
        
@@ -61,14 +61,9 @@ public class Controller_menu implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         switch (Action.valueOf(e.getActionCommand())) {
             case btn_adm:
-
-                begin.setVisible(false);
-                pager_adm adm = new pager_adm();
-                adm.setVisible(true);               
-
+                begin.dispose();
+                new Controller_admin(new pager_adm(), 0).begin(0);
                 break;
-
         }
     }
-
 }

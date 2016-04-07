@@ -45,11 +45,7 @@ import static Framework.Modules.Users.Admin.View.admin_jframe_update.eti_surname
 import static Framework.Modules.Users.Admin.View.admin_jframe_update.eti_user_update;
 import Framework.Modules.Users.Admin.View.pager_adm;
 import static Framework.Modules.Users.Admin.View.pager_adm.TABLA;
-import static Framework.Modules.Users.Admin.View.pager_adm.combo;
 import static Framework.Modules.Users.Admin.View.pager_adm.jComboBox1;
-import static Framework.Modules.Users.Admin.View.pager_adm.jLabel3;
-import static Framework.Modules.Users.Admin.View.pager_adm.jPanel3;
-import static Framework.Modules.Users.Admin.View.pager_adm.sorter;
 import Framework.Modules.Users.User.Model.Clases.Singleton;
 import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
 import java.awt.event.ActionEvent;
@@ -70,6 +66,8 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 
 
@@ -83,16 +81,20 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
     public static admin_jframe_create begin_create;
     public static admin_jframe_update begin_update;
     public static String DNI;
+    public static TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(new miniSimpleTableModel_admin());
+    public static AutocompleteJComboBox combo = null;
     
     public Controller_admin(JFrame began, int j) {
-        if (j==0){
-        begin_pager = (pager_adm) began;
-        }
-        if (j==1){
-        begin_create=(admin_jframe_create) began;    
-        }
-        if (j==2){
-        begin_update=(admin_jframe_update) began;
+        switch (j){
+            case 0:
+                begin_pager = (pager_adm) began;
+                break;
+            case 1:
+                begin_create=(admin_jframe_create) began;    
+                break;
+            case 2:
+                begin_update=(admin_jframe_update) began;
+                break;
         }
     } 
 
@@ -156,271 +158,269 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
     }
     
     public void begin(int j) {
-        if (j == 0) {
-        Json.auto_open_json_admin();
-        
-               
-        TABLA.setModel( new miniSimpleTableModel_admin() );
-        ((miniSimpleTableModel_admin)TABLA.getModel()).cargar();
-        TABLA.setFillsViewportHeight(true);
-        TABLA.setRowSorter(sorter);
+        switch (j){
+            case 0: 
+                //Json.auto_open_json_admin();
+                JOptionPane.showMessageDialog(null, "hola");  
 
-        pagina.inicializa();
-        pagina.initLinkBox();
-        
-        jLabel3.setText(String.valueOf(Singleton.Admin_array.size()));
-        
-        begin_pager.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                dispose();
-                new choose_frame().setVisible(true);
-            }
+                begin_pager.TABLA.setModel( new miniSimpleTableModel_admin() );
+                ((miniSimpleTableModel_admin)begin_pager.TABLA.getModel()).cargar();
+                begin_pager.TABLA.setFillsViewportHeight(true);
+                begin_pager.TABLA.setRowSorter(sorter);
 
-            private void dispose() {
-            }
-        });
-          
-        List<String> myWords = new ArrayList<String>();
-        for(int i=0;i<=Singleton.Admin_array.size()-1;i++) {
-            myWords.add(Singleton.Admin_array.get(i).getname());
-        }
+                pagina.inicializa();
+                pagina.initLinkBox();
 
-	StringSearchable searchable = new StringSearchable(myWords);
-	combo = new AutocompleteJComboBox(searchable);
-        //JPanel5 se utiliza solamente para que JPanel3 que contendrá combo, no se redimensione
-        jPanel3.setLayout(new java.awt.BorderLayout());
-        jPanel3.add(combo);
+                begin_pager.jLabel3.setText(String.valueOf(Singleton.Admin_array.size()));
+
+                this.begin_pager.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+                this.begin_pager.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        dispose();
+                        new choose_frame().setVisible(true);
+                    }
+                });
+
+                List<String> myWords = new ArrayList<String>();
+                for(int i=0;i<=Singleton.Admin_array.size()-1;i++) {
+                    myWords.add(Singleton.Admin_array.get(i).getname());
+                }
+
+                StringSearchable searchable = new StringSearchable(myWords);
+                combo = new AutocompleteJComboBox(searchable);
+                //JPanel5 se utiliza solamente para que JPanel3 que contendrá combo, no se redimensione
+                begin_pager.jPanel3.setLayout(new java.awt.BorderLayout());
+                begin_pager.jPanel3.add(combo);
+
+                combo.addActionListener(new java.awt.event.ActionListener() {
+                    @Override
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {                                            
+                    System.out.println("word selected: " + ((JComboBox)combo).getSelectedItem());
+                    pagina.currentPageIndex = 1;
+                    ((miniSimpleTableModel_admin)begin_pager.TABLA.getModel()).filtrar();
+                    combo.requestFocus();
+                    } 
+                }                
+                );
+
+                begin_pager.btn_pager_create.setActionCommand("btn_pager_create");
+                begin_pager.btn_pager_create.addActionListener(this);
+
+                begin_pager.btn_pager_read.setActionCommand("btn_pager_read");
+                begin_pager.btn_pager_read.addActionListener(this);
+
+                begin_pager.btn_pager_update.setActionCommand("btn_pager_update");
+                begin_pager.btn_pager_update.addActionListener(this);
+
+                begin_pager.btn_pager_delete.setActionCommand("btn_pager_delete");
+                begin_pager.btn_pager_delete.addActionListener(this);
+
+                begin_pager.btn_pager_json.setActionCommand("btn_pager_json");
+                begin_pager.btn_pager_json.addActionListener(this);
+
+                begin_pager.btn_pager_xml.setActionCommand("btn_pager_xml");
+                begin_pager.btn_pager_xml.addActionListener(this);
+
+                begin_pager.btn_pager_txt.setActionCommand("btn_pager_txt");
+                begin_pager.btn_pager_txt.addActionListener(this);
+                break;
+   
         
-        combo.addActionListener(new java.awt.event.ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent evt) {                                            
-            System.out.println("word selected: " + ((JComboBox)combo).getSelectedItem());
-            pagina.currentPageIndex = 1;
-            ((miniSimpleTableModel_admin)TABLA.getModel()).filtrar();
-            combo.requestFocus();
-            } 
-        }                
-        );
-        
-        begin_pager.btn_pager_create.setActionCommand("btn_pager_create");
-        begin_pager.btn_pager_create.addActionListener(this);
-        
-        begin_pager.btn_pager_read.setActionCommand("btn_pager_read");
-        begin_pager.btn_pager_read.addActionListener(this);
-        
-        begin_pager.btn_pager_update.setActionCommand("btn_pager_update");
-        begin_pager.btn_pager_update.addActionListener(this);
-        
-        begin_pager.btn_pager_delete.setActionCommand("btn_pager_delete");
-        begin_pager.btn_pager_delete.addActionListener(this);
-        
-        begin_pager.btn_pager_json.setActionCommand("btn_pager_json");
-        begin_pager.btn_pager_json.addActionListener(this);
-        
-        begin_pager.btn_pager_xml.setActionCommand("btn_pager_xml");
-        begin_pager.btn_pager_xml.addActionListener(this);
-        
-        begin_pager.btn_pager_txt.setActionCommand("btn_pager_txt");
-        begin_pager.btn_pager_txt.addActionListener(this);
-    }
-        
-     if (j == 1) {
+            case 1: 
        
-        eti_date_birthday_create.getDateEditor().setEnabled(false);
-        eti_date_employ_create.getDateEditor().setEnabled(false);
-        
-        begin_create.setTitle("Administrator");
-	begin_create.setLocationRelativeTo(null);
-	//this.setSize(525,425);//ancho x alto
-	begin_create.setResizable(true);
-	//Image icono=Toolkit.getDefaultToolkit().getImage("p1.jpg");
-	//this.setIconImage(icono);
-	//this.setExtendedState(JFrame.MAXIMIZED_BOTH); //la aplicación se abre maximizada
-        
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                JOptionPane.showMessageDialog(null,"Exit to the aplication");
-                dispose();
-                System.exit(0);
-            }
-       });
-        
-        begin_create.eti_dni_create.setActionCommand("eti_dni");
-        begin_create.eti_dni_create.setName("eti_dni");
-        begin_create.eti_dni_create.addFocusListener(this);
-        begin_create.eti_dni_create.addMouseListener(this);
-        begin_create.eti_dni_create.addKeyListener(this);
-        
-        begin_create.eti_name_create.setActionCommand("eti_name");
-        begin_create.eti_name_create.setName("eti_name");
-        begin_create.eti_name_create.addFocusListener(this);
-        begin_create.eti_name_create.addMouseListener(this);
-        begin_create.eti_name_create.addKeyListener(this);
-        
-        begin_create.eti_surname_create.setActionCommand("eti_surname");
-        begin_create.eti_surname_create.setName("eti_surname");
-        begin_create.eti_surname_create.addFocusListener(this);
-        begin_create.eti_surname_create.addMouseListener(this);
-        begin_create.eti_surname_create.addKeyListener(this);
-        
-        begin_create.eti_mobile_create.setActionCommand("eti_mobile");
-        begin_create.eti_mobile_create.setName("eti_mobile");
-        begin_create.eti_mobile_create.addFocusListener(this);
-        begin_create.eti_mobile_create.addMouseListener(this);
-        begin_create.eti_mobile_create.addKeyListener(this);
-        
-        begin_create.eti_email_create.setActionCommand("eti_email");
-        begin_create.eti_email_create.setName("eti_email");
-        begin_create.eti_email_create.addFocusListener(this);
-        begin_create.eti_email_create.addMouseListener(this);
-        begin_create.eti_email_create.addKeyListener(this);
-        
-        begin_create.eti_user_create.setActionCommand("eti_user");
-        begin_create.eti_user_create.setName("eti_user");
-        begin_create.eti_user_create.addFocusListener(this);
-        begin_create.eti_user_create.addMouseListener(this);
-        begin_create.eti_user_create.addKeyListener(this);
-        
-        begin_create.eti_pass_create.setActionCommand("eti_pass");
-        begin_create.eti_pass_create.setName("eti_pass");
-        begin_create.eti_pass_create.addFocusListener(this);
-        begin_create.eti_pass_create.addMouseListener(this);
-        begin_create.eti_pass_create.addKeyListener(this);
-        
-        begin_create.eti_activity_create.setActionCommand("eti_activity");
-        begin_create.eti_activity_create.setName("eti_activity");
-        begin_create.eti_activity_create.addFocusListener(this);
-        begin_create.eti_activity_create.addMouseListener(this);
-        begin_create.eti_activity_create.addKeyListener(this);
-        
-        begin_create.eti_salary_create.setActionCommand("eti_salary");
-        begin_create.eti_salary_create.setName("eti_salary");
-        begin_create.eti_salary_create.addFocusListener(this);
-        begin_create.eti_salary_create.addMouseListener(this);
-        begin_create.eti_salary_create.addKeyListener(this);
-        
-        begin_create.eti_incentive_create.setActionCommand("eti_incentive");
-        begin_create.eti_incentive_create.setName("eti_incentive");
-        begin_create.eti_incentive_create.addFocusListener(this);
-        begin_create.eti_incentive_create.addMouseListener(this);
-        begin_create.eti_incentive_create.addKeyListener(this);
-        
-        begin_create.eti_incentive_create.setActionCommand("eti_incentive");
-        begin_create.eti_incentive_create.setName("eti_incentive");
-        begin_create.eti_incentive_create.addFocusListener(this);
-        begin_create.eti_incentive_create.addMouseListener(this);
-        begin_create.eti_incentive_create.addKeyListener(this);
-        
-        begin_create.btn_create_create.setActionCommand("btn_create");
-        begin_create.btn_create_create.addActionListener(this);
-        
-        begin_create.btn_cancel_create.setActionCommand("btn_cancel");
-        begin_create.btn_cancel_create.addActionListener(this);    
-     }
+                eti_date_birthday_create.getDateEditor().setEnabled(false);
+                eti_date_employ_create.getDateEditor().setEnabled(false);
+
+                begin_create.setTitle("Administrator");
+                begin_create.setLocationRelativeTo(null);
+                //this.setSize(525,425);//ancho x alto
+                begin_create.setResizable(true);
+                //Image icono=Toolkit.getDefaultToolkit().getImage("p1.jpg");
+                //this.setIconImage(icono);
+                //this.setExtendedState(JFrame.MAXIMIZED_BOTH); //la aplicación se abre maximizada
+
+                addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        JOptionPane.showMessageDialog(null,"Exit to the aplication");
+                        dispose();
+                        System.exit(0);
+                    }
+               });
+
+                begin_create.eti_dni_create.setActionCommand("eti_dni");
+                begin_create.eti_dni_create.setName("eti_dni");
+                begin_create.eti_dni_create.addFocusListener(this);
+                begin_create.eti_dni_create.addMouseListener(this);
+                begin_create.eti_dni_create.addKeyListener(this);
+
+                begin_create.eti_name_create.setActionCommand("eti_name");
+                begin_create.eti_name_create.setName("eti_name");
+                begin_create.eti_name_create.addFocusListener(this);
+                begin_create.eti_name_create.addMouseListener(this);
+                begin_create.eti_name_create.addKeyListener(this);
+
+                begin_create.eti_surname_create.setActionCommand("eti_surname");
+                begin_create.eti_surname_create.setName("eti_surname");
+                begin_create.eti_surname_create.addFocusListener(this);
+                begin_create.eti_surname_create.addMouseListener(this);
+                begin_create.eti_surname_create.addKeyListener(this);
+
+                begin_create.eti_mobile_create.setActionCommand("eti_mobile");
+                begin_create.eti_mobile_create.setName("eti_mobile");
+                begin_create.eti_mobile_create.addFocusListener(this);
+                begin_create.eti_mobile_create.addMouseListener(this);
+                begin_create.eti_mobile_create.addKeyListener(this);
+
+                begin_create.eti_email_create.setActionCommand("eti_email");
+                begin_create.eti_email_create.setName("eti_email");
+                begin_create.eti_email_create.addFocusListener(this);
+                begin_create.eti_email_create.addMouseListener(this);
+                begin_create.eti_email_create.addKeyListener(this);
+
+                begin_create.eti_user_create.setActionCommand("eti_user");
+                begin_create.eti_user_create.setName("eti_user");
+                begin_create.eti_user_create.addFocusListener(this);
+                begin_create.eti_user_create.addMouseListener(this);
+                begin_create.eti_user_create.addKeyListener(this);
+
+                begin_create.eti_pass_create.setActionCommand("eti_pass");
+                begin_create.eti_pass_create.setName("eti_pass");
+                begin_create.eti_pass_create.addFocusListener(this);
+                begin_create.eti_pass_create.addMouseListener(this);
+                begin_create.eti_pass_create.addKeyListener(this);
+
+                begin_create.eti_activity_create.setActionCommand("eti_activity");
+                begin_create.eti_activity_create.setName("eti_activity");
+                begin_create.eti_activity_create.addFocusListener(this);
+                begin_create.eti_activity_create.addMouseListener(this);
+                begin_create.eti_activity_create.addKeyListener(this);
+
+                begin_create.eti_salary_create.setActionCommand("eti_salary");
+                begin_create.eti_salary_create.setName("eti_salary");
+                begin_create.eti_salary_create.addFocusListener(this);
+                begin_create.eti_salary_create.addMouseListener(this);
+                begin_create.eti_salary_create.addKeyListener(this);
+
+                begin_create.eti_incentive_create.setActionCommand("eti_incentive");
+                begin_create.eti_incentive_create.setName("eti_incentive");
+                begin_create.eti_incentive_create.addFocusListener(this);
+                begin_create.eti_incentive_create.addMouseListener(this);
+                begin_create.eti_incentive_create.addKeyListener(this);
+
+                begin_create.eti_incentive_create.setActionCommand("eti_incentive");
+                begin_create.eti_incentive_create.setName("eti_incentive");
+                begin_create.eti_incentive_create.addFocusListener(this);
+                begin_create.eti_incentive_create.addMouseListener(this);
+                begin_create.eti_incentive_create.addKeyListener(this);
+
+                begin_create.btn_create_create.setActionCommand("btn_create");
+                begin_create.btn_create_create.addActionListener(this);
+
+                begin_create.btn_cancel_create.setActionCommand("btn_cancel");
+                begin_create.btn_cancel_create.addActionListener(this);
+                break;
      
-     if (j == 2) {
+     
+            case 2:
          
-        dao_admin.modifyadmin();
-        DNI=eti_dni_update.getText();
-        eti_date_birthday_update.getDateEditor().setEnabled(false);
-        eti_date_employ_update.getDateEditor().setEnabled(false);
-        
-        begin_create.setTitle("Administrator");
-	begin_create.setLocationRelativeTo(null);
-	//this.setSize(525,425);//ancho x alto
-	begin_create.setResizable(true);
-	//Image icono=Toolkit.getDefaultToolkit().getImage("p1.jpg");
-	//this.setIconImage(icono);
-	//this.setExtendedState(JFrame.MAXIMIZED_BOTH); //la aplicación se abre maximizada
-        
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                JOptionPane.showMessageDialog(null,"Exit to the aplication");
-                dispose();
-                System.exit(0);
+                dao_admin.modifyadmin();
+                DNI=eti_dni_update.getText();
+                eti_date_birthday_update.getDateEditor().setEnabled(false);
+                eti_date_employ_update.getDateEditor().setEnabled(false);
+
+                begin_create.setTitle("Administrator");
+                begin_create.setLocationRelativeTo(null);
+                //this.setSize(525,425);//ancho x alto
+                begin_create.setResizable(true);
+                //Image icono=Toolkit.getDefaultToolkit().getImage("p1.jpg");
+                //this.setIconImage(icono);
+                //this.setExtendedState(JFrame.MAXIMIZED_BOTH); //la aplicación se abre maximizada
+
+                addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        JOptionPane.showMessageDialog(null,"Exit to the aplication");
+                        dispose();
+                        System.exit(0);
+                    }
+                });
+
+                begin_update.eti_dni_update.setActionCommand("eti_dni");
+                begin_update.eti_dni_update.setName("eti_dni");
+                begin_update.eti_dni_update.addFocusListener(this);
+                begin_update.eti_dni_update.addMouseListener(this);
+                begin_update.eti_dni_update.addKeyListener(this);
+
+                begin_update.eti_name_update.setActionCommand("eti_name");
+                begin_update.eti_name_update.setName("eti_name");
+                begin_update.eti_name_update.addFocusListener(this);
+                begin_update.eti_name_update.addMouseListener(this);
+                begin_update.eti_name_update.addKeyListener(this);
+
+                begin_update.eti_surname_update.setActionCommand("eti_surname");
+                begin_update.eti_surname_update.setName("eti_surname");
+                begin_update.eti_surname_update.addFocusListener(this);
+                begin_update.eti_surname_update.addMouseListener(this);
+                begin_update.eti_surname_update.addKeyListener(this);
+
+                begin_update.eti_mobile_update.setActionCommand("eti_mobile");
+                begin_update.eti_mobile_update.setName("eti_mobile");
+                begin_update.eti_mobile_update.addFocusListener(this);
+                begin_update.eti_mobile_update.addMouseListener(this);
+                begin_update.eti_mobile_update.addKeyListener(this);
+
+                begin_update.eti_email_update.setActionCommand("eti_email");
+                begin_update.eti_email_update.setName("eti_email");
+                begin_update.eti_email_update.addFocusListener(this);
+                begin_update.eti_email_update.addMouseListener(this);
+                begin_update.eti_email_update.addKeyListener(this);
+
+                begin_update.eti_user_update.setActionCommand("eti_user");
+                begin_update.eti_user_update.setName("eti_user");
+                begin_update.eti_user_update.addFocusListener(this);
+                begin_update.eti_user_update.addMouseListener(this);
+                begin_update.eti_user_update.addKeyListener(this);
+
+                begin_update.eti_pass_update.setActionCommand("eti_pass");
+                begin_update.eti_pass_update.setName("eti_pass");
+                begin_update.eti_pass_update.addFocusListener(this);
+                begin_update.eti_pass_update.addMouseListener(this);
+                begin_update.eti_pass_update.addKeyListener(this);
+
+                begin_update.eti_activity_update.setActionCommand("eti_activity");
+                begin_update.eti_activity_update.setName("eti_activity");
+                begin_update.eti_activity_update.addFocusListener(this);
+                begin_update.eti_activity_update.addMouseListener(this);
+                begin_update.eti_activity_update.addKeyListener(this);
+
+                begin_update.eti_salary_update.setActionCommand("eti_salary");
+                begin_update.eti_salary_update.setName("eti_salary");
+                begin_update.eti_salary_update.addFocusListener(this);
+                begin_update.eti_salary_update.addMouseListener(this);
+                begin_update.eti_salary_update.addKeyListener(this);
+
+                begin_update.eti_incentive_update.setActionCommand("eti_incentive");
+                begin_update.eti_incentive_update.setName("eti_incentive");
+                begin_update.eti_incentive_update.addFocusListener(this);
+                begin_update.eti_incentive_update.addMouseListener(this);
+                begin_update.eti_incentive_update.addKeyListener(this);
+
+                begin_update.eti_incentive_update.setActionCommand("eti_incentive");
+                begin_update.eti_incentive_update.setName("eti_incentive");
+                begin_update.eti_incentive_update.addFocusListener(this);
+                begin_update.eti_incentive_update.addMouseListener(this);
+                begin_update.eti_incentive_update.addKeyListener(this);
+
+                begin_update.btn_update_update.setActionCommand("btn_update");
+                begin_update.btn_update_update.addActionListener(this);
+
+                begin_update.btn_cancel_update.setActionCommand("btn_cancel");
+                begin_update.btn_cancel_update.addActionListener(this);
+
+                 }
             }
-        });
-        
-        begin_update.eti_dni_update.setActionCommand("eti_dni");
-        begin_update.eti_dni_update.setName("eti_dni");
-        begin_update.eti_dni_update.addFocusListener(this);
-        begin_update.eti_dni_update.addMouseListener(this);
-        begin_update.eti_dni_update.addKeyListener(this);
-        
-        begin_update.eti_name_update.setActionCommand("eti_name");
-        begin_update.eti_name_update.setName("eti_name");
-        begin_update.eti_name_update.addFocusListener(this);
-        begin_update.eti_name_update.addMouseListener(this);
-        begin_update.eti_name_update.addKeyListener(this);
-        
-        begin_update.eti_surname_update.setActionCommand("eti_surname");
-        begin_update.eti_surname_update.setName("eti_surname");
-        begin_update.eti_surname_update.addFocusListener(this);
-        begin_update.eti_surname_update.addMouseListener(this);
-        begin_update.eti_surname_update.addKeyListener(this);
-        
-        begin_update.eti_mobile_update.setActionCommand("eti_mobile");
-        begin_update.eti_mobile_update.setName("eti_mobile");
-        begin_update.eti_mobile_update.addFocusListener(this);
-        begin_update.eti_mobile_update.addMouseListener(this);
-        begin_update.eti_mobile_update.addKeyListener(this);
-        
-        begin_update.eti_email_update.setActionCommand("eti_email");
-        begin_update.eti_email_update.setName("eti_email");
-        begin_update.eti_email_update.addFocusListener(this);
-        begin_update.eti_email_update.addMouseListener(this);
-        begin_update.eti_email_update.addKeyListener(this);
-        
-        begin_update.eti_user_update.setActionCommand("eti_user");
-        begin_update.eti_user_update.setName("eti_user");
-        begin_update.eti_user_update.addFocusListener(this);
-        begin_update.eti_user_update.addMouseListener(this);
-        begin_update.eti_user_update.addKeyListener(this);
-        
-        begin_update.eti_pass_update.setActionCommand("eti_pass");
-        begin_update.eti_pass_update.setName("eti_pass");
-        begin_update.eti_pass_update.addFocusListener(this);
-        begin_update.eti_pass_update.addMouseListener(this);
-        begin_update.eti_pass_update.addKeyListener(this);
-        
-        begin_update.eti_activity_update.setActionCommand("eti_activity");
-        begin_update.eti_activity_update.setName("eti_activity");
-        begin_update.eti_activity_update.addFocusListener(this);
-        begin_update.eti_activity_update.addMouseListener(this);
-        begin_update.eti_activity_update.addKeyListener(this);
-        
-        begin_update.eti_salary_update.setActionCommand("eti_salary");
-        begin_update.eti_salary_update.setName("eti_salary");
-        begin_update.eti_salary_update.addFocusListener(this);
-        begin_update.eti_salary_update.addMouseListener(this);
-        begin_update.eti_salary_update.addKeyListener(this);
-        
-        begin_update.eti_incentive_update.setActionCommand("eti_incentive");
-        begin_update.eti_incentive_update.setName("eti_incentive");
-        begin_update.eti_incentive_update.addFocusListener(this);
-        begin_update.eti_incentive_update.addMouseListener(this);
-        begin_update.eti_incentive_update.addKeyListener(this);
-        
-        begin_update.eti_incentive_update.setActionCommand("eti_incentive");
-        begin_update.eti_incentive_update.setName("eti_incentive");
-        begin_update.eti_incentive_update.addFocusListener(this);
-        begin_update.eti_incentive_update.addMouseListener(this);
-        begin_update.eti_incentive_update.addKeyListener(this);
-        
-        begin_update.btn_update_update.setActionCommand("btn_update");
-        begin_update.btn_update_update.addActionListener(this);
-        
-        begin_update.btn_cancel_update.setActionCommand("btn_cancel");
-        begin_update.btn_cancel_update.addActionListener(this);
-        
-        
-     }
-     
-    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
