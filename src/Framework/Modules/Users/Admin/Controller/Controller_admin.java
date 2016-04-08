@@ -5,6 +5,8 @@
  */
 package Framework.Modules.Users.Admin.Controller;
 
+import Framework.Modules.Menu.Controller.Controller_menu;
+import static Framework.Modules.Menu.Controller.Controller_menu.begin;
 import Framework.Modules.Menu.View.choose_frame;
 import Framework.Modules.Users.Admin.Model.Bll.bll_admin;
 import Framework.Modules.Users.Admin.Model.Clases.miniSimpleTableModel_admin;
@@ -161,7 +163,10 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
         switch (j){
             case 0: 
                 //Json.auto_open_json_admin();
-                JOptionPane.showMessageDialog(null, "hola");  
+                                
+                this.begin_pager.setVisible(true);
+                this.begin_pager.setTitle("Framework");
+                this.begin_pager.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
                 begin_pager.TABLA.setModel( new miniSimpleTableModel_admin() );
                 ((miniSimpleTableModel_admin)begin_pager.TABLA.getModel()).cargar();
@@ -177,8 +182,9 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
                 this.begin_pager.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosing(WindowEvent e) {
-                        dispose();
-                        new choose_frame().setVisible(true);
+                        JOptionPane.showMessageDialog(null,"Exit to the aplication");
+                        begin_pager.dispose();
+                        System.exit(0);
                     }
                 });
 
@@ -224,8 +230,26 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
 
                 begin_pager.btn_pager_txt.setActionCommand("btn_pager_txt");
                 begin_pager.btn_pager_txt.addActionListener(this);
+                
+                begin_pager.primero.setActionCommand("primero");
+                begin_pager.primero.addActionListener(this);
+                
+                begin_pager.ANTERIOR.setActionCommand("ANTERIOR");
+                begin_pager.ANTERIOR.addActionListener(this);
+                
+                begin_pager.SIGUIENTE.setActionCommand("SIGUIENTE");
+                begin_pager.SIGUIENTE.addActionListener(this);
+                
+                begin_pager.ultimo.setActionCommand("ultimo");
+                begin_pager.ultimo.addActionListener(this);
+                
+                begin_pager.jButton1.setActionCommand("jButton1");
+                begin_pager.jButton1.addActionListener(this);
+                
+                begin_pager.jComboBox1.setActionCommand("jComboBox1");
+                begin_pager.jComboBox1.addActionListener(this);
                 break;
-   
+                    
         
             case 1: 
        
@@ -490,9 +514,8 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
             break;
             
             case jButton1:
-                this.dispose();
-                choose_frame menu =new choose_frame();
-                menu.setVisible(true);
+                begin_pager.dispose();
+                new Controller_menu(new choose_frame()).began();
             break;
             
             case jComboBox1:

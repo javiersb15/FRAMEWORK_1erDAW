@@ -259,7 +259,7 @@ public class pager_adm extends javax.swing.JFrame {
     public static javax.swing.JButton btn_pager_txt;
     public static javax.swing.JButton btn_pager_update;
     public static javax.swing.JButton btn_pager_xml;
-    private javax.swing.JButton jButton1;
+    public static javax.swing.JButton jButton1;
     public static javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -269,7 +269,7 @@ public class pager_adm extends javax.swing.JFrame {
     public static javax.swing.JPanel jPanel3;
     public static javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    public javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane1;
     public static javax.swing.JButton primero;
     public static javax.swing.JButton ultimo;
     // End of variables declaration//GEN-END:variables
