@@ -8,7 +8,7 @@ import Framework.Modules.Users.User_register.Model.Clases.Class_user_register;
 import Framework.Modules.Users.User_register.Model.Clases.miniSimpleTableModel_user_register;
 import Framework.Modules.Users.User_register.Model.Dao.dao_user_register;
 import Framework.Modules.Users.User_register.Model.Utils.Extensions.Json;
-import Framework.Modules.Users.User_register.Model.Utils.Pager.pagina;
+import Framework.Modules.Users.User_register.Model.Utils.Pager.pagina_user_register;
 import Framework.Modules.Users.User_register.View.pager_user_register;
 import static Framework.Modules.Users.User_register.View.pager_user_register.TABLA;
 import static Framework.Modules.Users.User_register.View.pager_user_register.jLabel3;
@@ -23,9 +23,9 @@ import javax.swing.JOptionPane;
 
 public class bll_user_register {
 	
-	/**ADMIN*/
+	/**USER REGISTER*/
 	
-	/**SEARCH ADMIN*/
+	/**SEARCH USER REGISTER*/
 	public static int search_user_register(Class_user_register usr_reg){ 
             
 		for (int i = 0; i<=(Singleton.User_register_array.size()-1); i++){
@@ -35,11 +35,11 @@ public class bll_user_register {
 		return -1;
 	}
         	
-	/**GIVE DNI ADMIN*/
+	/**GIVE DNI USER REGISTER*/
 	public static Class_user_register give_dni_user_register() {
             
             int selection, inicio, selection1;
-		inicio=(pagina.currentPageIndex-1)*pagina.itemsPerPage; //nos situamos al inicio de la página en cuestión
+		inicio=(pagina_user_register.currentPageIndex-1)*pagina_user_register.itemsPerPage; //nos situamos al inicio de la página en cuestión
                 selection=pager_user_register.TABLA.getSelectedRow(); //nos situamos en la fila
                 selection1=inicio+selection; //nos situamos en la fila correspondiente de esa página
 		Singleton.DNI=(String)pager_user_register.TABLA.getModel().getValueAt(selection1, 0);
@@ -51,7 +51,7 @@ public class bll_user_register {
             
             int selection, inicio, selection1, position=-1;
                 
-		inicio=(pagina.currentPageIndex-1)*pagina.itemsPerPage; //nos situamos al inicio de la página en cuestión
+		inicio=(pagina_user_register.currentPageIndex-1)*pagina_user_register.itemsPerPage; //nos situamos al inicio de la página en cuestión
                 selection=pager_user_register.TABLA.getSelectedRow(); //nos situamos en la fila
                 selection1=inicio+selection; //nos situamos en la fila correspondiente de esa página
 		Singleton.DNI=(String)pager_user_register.TABLA.getModel().getValueAt(selection1, 0);
@@ -67,7 +67,7 @@ public class bll_user_register {
         
        
        	
-	/**CREATE ADMIN*/
+	/**CREATE USER REGISTER*/
 	public static void create_user_register(){
 		int position=-1;
 		
@@ -88,7 +88,7 @@ public class bll_user_register {
                 }
 	}
         
-        /**CREATE ADMIN update*/
+        /**CREATE USER REGISTER update*/
 	public static void create_user_register_update(){
 		int position=-1;
 		
@@ -109,7 +109,7 @@ public class bll_user_register {
                
 	}
 	
-	/**PRINT ADMIN*/
+	/**PRINT USER REGISTER*/
 	public static void print_user_register (){
 		int menu=0, position=-1;
                 Class_user_register usr_reg=null;
@@ -141,7 +141,7 @@ public class bll_user_register {
 		}
 	}      
         
-	/**UPDATE ADMIN*/
+	/**UPDATE USER REGISTER*/
 	 public static void update_user_register() {
             
             int position1=-1, position2=-1;               
@@ -163,7 +163,7 @@ public class bll_user_register {
                 }
         }      
         
-	/**DELETE ADMIN*/
+	/**DELETE USER REGISTER*/
 	        
          public static void delete_user_register() {
         String dni;
@@ -174,14 +174,14 @@ public class bll_user_register {
         
         n=((miniSimpleTableModel_user_register) pager_user_register.TABLA.getModel()).getRowCount();  
         if(n!=0){
-            inicio=(pagina.currentPageIndex-1)*pagina.itemsPerPage; //nos situamos al inicio de la página en cuestión
+            inicio=(pagina_user_register.currentPageIndex-1)*pagina_user_register.itemsPerPage; //nos situamos al inicio de la página en cuestión
              selection=pager_user_register.TABLA.getSelectedRow(); //nos situamos en la fila
              selection1=inicio+selection; //nos situamos en la fila correspondiente de esa página
             if (selection1 == -1) {
                 JOptionPane.showMessageDialog(null, "There isn't anybody selected", "Error!", 2);
             } else {
                 
-                dni = (String) TABLA.getModel().getValueAt(selection1, 0);
+                dni = (String) pager_user_register.TABLA.getModel().getValueAt(selection1, 0);
                 Class_user_register usr_reg = new Class_user_register(dni);
                 pos = bll_user_register.search_user_register((Class_user_register) usr_reg);
                 
@@ -189,18 +189,18 @@ public class bll_user_register {
                         "Info", JOptionPane.WARNING_MESSAGE);
 
                 if (opc == 0) {
-                    ((miniSimpleTableModel_user_register) TABLA.getModel()).removeRow(selection);
+                    ((miniSimpleTableModel_user_register) pager_user_register.TABLA.getModel()).removeRow(selection);
                     usr_reg = Singleton.User_register_array.get(pos);
-                    Singleton.Admin_array.remove(usr_reg);                    
+                    Singleton.User_register_array.remove(usr_reg);                    
                     miniSimpleTableModel_user_register.datosaux.remove(usr_reg);
                     Json.auto_create_json_usr_reg();
                     ((miniSimpleTableModel_user_register) pager_user_register.TABLA.getModel()).cargar();
-                    jLabel3.setText(String.valueOf(Singleton.Admin_array.size()));
-                    pagina.initLinkBox();
+                    jLabel3.setText(String.valueOf(Singleton.User_register_array.size()));
+                    pagina_user_register.initLinkBox();
                 }
                 if (pager_user_register.TABLA.getRowCount() == 0) {
-                    pagina.currentPageIndex-=1;
-                    pagina.initLinkBox();
+                    pagina_user_register.currentPageIndex-=1;
+                    pagina_user_register.initLinkBox();
                 }
             }
         } else {

@@ -1,15 +1,7 @@
 package Framework.Modules.Users.Client.View;
 
-import Framework.Modules.Users.Client.Model.Clases.miniSimpleTableModel_client;
-import Framework.Modules.Users.Client.Model.Utils.autocomplete.AutocompleteJComboBox;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
-
-
-
 public class pager_client extends javax.swing.JFrame {
-    public static TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(new miniSimpleTableModel_client());
-    public static AutocompleteJComboBox combo = null;
+    
     
     public pager_client() {  
         initComponents();   
@@ -266,7 +258,7 @@ public class pager_client extends javax.swing.JFrame {
     public static javax.swing.JButton btn_pager_txt;
     public static javax.swing.JButton btn_pager_update;
     public static javax.swing.JButton btn_pager_xml;
-    private javax.swing.JButton jButton1;
+    public static javax.swing.JButton jButton1;
     public static javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -53,6 +53,7 @@ public class Validate {
      * VALIDATE DNI
      */
     public static boolean validate_dni(String DNI) {
+        
         String s = "[0-9]{8}[a-zA-Z]";
         String letras = "TRWAGMYFPDXBNJZSQVHLCKET";
         boolean resultado = true;
@@ -67,7 +68,6 @@ public class Validate {
                 resultado = false;
             }
         }
-
         return resultado;
     }
 

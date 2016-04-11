@@ -310,6 +310,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Volver"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JComboBox" name="jComboBox1">
       <Properties>

@@ -5,6 +5,7 @@
  */
 package Framework.Modules.Users.User_register.Controller;
 
+import Framework.Modules.Menu.Controller.Controller_menu;
 import Framework.Modules.Menu.View.choose_frame;
 import Framework.Modules.Users.User.Model.Clases.Singleton;
 import Framework.Modules.Users.User_register.Model.Bll.bll_user_register;
@@ -13,16 +14,11 @@ import Framework.Modules.Users.User_register.Model.Dao.dao_user_register;
 import Framework.Modules.Users.User_register.Model.Utils.Extensions.Json;
 import Framework.Modules.Users.User_register.Model.Utils.Extensions.Txt;
 import Framework.Modules.Users.User_register.Model.Utils.Extensions.Xml;
-import Framework.Modules.Users.User_register.Model.Utils.Pager.pagina;
+import Framework.Modules.Users.User_register.Model.Utils.Pager.pagina_user_register;
 import Framework.Modules.Users.User_register.Model.Utils.autocomplete.AutocompleteJComboBox;
 import Framework.Modules.Users.User_register.Model.Utils.autocomplete.StringSearchable;
 import Framework.Modules.Users.User_register.View.pager_user_register;
-import static Framework.Modules.Users.User_register.View.pager_user_register.TABLA;
-import static Framework.Modules.Users.User_register.View.pager_user_register.combo;
 import static Framework.Modules.Users.User_register.View.pager_user_register.jComboBox1;
-import static Framework.Modules.Users.User_register.View.pager_user_register.jLabel3;
-import static Framework.Modules.Users.User_register.View.pager_user_register.jPanel3;
-import static Framework.Modules.Users.User_register.View.pager_user_register.sorter;
 import Framework.Modules.Users.User_register.View.user_register_jframe_create;
 import static Framework.Modules.Users.User_register.View.user_register_jframe_create.eti_activity_create;
 import static Framework.Modules.Users.User_register.View.user_register_jframe_create.eti_avatar_create;
@@ -64,6 +60,8 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -75,16 +73,20 @@ public class Controller_user_register implements ActionListener, MouseListener, 
     public static user_register_jframe_create begin_create;
     public static user_register_jframe_update begin_update;
     public static String DNI;
+    public static TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(new miniSimpleTableModel_user_register());
+    public static AutocompleteJComboBox combo = null;
     
     public Controller_user_register(JFrame began, int j) {
-        if (j==0){
-        begin_pager = (pager_user_register) began;
-        }
-        if (j==1){
-        begin_create=(user_register_jframe_create) began;    
-        }
-        if (j==2){
-        begin_update=(user_register_jframe_update) began;
+        switch (j){
+            case 0:
+                begin_pager = (pager_user_register) began;
+                break;
+            case 1:        
+                begin_create=(user_register_jframe_create) began;    
+                break;
+            case 2:
+                begin_update=(user_register_jframe_update) began;
+                break;
         }
     } 
 
@@ -119,10 +121,7 @@ public class Controller_user_register implements ActionListener, MouseListener, 
         eti_email_create,
         eti_user_create,
         eti_pass_create,
-        eti_date_employ_create,
         eti_activity_create,
-        eti_salary_create,
-        eti_incentive_create,
         btn_create_create,
         btn_cancel_create,
         
@@ -138,41 +137,40 @@ public class Controller_user_register implements ActionListener, MouseListener, 
         eti_email_update,
         eti_user_update,
         eti_pass_update,
-        eti_date_employ_update,
         eti_activity_update,
-        eti_salary_update,
-        eti_incentive_update,
-        btn_create_update,
+        btn_update_update,
         btn_cancel_update
         
     }
     
     public void begin(int j) {
-        if (j == 0) {
-        Json.auto_open_json_usr_reg();
+        switch (j){
+            case 0:
+        //Json.auto_open_json_usr_reg();
         
+        this.begin_pager.setVisible(true);
+        this.begin_pager.setTitle("Framework User Register");
+        this.begin_pager.setExtendedState(JFrame.MAXIMIZED_BOTH);
                
-        TABLA.setModel( new miniSimpleTableModel_user_register() );
-        ((miniSimpleTableModel_user_register)TABLA.getModel()).cargar();
-        TABLA.setFillsViewportHeight(true);
-        TABLA.setRowSorter(sorter);
+        begin_pager.TABLA.setModel( new miniSimpleTableModel_user_register() );
+        ((miniSimpleTableModel_user_register)begin_pager.TABLA.getModel()).cargar();
+        begin_pager.TABLA.setFillsViewportHeight(true);
+        begin_pager.TABLA.setRowSorter(sorter);
 
-        pagina.inicializa();
-        pagina.initLinkBox();
+        pagina_user_register.inicializa();
+        pagina_user_register.initLinkBox();
         
-        jLabel3.setText(String.valueOf(Singleton.User_register_array.size()));
+        begin_pager.jLabel3.setText(String.valueOf(Singleton.User_register_array.size()));
         
-        begin_pager.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                dispose();
-                new choose_frame().setVisible(true);
-            }
-
-            private void dispose() {
-            }
-        });
+        this.begin_pager.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        this.begin_pager.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        JOptionPane.showMessageDialog(null,"Exit to the aplication");
+                        begin_pager.dispose();
+                        System.exit(0);
+                    }
+                });
           
         List<String> myWords = new ArrayList<String>();
         for(int i=0;i<=Singleton.User_register_array.size()-1;i++) {
@@ -182,15 +180,15 @@ public class Controller_user_register implements ActionListener, MouseListener, 
 	StringSearchable searchable = new StringSearchable(myWords);
         combo = new AutocompleteJComboBox(searchable);
         //JPanel5 se utiliza solamente para que JPanel3 que contendrá combo, no se redimensione
-        jPanel3.setLayout(new java.awt.BorderLayout());
-        jPanel3.add(combo);
+        begin_pager.jPanel3.setLayout(new java.awt.BorderLayout());
+        begin_pager.jPanel3.add(combo);
         
         combo.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {                                            
             System.out.println("word selected: " + ((JComboBox)combo).getSelectedItem());
-            pagina.currentPageIndex = 1;
-            ((miniSimpleTableModel_user_register)TABLA.getModel()).filtrar();
+            pagina_user_register.currentPageIndex = 1;
+            ((miniSimpleTableModel_user_register)begin_pager.TABLA.getModel()).filtrar();
             combo.requestFocus();
             } 
         }                
@@ -216,13 +214,31 @@ public class Controller_user_register implements ActionListener, MouseListener, 
         
         begin_pager.btn_pager_txt.setActionCommand("btn_pager_txt");
         begin_pager.btn_pager_txt.addActionListener(this);
-    }
         
-     if (j == 1) {
+        begin_pager.primero.setActionCommand("primero");
+        begin_pager.primero.addActionListener(this);
+                
+        begin_pager.ANTERIOR.setActionCommand("ANTERIOR");
+        begin_pager.ANTERIOR.addActionListener(this);
+                
+        begin_pager.SIGUIENTE.setActionCommand("SIGUIENTE");
+        begin_pager.SIGUIENTE.addActionListener(this);
+                
+        begin_pager.ultimo.setActionCommand("ultimo");
+        begin_pager.ultimo.addActionListener(this);
+                
+        begin_pager.jButton1.setActionCommand("jButton1");
+        begin_pager.jButton1.addActionListener(this);
+                
+        begin_pager.jComboBox1.setActionCommand("jComboBox1");
+        begin_pager.jComboBox1.addActionListener(this);
+        break;
+        
+      case 1:
        
         eti_date_birthday_create.getDateEditor().setEnabled(false);
-        
-        begin_create.setTitle("Administrator");
+        this.begin_create.setVisible(true);
+        begin_create.setTitle("Create User Register");
 	begin_create.setLocationRelativeTo(null);
 	//this.setSize(525,425);//ancho x alto
 	begin_create.setResizable(true);
@@ -239,89 +255,75 @@ public class Controller_user_register implements ActionListener, MouseListener, 
             }
        });
         
-        begin_create.eti_dni_create.setActionCommand("eti_dni");
-        begin_create.eti_dni_create.setName("eti_dni");
+        begin_create.eti_dni_create.setActionCommand("eti_dni_create");
+        begin_create.eti_dni_create.setName("eti_dni_create");
         begin_create.eti_dni_create.addFocusListener(this);
         begin_create.eti_dni_create.addMouseListener(this);
         begin_create.eti_dni_create.addKeyListener(this);
         
-        begin_create.eti_name_create.setActionCommand("eti_name");
-        begin_create.eti_name_create.setName("eti_name");
+        begin_create.eti_name_create.setActionCommand("eti_name_create");
+        begin_create.eti_name_create.setName("eti_name_create");
         begin_create.eti_name_create.addFocusListener(this);
         begin_create.eti_name_create.addMouseListener(this);
         begin_create.eti_name_create.addKeyListener(this);
         
-        begin_create.eti_surname_create.setActionCommand("eti_surname");
-        begin_create.eti_surname_create.setName("eti_surname");
+        begin_create.eti_surname_create.setActionCommand("eti_surname_create");
+        begin_create.eti_surname_create.setName("eti_surname_create");
         begin_create.eti_surname_create.addFocusListener(this);
         begin_create.eti_surname_create.addMouseListener(this);
         begin_create.eti_surname_create.addKeyListener(this);
         
-        begin_create.eti_mobile_create.setActionCommand("eti_mobile");
-        begin_create.eti_mobile_create.setName("eti_mobile");
+        begin_create.eti_mobile_create.setActionCommand("eti_mobile_create");
+        begin_create.eti_mobile_create.setName("eti_mobile_create");
         begin_create.eti_mobile_create.addFocusListener(this);
         begin_create.eti_mobile_create.addMouseListener(this);
         begin_create.eti_mobile_create.addKeyListener(this);
         
-        begin_create.eti_email_create.setActionCommand("eti_email");
-        begin_create.eti_email_create.setName("eti_email");
+        begin_create.eti_email_create.setActionCommand("eti_email_create");
+        begin_create.eti_email_create.setName("eti_email_create");
         begin_create.eti_email_create.addFocusListener(this);
         begin_create.eti_email_create.addMouseListener(this);
         begin_create.eti_email_create.addKeyListener(this);
         
-        begin_create.eti_user_create.setActionCommand("eti_user");
-        begin_create.eti_user_create.setName("eti_user");
+        begin_create.eti_user_create.setActionCommand("eti_user_create");
+        begin_create.eti_user_create.setName("eti_user_create");
         begin_create.eti_user_create.addFocusListener(this);
         begin_create.eti_user_create.addMouseListener(this);
         begin_create.eti_user_create.addKeyListener(this);
         
-        begin_create.eti_pass_create.setActionCommand("eti_pass");
-        begin_create.eti_pass_create.setName("eti_pass");
+        begin_create.eti_pass_create.setActionCommand("eti_pass_create");
+        begin_create.eti_pass_create.setName("eti_pass_create");
         begin_create.eti_pass_create.addFocusListener(this);
         begin_create.eti_pass_create.addMouseListener(this);
         begin_create.eti_pass_create.addKeyListener(this);
         
-        begin_create.eti_activity_create.setActionCommand("eti_activity");
-        begin_create.eti_activity_create.setName("eti_activity");
+        begin_create.eti_avatar_create.setName("eti_avatar_create");
+        begin_create.eti_avatar_create.addMouseListener(this);
+        
+        begin_create.eti_activity_create.setActionCommand("eti_activity_create");
+        begin_create.eti_activity_create.setName("eti_activity_create");
         begin_create.eti_activity_create.addFocusListener(this);
         begin_create.eti_activity_create.addMouseListener(this);
         begin_create.eti_activity_create.addKeyListener(this);
         
-        begin_create.eti_salary_create.setActionCommand("eti_salary");
-        begin_create.eti_salary_create.setName("eti_salary");
-        begin_create.eti_salary_create.addFocusListener(this);
-        begin_create.eti_salary_create.addMouseListener(this);
-        begin_create.eti_salary_create.addKeyListener(this);
-        
-        begin_create.eti_incentive_create.setActionCommand("eti_incentive");
-        begin_create.eti_incentive_create.setName("eti_incentive");
-        begin_create.eti_incentive_create.addFocusListener(this);
-        begin_create.eti_incentive_create.addMouseListener(this);
-        begin_create.eti_incentive_create.addKeyListener(this);
-        
-        begin_create.eti_incentive_create.setActionCommand("eti_incentive");
-        begin_create.eti_incentive_create.setName("eti_incentive");
-        begin_create.eti_incentive_create.addFocusListener(this);
-        begin_create.eti_incentive_create.addMouseListener(this);
-        begin_create.eti_incentive_create.addKeyListener(this);
-        
-        begin_create.btn_create_create.setActionCommand("btn_create");
+        begin_create.btn_create_create.setActionCommand("btn_create_create");
         begin_create.btn_create_create.addActionListener(this);
         
-        begin_create.btn_cancel_create.setActionCommand("btn_cancel");
+        begin_create.btn_cancel_create.setActionCommand("btn_cancel_create");
         begin_create.btn_cancel_create.addActionListener(this);    
-     }
+     break;
      
-     if (j == 2) {
+      case 2:
          
         dao_user_register.modifyadmin();
+        this.begin_update.setVisible(true);
         DNI=eti_dni_update.getText();
         eti_date_birthday_update.getDateEditor().setEnabled(false);
         
-        begin_create.setTitle("Administrator");
-	begin_create.setLocationRelativeTo(null);
+        begin_update.setTitle("Update User Register");
+	begin_update.setLocationRelativeTo(null);
 	//this.setSize(525,425);//ancho x alto
-	begin_create.setResizable(true);
+	begin_update.setResizable(true);
 	//Image icono=Toolkit.getDefaultToolkit().getImage("p1.jpg");
 	//this.setIconImage(icono);
 	//this.setExtendedState(JFrame.MAXIMIZED_BOTH); //la aplicación se abre maximizada
@@ -335,78 +337,63 @@ public class Controller_user_register implements ActionListener, MouseListener, 
             }
         });
         
-        begin_update.eti_dni_update.setActionCommand("eti_dni");
-        begin_update.eti_dni_update.setName("eti_dni");
+        begin_update.eti_dni_update.setActionCommand("eti_dni_update");
+        begin_update.eti_dni_update.setName("eti_dni_update");
         begin_update.eti_dni_update.addFocusListener(this);
         begin_update.eti_dni_update.addMouseListener(this);
         begin_update.eti_dni_update.addKeyListener(this);
         
-        begin_update.eti_name_update.setActionCommand("eti_name");
-        begin_update.eti_name_update.setName("eti_name");
+        begin_update.eti_name_update.setActionCommand("eti_name_update");
+        begin_update.eti_name_update.setName("eti_name_update");
         begin_update.eti_name_update.addFocusListener(this);
         begin_update.eti_name_update.addMouseListener(this);
         begin_update.eti_name_update.addKeyListener(this);
         
-        begin_update.eti_surname_update.setActionCommand("eti_surname");
-        begin_update.eti_surname_update.setName("eti_surname");
+        begin_update.eti_surname_update.setActionCommand("eti_surname_update");
+        begin_update.eti_surname_update.setName("eti_surname_update");
         begin_update.eti_surname_update.addFocusListener(this);
         begin_update.eti_surname_update.addMouseListener(this);
         begin_update.eti_surname_update.addKeyListener(this);
         
-        begin_update.eti_mobile_update.setActionCommand("eti_mobile");
-        begin_update.eti_mobile_update.setName("eti_mobile");
+        begin_update.eti_mobile_update.setActionCommand("eti_mobile_update");
+        begin_update.eti_mobile_update.setName("eti_mobile_update");
         begin_update.eti_mobile_update.addFocusListener(this);
         begin_update.eti_mobile_update.addMouseListener(this);
         begin_update.eti_mobile_update.addKeyListener(this);
         
-        begin_update.eti_email_update.setActionCommand("eti_email");
-        begin_update.eti_email_update.setName("eti_email");
+        begin_update.eti_email_update.setActionCommand("eti_email_update");
+        begin_update.eti_email_update.setName("eti_email_update");
         begin_update.eti_email_update.addFocusListener(this);
         begin_update.eti_email_update.addMouseListener(this);
         begin_update.eti_email_update.addKeyListener(this);
         
-        begin_update.eti_user_update.setActionCommand("eti_user");
-        begin_update.eti_user_update.setName("eti_user");
+        begin_update.eti_user_update.setActionCommand("eti_user_update");
+        begin_update.eti_user_update.setName("eti_user_update");
         begin_update.eti_user_update.addFocusListener(this);
         begin_update.eti_user_update.addMouseListener(this);
         begin_update.eti_user_update.addKeyListener(this);
         
-        begin_update.eti_pass_update.setActionCommand("eti_pass");
-        begin_update.eti_pass_update.setName("eti_pass");
+        begin_update.eti_pass_update.setActionCommand("eti_pass_update");
+        begin_update.eti_pass_update.setName("eti_pass_update");
         begin_update.eti_pass_update.addFocusListener(this);
         begin_update.eti_pass_update.addMouseListener(this);
         begin_update.eti_pass_update.addKeyListener(this);
         
-        begin_update.eti_activity_update.setActionCommand("eti_activity");
-        begin_update.eti_activity_update.setName("eti_activity");
+        begin_update.eti_avatar_update.setName("eti_avatar_update");
+        begin_update.eti_avatar_update.addMouseListener(this);
+        
+        begin_update.eti_activity_update.setActionCommand("eti_activity_update");
+        begin_update.eti_activity_update.setName("eti_activity_update");
         begin_update.eti_activity_update.addFocusListener(this);
         begin_update.eti_activity_update.addMouseListener(this);
         begin_update.eti_activity_update.addKeyListener(this);
         
-        begin_update.eti_salary_update.setActionCommand("eti_salary");
-        begin_update.eti_salary_update.setName("eti_salary");
-        begin_update.eti_salary_update.addFocusListener(this);
-        begin_update.eti_salary_update.addMouseListener(this);
-        begin_update.eti_salary_update.addKeyListener(this);
-        
-        begin_update.eti_incentive_update.setActionCommand("eti_incentive");
-        begin_update.eti_incentive_update.setName("eti_incentive");
-        begin_update.eti_incentive_update.addFocusListener(this);
-        begin_update.eti_incentive_update.addMouseListener(this);
-        begin_update.eti_incentive_update.addKeyListener(this);
-        
-        begin_update.eti_incentive_update.setActionCommand("eti_incentive");
-        begin_update.eti_incentive_update.setName("eti_incentive");
-        begin_update.eti_incentive_update.addFocusListener(this);
-        begin_update.eti_incentive_update.addMouseListener(this);
-        begin_update.eti_incentive_update.addKeyListener(this);
-        
-        begin_update.btn_update_update.setActionCommand("btn_update");
+        begin_update.btn_update_update.setActionCommand("btn_update_update");
         begin_update.btn_update_update.addActionListener(this);
         
-        begin_update.btn_cancel_update.setActionCommand("btn_cancel");
+        begin_update.btn_cancel_update.setActionCommand("btn_cancel_update");
         begin_update.btn_cancel_update.addActionListener(this);
-        
+        break;
         
      }
      
@@ -417,13 +404,12 @@ public class Controller_user_register implements ActionListener, MouseListener, 
         switch (Action.valueOf(e.getActionCommand())) {
             case btn_pager_create:
                 begin_pager.dispose();
-                user_register_jframe_create adm =new user_register_jframe_create();
-                adm.setVisible(true);
+                new Controller_user_register(new user_register_jframe_create(), 1).begin(1);
             break;
             
             case btn_pager_read:
                 int select_read =-1;
-                select_read=TABLA.getSelectedRow();
+                select_read=begin_pager.TABLA.getSelectedRow();
                 if (select_read==-1){
                 JOptionPane.showMessageDialog(null, "Usuario no seleccionado");
                 }else{
@@ -433,13 +419,12 @@ public class Controller_user_register implements ActionListener, MouseListener, 
             
             case btn_pager_update:
                 int select_update =-1;
-                select_update=TABLA.getSelectedRow();
+                select_update=begin_pager.TABLA.getSelectedRow();
                 if (select_update==-1){
                 JOptionPane.showMessageDialog(null, "Usuario no seleccionado");
                 }else{
-                this.dispose();       
-                user_register_jframe_update adm2 =new user_register_jframe_update();
-                adm2.setVisible(true);
+                begin_pager.dispose();       
+                new Controller_user_register(new user_register_jframe_update(), 2).begin(2);
                 }         
             break;
             
@@ -460,64 +445,62 @@ public class Controller_user_register implements ActionListener, MouseListener, 
             break;
             
             case primero:
-                pagina.currentPageIndex = 1;
-                pagina.initLinkBox();
+                pagina_user_register.currentPageIndex = 1;
+                pagina_user_register.initLinkBox();
             break;
             
             case ANTERIOR:
-                pagina.currentPageIndex -= 1;
-                pagina.initLinkBox();
+                pagina_user_register.currentPageIndex -= 1;
+                pagina_user_register.initLinkBox();
             break;
             
             case SIGUIENTE:
-                pagina.currentPageIndex += 1;
-                pagina.initLinkBox();
+                pagina_user_register.currentPageIndex += 1;
+                pagina_user_register.initLinkBox();
             break;
             
             case ultimo:
-                pagina.currentPageIndex = pagina.maxPageIndex;
-                pagina.initLinkBox();
+                pagina_user_register.currentPageIndex = pagina_user_register.maxPageIndex;
+                pagina_user_register.initLinkBox();
             break;
             
             case jButton1:
-                this.dispose();
-                choose_frame menu =new choose_frame();
-                menu.setVisible(true);
+                begin_pager.dispose();
+                new Controller_menu(new choose_frame()).began();
             break;
             
             case jComboBox1:
-                pagina.itemsPerPage=Integer.parseInt(jComboBox1.getSelectedItem().toString());
-                pagina.currentPageIndex = 1;
-                pagina.initLinkBox();
+                pagina_user_register.itemsPerPage=Integer.parseInt(jComboBox1.getSelectedItem().toString());
+                pagina_user_register.currentPageIndex = 1;
+                pagina_user_register.initLinkBox();
             break;
             
             case btn_create_create:
                 bll_user_register.create_user_register();
                     try {
                         Thread.sleep(2000);
-                        this.dispose();
-                        new pager_user_register().setVisible(true);
+                        begin_create.dispose();
+                        new Controller_user_register(new pager_user_register(), 0).begin(0);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(user_register_jframe_create.class.getName()).log(Level.SEVERE, null, ex);
                         }
             break;
             
             case btn_cancel_create:
-                this.dispose();
-                pager_user_register pager_create =new pager_user_register();
-                pager_create.setVisible(true);
+                begin_create.dispose();
+                new Controller_user_register(new pager_user_register(), 0).begin(0);
             break;
             
-            case btn_create_update:
+            case btn_update_update:
                 bll_user_register.update_user_register();
-                this.dispose();
-                new pager_user_register().setVisible(true);
+                begin_update.dispose();
+                new Controller_user_register(new pager_user_register(), 0).begin(0);
             break;
             
             case btn_cancel_update:
                 this.dispose();
-                pager_user_register pager_update =new pager_user_register();
-                pager_update.setVisible(true);
+                begin_update.dispose();
+                new Controller_user_register(new pager_user_register(), 0).begin(0);
             break;
         }        
     }
@@ -672,7 +655,7 @@ public class Controller_user_register implements ActionListener, MouseListener, 
             
             case eti_pass_create:
                 if(e.getKeyCode()==KeyEvent.VK_ENTER){
-                    eti_date_birthday_update.requestFocus();
+                    eti_activity_create.requestFocus();
                 }else{
                     bll_user_register.givedates("pass");
                 }
@@ -736,7 +719,7 @@ public class Controller_user_register implements ActionListener, MouseListener, 
             
             case eti_pass_update:
                 if(e.getKeyCode()==KeyEvent.VK_ENTER){
-                    eti_date_birthday_update.requestFocus();
+                     eti_activity_update.requestFocus();
                 }else{
                     bll_user_register.givedates_update("pass");
                 }

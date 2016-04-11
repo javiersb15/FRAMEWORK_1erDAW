@@ -34,7 +34,7 @@ public class client_jframe_create extends javax.swing.JFrame {
 
         buttongroup_state = new javax.swing.ButtonGroup();
         buttongroup_premium = new javax.swing.ButtonGroup();
-        title_admin = new javax.swing.JTextField();
+        title_client = new javax.swing.JTextField();
         dni = new javax.swing.JTextField();
         eti_dni_create = new javax.swing.JTextField();
         name = new javax.swing.JTextField();
@@ -84,9 +84,9 @@ public class client_jframe_create extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(4, 19));
 
-        title_admin.setEditable(false);
-        title_admin.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        title_admin.setText("ADMINISTRATOR");
+        title_client.setEditable(false);
+        title_client.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        title_client.setText("CLIENT");
 
         dni.setEditable(false);
         dni.setText("DNI");
@@ -239,7 +239,7 @@ public class client_jframe_create extends javax.swing.JFrame {
                                         .addComponent(eti_surname_create, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(eti_date_birthday_create, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(eti_mobile_create, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(title_admin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(title_client, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(state, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -339,7 +339,7 @@ public class client_jframe_create extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(title_admin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(title_client, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(23, 23, 23)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -527,7 +527,7 @@ public class client_jframe_create extends javax.swing.JFrame {
     private javax.swing.JTextField premium;
     private javax.swing.JTextField state;
     private javax.swing.JTextField surname;
-    private javax.swing.JTextField title_admin;
+    private javax.swing.JTextField title_client;
     private javax.swing.JTextField typeclient;
     private javax.swing.JTextField user;
     // End of variables declaration//GEN-END:variables

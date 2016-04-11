@@ -6,14 +6,11 @@ import Framework.Modules.Users.Client.Controller.Controller_client;
 import Framework.Modules.Users.Client.Model.Clases.Class_client;
 import Framework.Modules.Users.Client.Model.Clases.miniSimpleTableModel_client;
 import Framework.Modules.Users.Client.Model.Dao.dao_client;
-import static Framework.Modules.Users.Client.Model.Dao.dao_client.givetypeclient;
 import Framework.Modules.Users.Client.Model.Utils.Extensions.Json;
-import Framework.Modules.Users.Client.Model.Utils.Pager.pagina;
+import Framework.Modules.Users.Client.Model.Utils.Pager.pagina_client;
 import Framework.Modules.Users.Client.View.client_jframe_create;
 import Framework.Modules.Users.Client.View.client_jframe_update;
 import Framework.Modules.Users.Client.View.pager_client;
-import static Framework.Modules.Users.Client.View.pager_client.TABLA;
-import static Framework.Modules.Users.Client.View.pager_client.jLabel3;
 import Framework.Modules.Users.User.Model.Clases.Singleton;
 import Framework.Utils.Menus;
 import java.awt.Color;
@@ -39,7 +36,7 @@ public class bll_client {
 	public static Class_client give_dni_client() {
             
             int selection, inicio, selection1;
-		inicio=(pagina.currentPageIndex-1)*pagina.itemsPerPage; //nos situamos al inicio de la página en cuestión
+		inicio=(pagina_client.currentPageIndex-1)*pagina_client.itemsPerPage; //nos situamos al inicio de la página en cuestión
                 selection=pager_client.TABLA.getSelectedRow(); //nos situamos en la fila
                 selection1=inicio+selection; //nos situamos en la fila correspondiente de esa página
 		Singleton.DNI=(String)pager_client.TABLA.getModel().getValueAt(selection1, 0);
@@ -51,7 +48,7 @@ public class bll_client {
             
             int selection, inicio, selection1, position=-1;
                 
-		inicio=(pagina.currentPageIndex-1)*pagina.itemsPerPage; //nos situamos al inicio de la página en cuestión
+		inicio=(pagina_client.currentPageIndex-1)*pagina_client.itemsPerPage; //nos situamos al inicio de la página en cuestión
                 selection=pager_client.TABLA.getSelectedRow(); //nos situamos en la fila
                 selection1=inicio+selection; //nos situamos en la fila correspondiente de esa página
 		Singleton.DNI=(String)pager_client.TABLA.getModel().getValueAt(selection1, 0);
@@ -72,7 +69,7 @@ public class bll_client {
 		int position=-1;
 		
 		Class_client cli=null;
-				
+			
                 cli=dao_client.create();
                 if(cli==null)
                     JOptionPane.showMessageDialog(null, "User not create");
@@ -174,14 +171,14 @@ public class bll_client {
         
         n=((miniSimpleTableModel_client) pager_client.TABLA.getModel()).getRowCount();  
         if(n!=0){
-            inicio=(pagina.currentPageIndex-1)*pagina.itemsPerPage; //nos situamos al inicio de la página en cuestión
+            inicio=(pagina_client.currentPageIndex-1)*pagina_client.itemsPerPage; //nos situamos al inicio de la página en cuestión
              selection=pager_client.TABLA.getSelectedRow(); //nos situamos en la fila
              selection1=inicio+selection; //nos situamos en la fila correspondiente de esa página
             if (selection1 == -1) {
                 JOptionPane.showMessageDialog(null, "There isn't anybody selected", "Error!", 2);
             } else {
                 
-                dni = (String) TABLA.getModel().getValueAt(selection1, 0);
+                dni = (String) pager_client.TABLA.getModel().getValueAt(selection1, 0);
                 Class_client cli = new Class_client(dni);
                 pos = bll_client.search_client((Class_client) cli);
                 
@@ -189,18 +186,18 @@ public class bll_client {
                         "Info", JOptionPane.WARNING_MESSAGE);
 
                 if (opc == 0) {
-                    ((miniSimpleTableModel_client) TABLA.getModel()).removeRow(selection);
+                    ((miniSimpleTableModel_client) pager_client.TABLA.getModel()).removeRow(selection);
                     cli = Singleton.Client_array.get(pos);
-                    Singleton.Admin_array.remove(cli);                    
+                    Singleton.Client_array.remove(cli);                    
                     miniSimpleTableModel_client.datosaux.remove(cli);
                     Json.auto_create_json_client();
                     ((miniSimpleTableModel_client) pager_client.TABLA.getModel()).cargar();
-                    jLabel3.setText(String.valueOf(Singleton.Admin_array.size()));
-                    pagina.initLinkBox();
+                    pager_client.jLabel3.setText(String.valueOf(Singleton.Client_array.size()));
+                    pagina_client.initLinkBox();
                 }
                 if (pager_client.TABLA.getRowCount() == 0) {
-                    pagina.currentPageIndex-=1;
-                    pagina.initLinkBox();
+                    pagina_client.currentPageIndex-=1;
+                    pagina_client.initLinkBox();
                 }
             }
         } else {
@@ -257,7 +254,7 @@ public class bll_client {
             case "buy":
                  givebuy();
                 break;
-            case "type client":
+            case "client_type":
                  givetypeclient();
                 break;
         }

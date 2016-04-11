@@ -7,12 +7,10 @@ import Framework.Modules.Users.Admin.Model.Clases.Class_admin;
 import Framework.Modules.Users.Admin.Model.Clases.miniSimpleTableModel_admin;
 import Framework.Modules.Users.Admin.Model.Dao.dao_admin;
 import Framework.Modules.Users.Admin.Model.Utils.Extensions.Json;
-import Framework.Modules.Users.Admin.Model.Utils.Pager.pagina;
+import Framework.Modules.Users.Admin.Model.Utils.Pager.pagina_admin;
 import Framework.Modules.Users.Admin.View.admin_jframe_create;
 import Framework.Modules.Users.Admin.View.admin_jframe_update;
 import Framework.Modules.Users.Admin.View.pager_adm;
-import static Framework.Modules.Users.Admin.View.pager_adm.TABLA;
-import static Framework.Modules.Users.Admin.View.pager_adm.jLabel3;
 import javax.swing.JOptionPane;
 import Framework.Modules.Users.User.Model.Clases.Singleton;
 import Framework.Utils.Menus;
@@ -20,6 +18,7 @@ import java.awt.Color;
 import java.util.Calendar;
 
 public class bll_admin {
+    public static boolean check;
 	
 	/**ADMIN*/
 	
@@ -37,7 +36,7 @@ public class bll_admin {
 	public static Class_admin give_dni_admin() {
             
             int selection, inicio, selection1;
-		inicio=(pagina.currentPageIndex-1)*pagina.itemsPerPage; //nos situamos al inicio de la página en cuestión
+		inicio=(pagina_admin.currentPageIndex-1)*pagina_admin.itemsPerPage; //nos situamos al inicio de la página en cuestión
                 selection=pager_adm.TABLA.getSelectedRow(); //nos situamos en la fila
                 selection1=inicio+selection; //nos situamos en la fila correspondiente de esa página
 		Singleton.DNI=(String)pager_adm.TABLA.getModel().getValueAt(selection1, 0);
@@ -49,7 +48,7 @@ public class bll_admin {
             
             int selection, inicio, selection1, position=-1;
                 
-		inicio=(pagina.currentPageIndex-1)*pagina.itemsPerPage; //nos situamos al inicio de la página en cuestión
+		inicio=(pagina_admin.currentPageIndex-1)*pagina_admin.itemsPerPage; //nos situamos al inicio de la página en cuestión
                 selection=pager_adm.TABLA.getSelectedRow(); //nos situamos en la fila
                 selection1=inicio+selection; //nos situamos en la fila correspondiente de esa página
 		Singleton.DNI=(String)pager_adm.TABLA.getModel().getValueAt(selection1, 0);
@@ -143,6 +142,24 @@ public class bll_admin {
 	 public static void update_admin() {
             
             int position1=-1, position2=-1;               
+		
+		Class_admin adm=new Class_admin(Controller_admin.DNI);
+                position1=bll_admin.search_admin(adm);
+                if(position1 !=-1){                    
+                    adm=dao_admin.create_update();
+                    position2=bll_admin.search_admin(adm);
+                    if(position2 ==-1){
+				Singleton.Admin_array.set(position1, adm); 
+                                Json.auto_create_json_admin();
+			}else {
+				JOptionPane.showMessageDialog(null, "This DNI dosent't exist", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                }                
+        }
+         
+         /*public static void update_admin() {
+            
+            int position1=-1, position2=-1;               
 		if(Singleton.Admin_array.isEmpty()){
 			JOptionPane.showMessageDialog(null, "There aren't any Administrator", "Administrator", JOptionPane.ERROR_MESSAGE);
 		}else{
@@ -159,8 +176,8 @@ public class bll_admin {
                         }
                 }
                 }
-        }      
-        
+        }*/
+
 	/**DELETE ADMIN*/
 	        
          public static void delete_admin() {
@@ -168,18 +185,16 @@ public class bll_admin {
         int pos;
         int n, selection, inicio, selection1;
 
-         
-        
         n=((miniSimpleTableModel_admin) pager_adm.TABLA.getModel()).getRowCount();  
         if(n!=0){
-            inicio=(pagina.currentPageIndex-1)*pagina.itemsPerPage; //nos situamos al inicio de la página en cuestión
+            inicio=(pagina_admin.currentPageIndex-1)*pagina_admin.itemsPerPage; //nos situamos al inicio de la página en cuestión
              selection=pager_adm.TABLA.getSelectedRow(); //nos situamos en la fila
              selection1=inicio+selection; //nos situamos en la fila correspondiente de esa página
             if (selection1 == -1) {
                 JOptionPane.showMessageDialog(null, "There isn't anybody selected", "Error!", 2);
             } else {
                 
-                dni = (String) TABLA.getModel().getValueAt(selection1, 0);
+                dni = (String) pager_adm.TABLA.getModel().getValueAt(selection1, 0);
                 Class_admin adm = new Class_admin(dni);
                 pos = bll_admin.search_admin((Class_admin) adm);
                 
@@ -187,18 +202,18 @@ public class bll_admin {
                         "Info", JOptionPane.WARNING_MESSAGE);
 
                 if (opc == 0) {
-                    ((miniSimpleTableModel_admin) TABLA.getModel()).removeRow(selection);
+                    ((miniSimpleTableModel_admin) pager_adm.TABLA.getModel()).removeRow(selection);
                     adm = Singleton.Admin_array.get(pos);
                     Singleton.Admin_array.remove(adm);                    
                     miniSimpleTableModel_admin.datosaux.remove(adm);
                     Json.auto_create_json_admin();
                     ((miniSimpleTableModel_admin) pager_adm.TABLA.getModel()).cargar();
-                    jLabel3.setText(String.valueOf(Singleton.Admin_array.size()));
-                    pagina.initLinkBox();
+                    pager_adm.jLabel3.setText(String.valueOf(Singleton.Admin_array.size()));
+                    pagina_admin.initLinkBox();
                 }
                 if (pager_adm.TABLA.getRowCount() == 0) {
-                    pagina.currentPageIndex-=1;
-                    pagina.initLinkBox();
+                    pagina_admin.currentPageIndex-=1;
+                    pagina_admin.initLinkBox();
                 }
             }
         } else {

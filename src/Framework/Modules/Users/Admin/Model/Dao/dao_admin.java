@@ -100,7 +100,6 @@ public class dao_admin {
             admin= new Class_admin(dni, name, surname, date_birthday, mobile, avatar, state, email, user, pass, date_employ, salary, incentive, activity);
         } else {
             admin= null;
-
         }
         return admin;
     }
@@ -451,15 +450,11 @@ public class dao_admin {
         return img;
     }
        
-       
-       
        public static void giveavatar(String img){
            ImageIcon temporal=new ImageIcon(img);
            ImageIcon imagen=new ImageIcon(temporal.getImage().getScaledInstance(160, -1, Image.SCALE_DEFAULT));
             admin_jframe_create.lab_avatar.setIcon(imagen);
        }
-       
-       
        
        public static boolean givedni_update() {
         boolean correct = false;

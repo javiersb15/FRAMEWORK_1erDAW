@@ -1,9 +1,9 @@
 package Framework.Modules.Users.Client.Model.Clases;
 
 import Framework.Class.Class_date;
-import Framework.Modules.Users.Client.Model.Utils.Pager.pagina;
+import static Framework.Modules.Users.Client.Controller.Controller_client.combo;
+import Framework.Modules.Users.Client.Model.Utils.Pager.pagina_client;
 import Framework.Modules.Users.Client.View.pager_client;
-import static Framework.Modules.Users.Client.View.pager_client.combo;
 import Framework.Modules.Users.User.Model.Clases.Singleton;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
@@ -134,7 +134,7 @@ public class miniSimpleTableModel_client extends AbstractTableModel {
             }
             pager_client.jLabel3.setText(String.valueOf(cont));
             System.out.println("word selected: " + name);
-            pagina.initLinkBox();
+            pagina_client.initLinkBox();
         }
     }
 

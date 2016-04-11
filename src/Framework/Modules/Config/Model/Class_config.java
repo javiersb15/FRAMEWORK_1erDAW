@@ -59,8 +59,8 @@ public class Class_config implements Serializable{
 		
 		//Functions_auto_open.auto_open();
 		Functions_dummy_admin.cargar_admin();
-		//Functions_dummy_client.cargar_client();
-		//Functions_dummy_usr_reg.cargar_user_register();
+                Functions_dummy_client.cargar_client();
+		Functions_dummy_usr_reg.cargar_user_register();
 		Theme.select_theme("Nimbus");
                 Json.auto_create_json_admin();
 		}

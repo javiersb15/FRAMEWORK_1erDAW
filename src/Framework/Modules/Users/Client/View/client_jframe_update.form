@@ -60,7 +60,7 @@
                                               <Component id="eti_date_birthday_update" alignment="0" min="-2" pref="142" max="-2" attributes="0"/>
                                               <Component id="eti_mobile_update" alignment="0" min="-2" pref="142" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="title_admin" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="title_client" alignment="1" min="-2" max="-2" attributes="0"/>
                                           <Group type="102" alignment="1" attributes="0">
                                               <Component id="state" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -204,7 +204,7 @@
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="title_admin" min="-2" max="-2" attributes="0"/>
+                              <Component id="title_client" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -385,13 +385,13 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="title_admin">
+    <Component class="javax.swing.JTextField" name="title_client">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="ADMINISTRATOR"/>
+        <Property name="text" type="java.lang.String" value="CLIENT"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="dni">

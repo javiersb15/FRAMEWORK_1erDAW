@@ -2,7 +2,7 @@ package Framework.Modules.Users.Admin.Model.Clases;
 
 import Framework.Class.Class_date;
 import static Framework.Modules.Users.Admin.Controller.Controller_admin.combo;
-import Framework.Modules.Users.Admin.Model.Utils.Pager.pagina;
+import Framework.Modules.Users.Admin.Model.Utils.Pager.pagina_admin;
 import Framework.Modules.Users.Admin.View.pager_adm;
 import Framework.Modules.Users.User.Model.Clases.Singleton;
 import java.util.ArrayList;
@@ -132,7 +132,7 @@ public class miniSimpleTableModel_admin extends AbstractTableModel {
             }
             pager_adm.jLabel3.setText(String.valueOf(cont));
             System.out.println("word selected: " + name);
-            pagina.initLinkBox();
+            pagina_admin.initLinkBox();
         }
     }
 

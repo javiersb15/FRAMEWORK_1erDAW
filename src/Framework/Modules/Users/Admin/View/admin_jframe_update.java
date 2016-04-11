@@ -5,8 +5,6 @@
  */
 package Framework.Modules.Users.Admin.View;
 
-import Framework.Modules.Users.Admin.Model.Bll.bll_admin;
-
 /**
  *
  * @author usuario
@@ -447,17 +445,17 @@ public class admin_jframe_update extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void eti_date_birthday_updatePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_eti_date_birthday_updatePropertyChange
-        try{
+        /*try{
          bll_admin.givedates_update("date_birthday");
         }catch(Exception e){
-            }
+            }*/
     }//GEN-LAST:event_eti_date_birthday_updatePropertyChange
 
     private void eti_date_employ_updatePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_eti_date_employ_updatePropertyChange
-        try{
+        /*try{
          bll_admin.givedates_update("date_employ");
         }catch(Exception e){
-            }
+            }*/
     }//GEN-LAST:event_eti_date_employ_updatePropertyChange
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

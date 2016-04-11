@@ -6,7 +6,6 @@
 package Framework.Modules.Users.Admin.Controller;
 
 import Framework.Modules.Menu.Controller.Controller_menu;
-import static Framework.Modules.Menu.Controller.Controller_menu.begin;
 import Framework.Modules.Menu.View.choose_frame;
 import Framework.Modules.Users.Admin.Model.Bll.bll_admin;
 import Framework.Modules.Users.Admin.Model.Clases.miniSimpleTableModel_admin;
@@ -14,7 +13,7 @@ import Framework.Modules.Users.Admin.Model.Dao.dao_admin;
 import Framework.Modules.Users.Admin.Model.Utils.Extensions.Json;
 import Framework.Modules.Users.Admin.Model.Utils.Extensions.Txt;
 import Framework.Modules.Users.Admin.Model.Utils.Extensions.Xml;
-import Framework.Modules.Users.Admin.Model.Utils.Pager.pagina;
+import Framework.Modules.Users.Admin.Model.Utils.Pager.pagina_admin;
 import Framework.Modules.Users.Admin.Model.Utils.autocomplete.AutocompleteJComboBox;
 import Framework.Modules.Users.Admin.Model.Utils.autocomplete.StringSearchable;
 import Framework.Modules.Users.Admin.View.admin_jframe_create;
@@ -46,7 +45,6 @@ import static Framework.Modules.Users.Admin.View.admin_jframe_update.eti_salary_
 import static Framework.Modules.Users.Admin.View.admin_jframe_update.eti_surname_update;
 import static Framework.Modules.Users.Admin.View.admin_jframe_update.eti_user_update;
 import Framework.Modules.Users.Admin.View.pager_adm;
-import static Framework.Modules.Users.Admin.View.pager_adm.TABLA;
 import static Framework.Modules.Users.Admin.View.pager_adm.jComboBox1;
 import Framework.Modules.Users.User.Model.Clases.Singleton;
 import static com.sun.java.accessibility.util.AWTEventMonitor.addWindowListener;
@@ -71,8 +69,6 @@ import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-
-
 /**
  *
  * @author usuario
@@ -89,7 +85,7 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
     public Controller_admin(JFrame began, int j) {
         switch (j){
             case 0:
-                begin_pager = (pager_adm) began;
+                begin_pager=(pager_adm) began;
                 break;
             case 1:
                 begin_create=(admin_jframe_create) began;    
@@ -154,7 +150,7 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
         eti_activity_update,
         eti_salary_update,
         eti_incentive_update,
-        btn_create_update,
+        btn_update_update,
         btn_cancel_update
         
     }
@@ -165,7 +161,7 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
                 //Json.auto_open_json_admin();
                                 
                 this.begin_pager.setVisible(true);
-                this.begin_pager.setTitle("Framework");
+                this.begin_pager.setTitle("Framework Admin");
                 this.begin_pager.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
                 begin_pager.TABLA.setModel( new miniSimpleTableModel_admin() );
@@ -173,8 +169,8 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
                 begin_pager.TABLA.setFillsViewportHeight(true);
                 begin_pager.TABLA.setRowSorter(sorter);
 
-                pagina.inicializa();
-                pagina.initLinkBox();
+                pagina_admin.inicializa();
+                pagina_admin.initLinkBox();
 
                 begin_pager.jLabel3.setText(String.valueOf(Singleton.Admin_array.size()));
 
@@ -203,7 +199,7 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
                     @Override
                     public void actionPerformed(java.awt.event.ActionEvent evt) {                                            
                     System.out.println("word selected: " + ((JComboBox)combo).getSelectedItem());
-                    pagina.currentPageIndex = 1;
+                    pagina_admin.currentPageIndex = 1;
                     ((miniSimpleTableModel_admin)begin_pager.TABLA.getModel()).filtrar();
                     combo.requestFocus();
                     } 
@@ -255,8 +251,8 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
        
                 eti_date_birthday_create.getDateEditor().setEnabled(false);
                 eti_date_employ_create.getDateEditor().setEnabled(false);
-
-                begin_create.setTitle("Administrator");
+                this.begin_create.setVisible(true);
+                begin_create.setTitle("Create Administrator");
                 begin_create.setLocationRelativeTo(null);
                 //this.setSize(525,425);//ancho x alto
                 begin_create.setResizable(true);
@@ -273,76 +269,73 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
                     }
                });
 
-                begin_create.eti_dni_create.setActionCommand("eti_dni");
-                begin_create.eti_dni_create.setName("eti_dni");
+                begin_create.eti_dni_create.setActionCommand("eti_dni_create");
+                begin_create.eti_dni_create.setName("eti_dni_create");
                 begin_create.eti_dni_create.addFocusListener(this);
                 begin_create.eti_dni_create.addMouseListener(this);
                 begin_create.eti_dni_create.addKeyListener(this);
 
-                begin_create.eti_name_create.setActionCommand("eti_name");
-                begin_create.eti_name_create.setName("eti_name");
+                begin_create.eti_name_create.setActionCommand("eti_name_create");
+                begin_create.eti_name_create.setName("eti_name_create");
                 begin_create.eti_name_create.addFocusListener(this);
                 begin_create.eti_name_create.addMouseListener(this);
                 begin_create.eti_name_create.addKeyListener(this);
 
-                begin_create.eti_surname_create.setActionCommand("eti_surname");
-                begin_create.eti_surname_create.setName("eti_surname");
+                begin_create.eti_surname_create.setActionCommand("eti_surname_create");
+                begin_create.eti_surname_create.setName("eti_surname_create");
                 begin_create.eti_surname_create.addFocusListener(this);
                 begin_create.eti_surname_create.addMouseListener(this);
                 begin_create.eti_surname_create.addKeyListener(this);
 
-                begin_create.eti_mobile_create.setActionCommand("eti_mobile");
-                begin_create.eti_mobile_create.setName("eti_mobile");
+                begin_create.eti_mobile_create.setActionCommand("eti_mobile_create");
+                begin_create.eti_mobile_create.setName("eti_mobile_create");
                 begin_create.eti_mobile_create.addFocusListener(this);
                 begin_create.eti_mobile_create.addMouseListener(this);
                 begin_create.eti_mobile_create.addKeyListener(this);
 
-                begin_create.eti_email_create.setActionCommand("eti_email");
-                begin_create.eti_email_create.setName("eti_email");
+                begin_create.eti_email_create.setActionCommand("eti_email_create");
+                begin_create.eti_email_create.setName("eti_email_create");
                 begin_create.eti_email_create.addFocusListener(this);
                 begin_create.eti_email_create.addMouseListener(this);
                 begin_create.eti_email_create.addKeyListener(this);
 
-                begin_create.eti_user_create.setActionCommand("eti_user");
-                begin_create.eti_user_create.setName("eti_user");
+                begin_create.eti_user_create.setActionCommand("eti_user_create");
+                begin_create.eti_user_create.setName("eti_user_create");
                 begin_create.eti_user_create.addFocusListener(this);
                 begin_create.eti_user_create.addMouseListener(this);
                 begin_create.eti_user_create.addKeyListener(this);
-
-                begin_create.eti_pass_create.setActionCommand("eti_pass");
-                begin_create.eti_pass_create.setName("eti_pass");
+                
+                begin_create.eti_avatar_create.setName("eti_avatar_create");
+                begin_create.eti_avatar_create.addMouseListener(this);
+                
+                begin_create.eti_pass_create.setActionCommand("eti_pass_create");
+                begin_create.eti_pass_create.setName("eti_pass_create");
                 begin_create.eti_pass_create.addFocusListener(this);
                 begin_create.eti_pass_create.addMouseListener(this);
                 begin_create.eti_pass_create.addKeyListener(this);
 
-                begin_create.eti_activity_create.setActionCommand("eti_activity");
-                begin_create.eti_activity_create.setName("eti_activity");
+                begin_create.eti_activity_create.setActionCommand("eti_activity_create");
+                begin_create.eti_activity_create.setName("eti_activity_create");
                 begin_create.eti_activity_create.addFocusListener(this);
                 begin_create.eti_activity_create.addMouseListener(this);
                 begin_create.eti_activity_create.addKeyListener(this);
 
-                begin_create.eti_salary_create.setActionCommand("eti_salary");
-                begin_create.eti_salary_create.setName("eti_salary");
+                begin_create.eti_salary_create.setActionCommand("eti_salary_create");
+                begin_create.eti_salary_create.setName("eti_salary_create");
                 begin_create.eti_salary_create.addFocusListener(this);
                 begin_create.eti_salary_create.addMouseListener(this);
                 begin_create.eti_salary_create.addKeyListener(this);
 
-                begin_create.eti_incentive_create.setActionCommand("eti_incentive");
-                begin_create.eti_incentive_create.setName("eti_incentive");
+                begin_create.eti_incentive_create.setActionCommand("eti_incentive_create");
+                begin_create.eti_incentive_create.setName("eti_incentive_create");
                 begin_create.eti_incentive_create.addFocusListener(this);
                 begin_create.eti_incentive_create.addMouseListener(this);
                 begin_create.eti_incentive_create.addKeyListener(this);
 
-                begin_create.eti_incentive_create.setActionCommand("eti_incentive");
-                begin_create.eti_incentive_create.setName("eti_incentive");
-                begin_create.eti_incentive_create.addFocusListener(this);
-                begin_create.eti_incentive_create.addMouseListener(this);
-                begin_create.eti_incentive_create.addKeyListener(this);
-
-                begin_create.btn_create_create.setActionCommand("btn_create");
+                begin_create.btn_create_create.setActionCommand("btn_create_create");
                 begin_create.btn_create_create.addActionListener(this);
 
-                begin_create.btn_cancel_create.setActionCommand("btn_cancel");
+                begin_create.btn_cancel_create.setActionCommand("btn_cancel_create");
                 begin_create.btn_cancel_create.addActionListener(this);
                 break;
      
@@ -350,14 +343,18 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
             case 2:
          
                 dao_admin.modifyadmin();
+                
+                this.begin_update.setVisible(true);
                 DNI=eti_dni_update.getText();
+                //eti_dni_update.setEnabled(false);
                 eti_date_birthday_update.getDateEditor().setEnabled(false);
                 eti_date_employ_update.getDateEditor().setEnabled(false);
 
-                begin_create.setTitle("Administrator");
-                begin_create.setLocationRelativeTo(null);
+                
+                begin_update.setTitle("Update Administrator");
+                begin_update.setLocationRelativeTo(null);
                 //this.setSize(525,425);//ancho x alto
-                begin_create.setResizable(true);
+                begin_update.setResizable(true);
                 //Image icono=Toolkit.getDefaultToolkit().getImage("p1.jpg");
                 //this.setIconImage(icono);
                 //this.setExtendedState(JFrame.MAXIMIZED_BOTH); //la aplicación se abre maximizada
@@ -371,76 +368,73 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
                     }
                 });
 
-                begin_update.eti_dni_update.setActionCommand("eti_dni");
-                begin_update.eti_dni_update.setName("eti_dni");
+                begin_update.eti_dni_update.setActionCommand("eti_dni_update");
+                begin_update.eti_dni_update.setName("eti_dni_update");
                 begin_update.eti_dni_update.addFocusListener(this);
                 begin_update.eti_dni_update.addMouseListener(this);
                 begin_update.eti_dni_update.addKeyListener(this);
 
-                begin_update.eti_name_update.setActionCommand("eti_name");
-                begin_update.eti_name_update.setName("eti_name");
+                begin_update.eti_name_update.setActionCommand("eti_name_update");
+                begin_update.eti_name_update.setName("eti_name_update");
                 begin_update.eti_name_update.addFocusListener(this);
                 begin_update.eti_name_update.addMouseListener(this);
                 begin_update.eti_name_update.addKeyListener(this);
 
-                begin_update.eti_surname_update.setActionCommand("eti_surname");
-                begin_update.eti_surname_update.setName("eti_surname");
+                begin_update.eti_surname_update.setActionCommand("eti_surname_update");
+                begin_update.eti_surname_update.setName("eti_surname_update");
                 begin_update.eti_surname_update.addFocusListener(this);
                 begin_update.eti_surname_update.addMouseListener(this);
                 begin_update.eti_surname_update.addKeyListener(this);
 
-                begin_update.eti_mobile_update.setActionCommand("eti_mobile");
-                begin_update.eti_mobile_update.setName("eti_mobile");
+                begin_update.eti_mobile_update.setActionCommand("eti_mobile_update");
+                begin_update.eti_mobile_update.setName("eti_mobile_update");
                 begin_update.eti_mobile_update.addFocusListener(this);
                 begin_update.eti_mobile_update.addMouseListener(this);
                 begin_update.eti_mobile_update.addKeyListener(this);
 
-                begin_update.eti_email_update.setActionCommand("eti_email");
-                begin_update.eti_email_update.setName("eti_email");
+                begin_update.eti_email_update.setActionCommand("eti_email_update");
+                begin_update.eti_email_update.setName("eti_email_update");
                 begin_update.eti_email_update.addFocusListener(this);
                 begin_update.eti_email_update.addMouseListener(this);
                 begin_update.eti_email_update.addKeyListener(this);
 
-                begin_update.eti_user_update.setActionCommand("eti_user");
-                begin_update.eti_user_update.setName("eti_user");
+                begin_update.eti_user_update.setActionCommand("eti_user_update");
+                begin_update.eti_user_update.setName("eti_user_update");
                 begin_update.eti_user_update.addFocusListener(this);
                 begin_update.eti_user_update.addMouseListener(this);
                 begin_update.eti_user_update.addKeyListener(this);
 
-                begin_update.eti_pass_update.setActionCommand("eti_pass");
-                begin_update.eti_pass_update.setName("eti_pass");
+                begin_update.eti_pass_update.setActionCommand("eti_pass_update");
+                begin_update.eti_pass_update.setName("eti_pass_update");
                 begin_update.eti_pass_update.addFocusListener(this);
                 begin_update.eti_pass_update.addMouseListener(this);
                 begin_update.eti_pass_update.addKeyListener(this);
+                
+                begin_update.eti_avatar_update.setName("eti_avatar_update_update");
+                begin_update.eti_avatar_update.addMouseListener(this);
 
-                begin_update.eti_activity_update.setActionCommand("eti_activity");
-                begin_update.eti_activity_update.setName("eti_activity");
+                begin_update.eti_activity_update.setActionCommand("eti_activity_update");
+                begin_update.eti_activity_update.setName("eti_activity_update");
                 begin_update.eti_activity_update.addFocusListener(this);
                 begin_update.eti_activity_update.addMouseListener(this);
                 begin_update.eti_activity_update.addKeyListener(this);
 
-                begin_update.eti_salary_update.setActionCommand("eti_salary");
-                begin_update.eti_salary_update.setName("eti_salary");
+                begin_update.eti_salary_update.setActionCommand("eti_salary_update");
+                begin_update.eti_salary_update.setName("eti_salary_update");
                 begin_update.eti_salary_update.addFocusListener(this);
                 begin_update.eti_salary_update.addMouseListener(this);
                 begin_update.eti_salary_update.addKeyListener(this);
 
-                begin_update.eti_incentive_update.setActionCommand("eti_incentive");
-                begin_update.eti_incentive_update.setName("eti_incentive");
+                begin_update.eti_incentive_update.setActionCommand("eti_incentive_update");
+                begin_update.eti_incentive_update.setName("eti_incentive_update");
                 begin_update.eti_incentive_update.addFocusListener(this);
                 begin_update.eti_incentive_update.addMouseListener(this);
                 begin_update.eti_incentive_update.addKeyListener(this);
 
-                begin_update.eti_incentive_update.setActionCommand("eti_incentive");
-                begin_update.eti_incentive_update.setName("eti_incentive");
-                begin_update.eti_incentive_update.addFocusListener(this);
-                begin_update.eti_incentive_update.addMouseListener(this);
-                begin_update.eti_incentive_update.addKeyListener(this);
-
-                begin_update.btn_update_update.setActionCommand("btn_update");
+                begin_update.btn_update_update.setActionCommand("btn_update_update");
                 begin_update.btn_update_update.addActionListener(this);
 
-                begin_update.btn_cancel_update.setActionCommand("btn_cancel");
+                begin_update.btn_cancel_update.setActionCommand("btn_cancel_update");
                 begin_update.btn_cancel_update.addActionListener(this);
 
                  }
@@ -451,13 +445,12 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
         switch (Action.valueOf(e.getActionCommand())) {
             case btn_pager_create:
                 begin_pager.dispose();
-                admin_jframe_create adm =new admin_jframe_create();
-                adm.setVisible(true);
+                new Controller_admin(new admin_jframe_create(), 1).begin(1);
             break;
             
             case btn_pager_read:
                 int select_read =-1;
-                select_read=TABLA.getSelectedRow();
+                select_read=begin_pager.TABLA.getSelectedRow();
                 if (select_read==-1){
                 JOptionPane.showMessageDialog(null, "Usuario no seleccionado");
                 }else{
@@ -467,16 +460,15 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
             
             case btn_pager_update:
                 int select_update =-1;
-                select_update=TABLA.getSelectedRow();
+                select_update=begin_pager.TABLA.getSelectedRow();
                 if (select_update==-1){
                 JOptionPane.showMessageDialog(null, "Usuario no seleccionado");
                 }else{
-                this.dispose();       
-                admin_jframe_update adm2 =new admin_jframe_update();
-                adm2.setVisible(true);
+                begin_pager.dispose();       
+                new Controller_admin(new admin_jframe_update(), 2).begin(2);
                 }         
             break;
-            
+           
             case btn_pager_delete:
                 bll_admin.delete_admin();
             break;
@@ -494,23 +486,23 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
             break;
             
             case primero:
-                pagina.currentPageIndex = 1;
-                pagina.initLinkBox();
+                pagina_admin.currentPageIndex = 1;
+                pagina_admin.initLinkBox();
             break;
             
             case ANTERIOR:
-                pagina.currentPageIndex -= 1;
-                pagina.initLinkBox();
+                pagina_admin.currentPageIndex -= 1;
+                pagina_admin.initLinkBox();
             break;
             
             case SIGUIENTE:
-                pagina.currentPageIndex += 1;
-                pagina.initLinkBox();
+                pagina_admin.currentPageIndex += 1;
+                pagina_admin.initLinkBox();
             break;
             
             case ultimo:
-                pagina.currentPageIndex = pagina.maxPageIndex;
-                pagina.initLinkBox();
+                pagina_admin.currentPageIndex = pagina_admin.maxPageIndex;
+                pagina_admin.initLinkBox();
             break;
             
             case jButton1:
@@ -519,38 +511,36 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
             break;
             
             case jComboBox1:
-                pagina.itemsPerPage=Integer.parseInt(jComboBox1.getSelectedItem().toString());
-                pagina.currentPageIndex = 1;
-                pagina.initLinkBox();
+                pagina_admin.itemsPerPage=Integer.parseInt(jComboBox1.getSelectedItem().toString());
+                pagina_admin.currentPageIndex = 1;
+                pagina_admin.initLinkBox();
             break;
             
             case btn_create_create:
                 bll_admin.create_admin();
                     try {
                         Thread.sleep(2000);
-                        this.dispose();
-                        new pager_adm().setVisible(true);
+                        begin_create.dispose();
+                        new Controller_admin(new pager_adm(), 0).begin(0);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(admin_jframe_create.class.getName()).log(Level.SEVERE, null, ex);
                         }
             break;
             
             case btn_cancel_create:
-                this.dispose();
-                pager_adm pager_create =new pager_adm();
-                pager_create.setVisible(true);
+                begin_create.dispose();
+                new Controller_admin(new pager_adm(), 0).begin(0);
             break;
             
-            case btn_create_update:
+            case btn_update_update:
                 bll_admin.update_admin();
-                this.dispose();
-                new pager_adm().setVisible(true);
+                begin_update.dispose();
+                new Controller_admin(new pager_adm(), 0).begin(0);
             break;
             
             case btn_cancel_update:
-                this.dispose();
-                pager_adm pager_update =new pager_adm();
-                pager_update.setVisible(true);
+                begin_update.dispose();
+                new Controller_admin(new pager_adm(), 0).begin(0);
             break;
         }        
     }

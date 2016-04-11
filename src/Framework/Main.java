@@ -8,7 +8,6 @@ package Framework;
 import Framework.Modules.Menu.View.choose_frame;
 import Framework.Modules.Config.Model.Class_config;
 import Framework.Modules.Menu.Controller.Controller_menu;
-import javax.swing.JFrame;
 
 
 /**
@@ -23,7 +22,6 @@ public class Main {
         /* Create and display the form */
        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JFrame choose_frame;
                 new Controller_menu(new choose_frame()).began();      
             }
         });

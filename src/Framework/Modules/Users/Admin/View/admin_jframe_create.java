@@ -453,17 +453,17 @@ public class admin_jframe_create extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void eti_date_birthday_createPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_eti_date_birthday_createPropertyChange
-        try{
+        /*try{
          bll_admin.givedates("date_birthday");
         }catch(Exception e){
-            }
+            }*/
     }//GEN-LAST:event_eti_date_birthday_createPropertyChange
 
     private void eti_date_employ_createPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_eti_date_employ_createPropertyChange
-        try{
+        /*try{
          bll_admin.givedates("date_employ");
         }catch(Exception e){
-            }
+            }*/
     }//GEN-LAST:event_eti_date_employ_createPropertyChange
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

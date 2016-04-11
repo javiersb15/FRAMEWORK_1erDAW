@@ -16,7 +16,7 @@ import javax.swing.JRadioButton;
 import javax.swing.RowFilter;
 import javax.swing.table.TableModel;
 
-public class pagina {
+public class pagina_admin {
 
     public static final LinkViewRadioButtonUI ui = new LinkViewRadioButtonUI();
     public static int LR_PAGE_SIZE = 5;
@@ -37,7 +37,7 @@ public class pagina {
         box.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 
         pager_adm.jPanel4.setLayout(new BorderLayout());
-        pager_adm.jPanel4.add(pagina.box);
+        pager_adm.jPanel4.add(pagina_admin.box);
 
     }
 

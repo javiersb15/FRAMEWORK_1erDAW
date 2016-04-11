@@ -1,6 +1,7 @@
 package Framework.Modules.Users.User_register.Model.Utils.Pager;
 
 
+import Framework.Modules.Users.User_register.Controller.Controller_user_register;
 import Framework.Modules.Users.User_register.Model.Clases.miniSimpleTableModel_user_register;
 import Framework.Modules.Users.User_register.View.pager_user_register;
 import java.awt.BorderLayout;
@@ -15,7 +16,7 @@ import javax.swing.JRadioButton;
 import javax.swing.RowFilter;
 import javax.swing.table.TableModel;
 
-public class pagina {
+public class pagina_user_register {
 
     public static final LinkViewRadioButtonUI ui = new LinkViewRadioButtonUI();
     public static int LR_PAGE_SIZE = 5;
@@ -36,13 +37,13 @@ public class pagina {
         box.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 
         pager_user_register.jPanel4.setLayout(new BorderLayout());
-        pager_user_register.jPanel4.add(pagina.box);
+        pager_user_register.jPanel4.add(pagina_user_register.box);
 
     }
 
     public static void initLinkBox() {
 
-        pager_user_register.sorter.setRowFilter(new RowFilter<TableModel, Integer>() {
+        Controller_user_register.sorter.setRowFilter(new RowFilter<TableModel, Integer>() {
             @Override
             public boolean include(RowFilter.Entry<? extends TableModel, ? extends Integer> entry) {
                 int ti = currentPageIndex - 1;

@@ -2,9 +2,9 @@ package Framework.Modules.Users.User_register.Model.Clases;
 
 import Framework.Class.Class_date;
 import Framework.Modules.Users.User.Model.Clases.Singleton;
-import Framework.Modules.Users.User_register.Model.Utils.Pager.pagina;
+import static Framework.Modules.Users.User_register.Controller.Controller_user_register.combo;
+import Framework.Modules.Users.User_register.Model.Utils.Pager.pagina_user_register;
 import Framework.Modules.Users.User_register.View.pager_user_register;
-import static Framework.Modules.Users.User_register.View.pager_user_register.combo;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.table.AbstractTableModel;
@@ -134,7 +134,7 @@ public class miniSimpleTableModel_user_register extends AbstractTableModel {
             }
             pager_user_register.jLabel3.setText(String.valueOf(cont));
             System.out.println("word selected: " + name);
-            pagina.initLinkBox();
+            pagina_user_register.initLinkBox();
         }
     }
 

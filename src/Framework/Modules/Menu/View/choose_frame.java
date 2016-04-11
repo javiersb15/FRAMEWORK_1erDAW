@@ -69,7 +69,7 @@ public class choose_frame extends javax.swing.JFrame {
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton btn_adm;
-    private javax.swing.JButton btn_client;
-    private javax.swing.JButton btn_user_reg;
+    public static javax.swing.JButton btn_client;
+    public static javax.swing.JButton btn_user_reg;
     // End of variables declaration//GEN-END:variables
 }
