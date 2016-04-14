@@ -157,7 +157,6 @@ public class dao_admin {
             admin_update= new Class_admin(DNI, name, surname, date_birthday, mobile, avatar, state, email, user, pass, date_employ, salary, incentive, activity);
         } else {
             admin_update= null;
-
         }
         return admin_update;
     }

@@ -2,6 +2,7 @@ package Framework.Modules.Users.Client.Model.Clases;
 
 import Framework.Class.Class_date;
 import static Framework.Modules.Users.Client.Controller.Controller_client.combo;
+import Framework.Modules.Users.Client.Model.Utils.Extensions.Json;
 import Framework.Modules.Users.Client.Model.Utils.Pager.pagina_client;
 import Framework.Modules.Users.Client.View.pager_client;
 import Framework.Modules.Users.User.Model.Clases.Singleton;
@@ -57,7 +58,7 @@ public class miniSimpleTableModel_client extends AbstractTableModel {
                 break;
 
             case 3:
-                dev = fila.getdate_birthday();
+                dev = fila.getdate_birthday().toStringformat();
                 break;
 
         }
@@ -105,9 +106,11 @@ public class miniSimpleTableModel_client extends AbstractTableModel {
         datos.clear();
         datosaux.clear();
         
+        Json.auto_open_json_client();
+        
         Class_client cli= null;
         java.util.Date date= new java.util.Date();
-        for(int i=0; i<=Singleton.Client_array.size()-1 ;i++) {
+        for(int i=0; i<=(Singleton.Client_array.size()-1) ;i++) {
             cli=Singleton.Client_array.get(i);
             addRow(cli);
             datosaux.add(cli);

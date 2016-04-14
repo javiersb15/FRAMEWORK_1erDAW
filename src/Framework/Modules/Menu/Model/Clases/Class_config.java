@@ -1,4 +1,4 @@
-package Framework.Modules.Config.Model;
+package Framework.Modules.Menu.Model.Clases;
 
 import Framework.Modules.Users.Admin.Model.Bll.Functions_auto_open;
 import Framework.Modules.Users.Admin.Model.Clases.Class_admin;
@@ -14,55 +14,55 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-
-
-
-
 @XStreamAlias("Class_config")
 public class Class_config implements Serializable{
-
 	
 	@XStreamAlias("format_date")
 	private String format_date;
 	@XStreamAlias("currency")
-	private char currency;
-	@XStreamAlias("format_file")
-	private String format_file;
+	private String currency;
 	@XStreamAlias("language")
 	private String language;
 	@XStreamAlias("theme")
 	private String theme;
 	@XStreamAlias("decimal_number")
-	private int decimal_number;
+	private String decimal_number;
 	@XStreamAlias("instance")
 	private static Class_config instance;
 		
-	public Class_config(){
+	public Class_config (String format_date, String currency, String language, String decimal_number, String theme) {
+		this.format_date=format_date;
+		this.currency=currency;
+		this.language=language;
+                this.decimal_number=decimal_number;
+                this.theme=theme;		
+	}
+        
+        public Class_config(){
 		this.format_date="dd/MM/yyyy";
-		this.currency='€';
-		this.format_file="1";
-		this.language="Valencian";
+		this.currency="€";
+		this.language="val";
 		this.theme="Nimbus";
-		this.decimal_number=2;	
+		this.decimal_number="2";	
 	}
 	
 	public static Class_config getInstance(){
 		if (instance==null){
 			instance=new Class_config();
 			
-		Theme.select_theme("Nimbus");
+		Theme.select_theme(Class_config.getInstance().getTheme());
 		Class_language.getInstance();
 		
 		Singleton.Admin_array=new ArrayList <Class_admin>();
 		Singleton.Client_array=new ArrayList <Class_client>();
 		Singleton.User_register_array=new ArrayList <Class_user_register>();
 		
-		//Functions_auto_open.auto_open();
-		Functions_dummy_admin.cargar_admin();
-                Functions_dummy_client.cargar_client();
-		Functions_dummy_usr_reg.cargar_user_register();
-		Theme.select_theme("Nimbus");
-                Json.auto_create_json_admin();
+		Functions_auto_open.auto_open();
+		
+                //Functions_dummy_admin.cargar_admin();
+                //Functions_dummy_client.cargar_client();
+		//Functions_dummy_usr_reg.cargar_user_register();
+		
 		}
 		return instance;
 	}
@@ -75,20 +75,12 @@ public class Class_config implements Serializable{
 		this.format_date = format_date;
 	}
 
-	public char getCurrency() {
+	public String getCurrency() {
 		return currency;
 	}
 
-	public void setCurrency(char currency) {
+	public void setCurrency(String currency) {
 		this.currency = currency;
-	}
-
-	public String getFormat_file() {
-		return format_file;
-	}
-
-	public void setFormat_file(String format_file) {
-		this.format_file = format_file;
 	}
 
 	public String getLanguage() {
@@ -105,13 +97,14 @@ public class Class_config implements Serializable{
 
 	public void setTheme(String theme) {
 		this.theme = theme;
+                Theme.select_theme(Class_config.getInstance().getTheme());
 	}
 
-	public int getDecimal_number() {
+	public String getDecimal_number() {
 		return decimal_number;
 	}
 
-	public void setDecimal_number(int decimal_number) {
+	public void setDecimal_number(String decimal_number) {
 		this.decimal_number = decimal_number;
 	}
 
@@ -119,9 +112,14 @@ public class Class_config implements Serializable{
 		Class_config.instance = instance;
 	}
 	
-	public String toString() {
-		return "Configuration [format_data="+format_date+", Currency="+currency
-				+", File format="+format_file+", Languages="+language+", Theme="+theme+", "
-						+ "Decimal number="+decimal_number+"]";
+	public String toString(Class_config instance) {
+            StringBuffer string = new StringBuffer();
+            
+            string.append("language" +this.getLanguage()+"\n");
+	    string.append("format_date" +this.getFormat_date()+"\n");
+            string.append("currency" +this.getCurrency()+"\n");
+            string.append("decimal_number" +this.getDecimal_number()+"\n");
+            string.append("theme" +this.getTheme()+"\n");
+            return string.toString();
 	}
 }

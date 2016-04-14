@@ -1,5 +1,6 @@
-package Framework.Modules.Config.Model;
+package Framework.Modules.Menu.Model.Clases;
 
+import Framework.Modules.Menu.Model.Clases.Class_config;
 import java.io.IOException;
 import java.util.Properties;
 import com.thoughtworks.xstream.annotations.XStreamAlias;

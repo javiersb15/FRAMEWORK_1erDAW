@@ -1,6 +1,6 @@
 package Framework.Class;
 
-import Framework.Modules.Config.Model.Class_config;
+import Framework.Modules.Menu.Model.Clases.Class_config;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

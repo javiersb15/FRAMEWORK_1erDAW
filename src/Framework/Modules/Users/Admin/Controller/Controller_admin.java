@@ -171,6 +171,8 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
 
                 pagina_admin.inicializa();
                 pagina_admin.initLinkBox();
+                pagina_admin.currentPageIndex = 1;
+                pagina_admin.initLinkBox();
 
                 begin_pager.jLabel3.setText(String.valueOf(Singleton.Admin_array.size()));
 
@@ -178,6 +180,7 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
                 this.begin_pager.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosing(WindowEvent e) {
+                        Json.auto_create_json_admin();
                         JOptionPane.showMessageDialog(null,"Exit to the aplication");
                         begin_pager.dispose();
                         System.exit(0);
@@ -263,6 +266,7 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
                 addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosing(WindowEvent e) {
+                        Json.auto_create_json_admin();
                         JOptionPane.showMessageDialog(null,"Exit to the aplication");
                         dispose();
                         System.exit(0);
@@ -362,6 +366,7 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
                 addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosing(WindowEvent e) {
+                        Json.auto_create_json_admin();
                         JOptionPane.showMessageDialog(null,"Exit to the aplication");
                         dispose();
                         System.exit(0);
@@ -507,7 +512,7 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
             
             case jButton1:
                 begin_pager.dispose();
-                new Controller_menu(new choose_frame()).began();
+                new Controller_menu(new choose_frame(),0).began(0);
             break;
             
             case jComboBox1:

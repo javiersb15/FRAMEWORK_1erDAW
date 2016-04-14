@@ -166,6 +166,7 @@ public class Controller_user_register implements ActionListener, MouseListener, 
         this.begin_pager.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosing(WindowEvent e) {
+                        Json.auto_create_json_usr_reg();
                         JOptionPane.showMessageDialog(null,"Exit to the aplication");
                         begin_pager.dispose();
                         System.exit(0);
@@ -466,7 +467,7 @@ public class Controller_user_register implements ActionListener, MouseListener, 
             
             case jButton1:
                 begin_pager.dispose();
-                new Controller_menu(new choose_frame()).began();
+                new Controller_menu(new choose_frame(),0).began(0);
             break;
             
             case jComboBox1:

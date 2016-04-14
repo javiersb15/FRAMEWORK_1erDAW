@@ -14,4 +14,5 @@ import javax.swing.ImageIcon;
 public class Singleton_tools {
     public static ImageIcon okey= new ImageIcon("src/Framework/img/tick.jpg");
     public static ImageIcon cancel= new ImageIcon("src/Framework/img/cross.png");
+    public static int position=0;
 }

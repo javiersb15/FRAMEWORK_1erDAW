@@ -30,6 +30,7 @@ public class choose_frame extends javax.swing.JFrame {
         btn_adm = new javax.swing.JButton();
         btn_client = new javax.swing.JButton();
         btn_user_reg = new javax.swing.JButton();
+        btn_config = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -37,20 +38,24 @@ public class choose_frame extends javax.swing.JFrame {
 
         btn_client.setText("Client");
 
-        btn_user_reg.setText("Usr_Reg");
+        btn_user_reg.setText("User_Register");
+
+        btn_config.setText("Configuration");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(75, 75, 75)
+                .addGap(21, 21, 21)
                 .addComponent(btn_adm)
-                .addGap(23, 23, 23)
+                .addGap(26, 26, 26)
                 .addComponent(btn_client)
-                .addGap(24, 24, 24)
+                .addGap(27, 27, 27)
                 .addComponent(btn_user_reg)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addComponent(btn_config)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -59,7 +64,8 @@ public class choose_frame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_adm)
                     .addComponent(btn_client)
-                    .addComponent(btn_user_reg))
+                    .addComponent(btn_user_reg)
+                    .addComponent(btn_config))
                 .addContainerGap(147, Short.MAX_VALUE))
         );
 
@@ -70,6 +76,7 @@ public class choose_frame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton btn_adm;
     public static javax.swing.JButton btn_client;
+    public static javax.swing.JButton btn_config;
     public static javax.swing.JButton btn_user_reg;
     // End of variables declaration//GEN-END:variables
 }

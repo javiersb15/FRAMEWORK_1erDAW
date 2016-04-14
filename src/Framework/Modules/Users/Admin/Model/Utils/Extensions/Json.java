@@ -3,7 +3,6 @@ package Framework.Modules.Users.Admin.Model.Utils.Extensions;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -14,10 +13,8 @@ import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
-import Framework.Modules.Config.Model.Class_config;
 import Framework.Modules.Users.Admin.Model.Clases.Class_admin;
 import Framework.Modules.Users.User.Model.Clases.Singleton;
-import Framework.Utils.Theme;
 
 public class Json {
 
@@ -108,9 +105,14 @@ public class Json {
 	/**AUTOMATIC OPEN JSON ADMIN*/
 	public static void auto_open_json_admin(){
     	String PATH = null;
-    	Class_admin e1=new Class_admin("");
+    	Class_admin e1=null;
     	
         try {
+            
+            XStream xstream = new XStream(new JettisonMappedXmlDriver());
+	        xstream.setMode(XStream.NO_REFERENCES);
+			xstream.alias("Admin", Class_admin.class);
+                        
             PATH = new java.io.File(".").getCanonicalPath()+"/src/Framework/Modules/Users/Admin/Model/Files/admin_files/json/prova.json";
 
             Singleton.Admin_array.clear();
@@ -125,58 +127,8 @@ public class Json {
 	            		Singleton.Admin_array.add(e1);
 	            	}
         } catch (Exception e) {
+                    	JOptionPane.showMessageDialog(null, "erroropen_json");
+
         }
-    }
-	
-	/**OPEN CONFIG*/
-	public static void open_json_config(){
-		String PATH=null;
-		Class_config config=null;
-		
-		try{
-			 XStream xstream=new XStream(new JettisonMappedXmlDriver());
-	         xstream.setMode(XStream.NO_REFERENCES);
-			 xstream.alias("Admin", Class_admin.class);
-			 PATH = new java.io.File(".").getCanonicalPath()+"/src/Framework/Modules/Users/Model/Files/config_files/open_config/prova.json";
-			 
-			 JsonReader lector=new JsonReader(new FileReader(PATH));
-             JsonParser parseador=new JsonParser();
-             JsonElement raiz=parseador.parse(lector);
-             
-             Gson json=new Gson();
-             config=json.fromJson(raiz, Class_config.class);
-             Class_config.getInstance().setCurrency(config.getCurrency());
-             Class_config.getInstance().setDecimal_number(config.getDecimal_number());
-             Class_config.getInstance().setFormat_date(config.getFormat_date());
-             Class_config.getInstance().setFormat_file(config.getFormat_file());
-             Class_config.getInstance().setLanguage(config.getLanguage());
-             Class_config.getInstance().setTheme(config.getTheme());
-             Theme.select_theme(config.getTheme());
-			 
-		}catch (Exception e){
-			JOptionPane.showMessageDialog(null, "Error configuration JSON", "Error", JOptionPane.ERROR_MESSAGE);
-		}
-	}
-	
-	/**SAVE CONFIG*/
-	public static void create_json_config() {
-    	String PATH=null;
-    	
-	      try {
-	    	  PATH=new java.io.File(".").getCanonicalPath()+"/src/Framework/Modules/Users/Model/Files/config_files/create_config/prova.json";	
-	      } catch (IOException e) {
-	      }
-	    	  try{
-	          XStream xstreamjson=new XStream(new JettisonMappedXmlDriver());
-	          xstreamjson.setMode(XStream.NO_REFERENCES);
-	          xstreamjson.alias("Config", Class_config.class);		              
-	          Gson gson=new Gson();
-		      String json1=gson.toJson(Class_config.getInstance());
-		      FileWriter fileXml=new FileWriter(PATH);
-	          fileXml.write(json1.toString());
-	          fileXml.close();
-        } catch (Exception e) {
-        	JOptionPane.showMessageDialog(null, "Error configuration config", "Error", JOptionPane.ERROR_MESSAGE);
-        }	
     }
 }

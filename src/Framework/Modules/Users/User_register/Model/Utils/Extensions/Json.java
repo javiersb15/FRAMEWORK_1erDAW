@@ -3,7 +3,6 @@ package Framework.Modules.Users.User_register.Model.Utils.Extensions;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -14,10 +13,8 @@ import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
-import Framework.Modules.Config.Model.Class_config;
 import Framework.Modules.Users.User.Model.Clases.Singleton;
 import Framework.Modules.Users.User_register.Model.Clases.Class_user_register;
-import Framework.Utils.Theme;
 
 public class Json {
 	
@@ -95,7 +92,7 @@ public class Json {
 			          xstreamjson.setMode(XStream.NO_REFERENCES);
 			          xstreamjson.alias("User Register", Class_user_register.class);
 
-			                PATH = new java.io.File(".").getCanonicalPath()+"/src/Framework/Modules/Users/Model/Files/user_register_files/json/prova.json";			              
+			                PATH = new java.io.File(".").getCanonicalPath()+"/src/Framework/Modules/Users/User_register/Model/Files/user_register_files/json/prova.json";			              
 			                Gson gson = new Gson();
 				            String json1 = gson.toJson(Singleton.User_register_array);
 				            FileWriter fileXml = new FileWriter(PATH);
@@ -108,10 +105,13 @@ public class Json {
 	/**AUTOMATIC OPEN JSON USER REGISTER*/
 	public static void auto_open_json_usr_reg(){
     	String PATH = null;
-    	Class_user_register e1=new Class_user_register("");
+    	Class_user_register e1=null;
     	
         try {
-            PATH = new java.io.File(".").getCanonicalPath()+"/src/Framework/Modules/Users/Model/Files/user_register_files/json/prova.json";
+            XStream xstream = new XStream(new JettisonMappedXmlDriver());
+	        xstream.setMode(XStream.NO_REFERENCES);
+			xstream.alias("User Register", Class_user_register.class);
+            PATH = new java.io.File(".").getCanonicalPath()+"/src/Framework/Modules/Users/User_register/Model/Files/user_register_files/json/prova.json";
 
             Singleton.User_register_array.clear();
 	                JsonReader lector = new JsonReader(new FileReader(PATH));
@@ -125,6 +125,7 @@ public class Json {
 	            		Singleton.User_register_array.add(e1);
 	            	}
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "erroropen_json");
         }
     }
 }

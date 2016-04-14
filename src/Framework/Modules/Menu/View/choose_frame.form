@@ -24,13 +24,15 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Component id="btn_adm" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Component id="btn_client" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Component id="btn_user_reg" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="78" max="32767" attributes="0"/>
+              <EmptySpace pref="23" max="32767" attributes="0"/>
+              <Component id="btn_config" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -42,6 +44,7 @@
                   <Component id="btn_adm" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_client" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_user_reg" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_config" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="147" max="32767" attributes="0"/>
           </Group>
@@ -67,7 +70,15 @@
     </Component>
     <Component class="javax.swing.JButton" name="btn_user_reg">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Usr_Reg"/>
+        <Property name="text" type="java.lang.String" value="User_Register"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_config">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Configuration"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>

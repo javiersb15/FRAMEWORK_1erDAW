@@ -1,6 +1,6 @@
 package Framework.Utils;
 
-import Framework.Modules.Config.Model.Class_config;
+import Framework.Modules.Menu.Model.Clases.Class_config;
 
 public class Validate {
 

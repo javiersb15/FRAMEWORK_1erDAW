@@ -14,7 +14,7 @@ import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
-import Framework.Modules.Config.Model.Class_config;
+import Framework.Modules.Menu.Model.Clases.Class_config;
 import Framework.Modules.Users.Client.Model.Clases.Class_client;
 import Framework.Modules.Users.User.Model.Clases.Singleton;
 import Framework.Utils.Theme;
@@ -96,7 +96,7 @@ public class Json {
 			          xstreamjson.setMode(XStream.NO_REFERENCES);
 			          xstreamjson.alias("Client", Class_client.class);
 
-			                PATH = new java.io.File(".").getCanonicalPath()+"/src/Framework/Modules/Users/Model/Files/client_files/json/prova.json";			              
+			                PATH = new java.io.File(".").getCanonicalPath()+"/src/Framework/Modules/Users/Client/Model/Files/client_files/json/prova.json";			              
 			                Gson gson = new Gson();
 				            String json1 = gson.toJson(Singleton.Client_array);
 				            FileWriter fileXml = new FileWriter(PATH);
@@ -109,10 +109,14 @@ public class Json {
 	/**AUTOMATIC OPEN JSON CLIENT*/
 	public static void auto_open_json_client(){
     	String PATH = null;
-    	Class_client e1=new Class_client("");
+    	Class_client e1=null;
     	
         try {
-            PATH = new java.io.File(".").getCanonicalPath()+"/src/Framework/Modules/Users/Model/Files/client_files/json/prova.json";
+            
+            XStream xstream = new XStream(new JettisonMappedXmlDriver());
+	        xstream.setMode(XStream.NO_REFERENCES);
+			xstream.alias("Client", Class_client.class);
+            PATH = new java.io.File(".").getCanonicalPath()+"/src/Framework/Modules/Users/Client/Model/Files/client_files/json/prova.json";
 
             Singleton.Client_array.clear();
 	                JsonReader lector = new JsonReader(new FileReader(PATH));
@@ -126,6 +130,7 @@ public class Json {
 	            		Singleton.Client_array.add(e1);
 	            	}
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "erroropen_json");
         }
     }
 		
@@ -137,7 +142,7 @@ public class Json {
 		try{
 			 XStream xstream=new XStream(new JettisonMappedXmlDriver());
 	         xstream.setMode(XStream.NO_REFERENCES);
-			 xstream.alias("Admin", Class_client.class);
+			 xstream.alias("Client", Class_client.class);
 			 PATH = new java.io.File(".").getCanonicalPath()+"/src/Framework/Modules/Users/Model/Files/config_files/open_config/prova.json";
 			 
 			 JsonReader lector=new JsonReader(new FileReader(PATH));
@@ -149,7 +154,6 @@ public class Json {
              Class_config.getInstance().setCurrency(config.getCurrency());
              Class_config.getInstance().setDecimal_number(config.getDecimal_number());
              Class_config.getInstance().setFormat_date(config.getFormat_date());
-             Class_config.getInstance().setFormat_file(config.getFormat_file());
              Class_config.getInstance().setLanguage(config.getLanguage());
              Class_config.getInstance().setTheme(config.getTheme());
              Theme.select_theme(config.getTheme());

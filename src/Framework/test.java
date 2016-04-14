@@ -6,7 +6,7 @@
 package Framework;
 
 import Framework.Modules.Menu.View.choose_frame;
-import Framework.Modules.Config.Model.Class_config;
+import Framework.Modules.Menu.Model.Clases.Class_config;
 import Framework.Modules.Menu.Controller.Controller_menu;
 
 
@@ -23,7 +23,7 @@ public class test {
         /* Create and display the form */
        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Controller_menu(new choose_frame()).began();      
+                new Controller_menu(new choose_frame(),0).began(0);      
             }
         });
     }

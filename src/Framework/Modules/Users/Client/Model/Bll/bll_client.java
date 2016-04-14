@@ -186,7 +186,8 @@ public class bll_client {
                         "Info", JOptionPane.WARNING_MESSAGE);
 
                 if (opc == 0) {
-                    ((miniSimpleTableModel_client) pager_client.TABLA.getModel()).removeRow(selection);
+                    ((miniSimpleTableModel_client) pager_client.TABLA.getModel()).removeRow(selection1);
+                    pagina_client.initLinkBox();
                     cli = Singleton.Client_array.get(pos);
                     Singleton.Client_array.remove(cli);                    
                     miniSimpleTableModel_client.datosaux.remove(cli);

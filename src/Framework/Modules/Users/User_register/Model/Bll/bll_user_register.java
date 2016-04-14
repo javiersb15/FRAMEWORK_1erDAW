@@ -10,7 +10,6 @@ import Framework.Modules.Users.User_register.Model.Dao.dao_user_register;
 import Framework.Modules.Users.User_register.Model.Utils.Extensions.Json;
 import Framework.Modules.Users.User_register.Model.Utils.Pager.pagina_user_register;
 import Framework.Modules.Users.User_register.View.pager_user_register;
-import static Framework.Modules.Users.User_register.View.pager_user_register.TABLA;
 import static Framework.Modules.Users.User_register.View.pager_user_register.jLabel3;
 import Framework.Modules.Users.User_register.View.user_register_jframe_create;
 import Framework.Modules.Users.User_register.View.user_register_jframe_update;
@@ -189,7 +188,8 @@ public class bll_user_register {
                         "Info", JOptionPane.WARNING_MESSAGE);
 
                 if (opc == 0) {
-                    ((miniSimpleTableModel_user_register) pager_user_register.TABLA.getModel()).removeRow(selection);
+                    ((miniSimpleTableModel_user_register) pager_user_register.TABLA.getModel()).removeRow(selection1);
+                    pagina_user_register.initLinkBox();
                     usr_reg = Singleton.User_register_array.get(pos);
                     Singleton.User_register_array.remove(usr_reg);                    
                     miniSimpleTableModel_user_register.datosaux.remove(usr_reg);

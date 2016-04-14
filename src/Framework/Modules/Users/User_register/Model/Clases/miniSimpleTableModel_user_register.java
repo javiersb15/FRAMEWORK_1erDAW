@@ -3,6 +3,7 @@ package Framework.Modules.Users.User_register.Model.Clases;
 import Framework.Class.Class_date;
 import Framework.Modules.Users.User.Model.Clases.Singleton;
 import static Framework.Modules.Users.User_register.Controller.Controller_user_register.combo;
+import Framework.Modules.Users.User_register.Model.Utils.Extensions.Json;
 import Framework.Modules.Users.User_register.Model.Utils.Pager.pagina_user_register;
 import Framework.Modules.Users.User_register.View.pager_user_register;
 import java.util.ArrayList;
@@ -57,7 +58,7 @@ public class miniSimpleTableModel_user_register extends AbstractTableModel {
                 break;
 
             case 3:
-                dev = fila.getdate_birthday();
+                dev = fila.getdate_birthday().toStringformat();
                 break;
 
         }
@@ -105,9 +106,11 @@ public class miniSimpleTableModel_user_register extends AbstractTableModel {
         datos.clear();
         datosaux.clear();
         
+        Json.auto_open_json_usr_reg();
+        
         Class_user_register usr_reg= null;
         java.util.Date date= new java.util.Date();
-        for(int i=0; i<=Singleton.User_register_array.size()-1 ;i++) {
+        for(int i=0; i<=(Singleton.User_register_array.size()-1) ;i++) {
             usr_reg=Singleton.User_register_array.get(i);
             addRow(usr_reg);
             datosaux.add(usr_reg);

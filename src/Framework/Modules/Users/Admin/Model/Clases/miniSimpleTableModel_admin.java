@@ -2,6 +2,7 @@ package Framework.Modules.Users.Admin.Model.Clases;
 
 import Framework.Class.Class_date;
 import static Framework.Modules.Users.Admin.Controller.Controller_admin.combo;
+import Framework.Modules.Users.Admin.Model.Utils.Extensions.Json;
 import Framework.Modules.Users.Admin.Model.Utils.Pager.pagina_admin;
 import Framework.Modules.Users.Admin.View.pager_adm;
 import Framework.Modules.Users.User.Model.Clases.Singleton;
@@ -55,7 +56,7 @@ public class miniSimpleTableModel_admin extends AbstractTableModel {
                 break;
 
             case 3:
-                dev = fila.getdate_birthday();
+                dev = fila.getdate_birthday().toStringformat();
                 break;
 
         }
@@ -103,9 +104,11 @@ public class miniSimpleTableModel_admin extends AbstractTableModel {
         datos.clear();
         datosaux.clear();
         
+        Json.auto_open_json_admin();
+        
         Class_admin adm= null;
         java.util.Date date= new java.util.Date();
-        for(int i=0; i<=Singleton.Admin_array.size()-1 ;i++) {
+        for(int i=0; i<=(Singleton.Admin_array.size()-1) ;i++) {
             adm=Singleton.Admin_array.get(i);
             addRow(adm);
             datosaux.add(adm);

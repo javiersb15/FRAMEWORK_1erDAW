@@ -4,7 +4,7 @@ import java.io.Serializable;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import Framework.Class.Class_date;
 import Framework.Modules.Users.User.Model.Clases.Class_user;
-import Framework.Utils.Config_menus;
+import Framework.Modules.Menu.Model.Config_menus;
 import Framework.Utils.Format;
 
 @XStreamAlias("Class_admin")
@@ -128,15 +128,15 @@ public class Class_admin extends Class_user implements Serializable{
 	}
 	
 	public String toString(){
-		StringBuffer buffer=new StringBuffer();
-		buffer.append(super.toString());
-		buffer.append("The date employ is "+ this.getdate_employ().toStringformat() +"\n");
-		buffer.append("The antique is "+ this.getantique() +"\n");
-		buffer.append("The salary is "+ Config_menus.formatcoin(this.getsalary()) +"\n");
-		buffer.append("The activity is "+ this.getactivity() +"\n");
-		buffer.append("The incentive is "+ this.getincentive() +"\n");
+		StringBuffer string=new StringBuffer();
+		string.append(super.toString());
+		string.append("The date employ is "+ this.getdate_employ().toStringformat() +"\n");
+		string.append("The antique is "+ this.getantique() +"\n");
+		string.append("The salary is "+ Config_menus.formatcoin(this.getsalary()) +"\n");
+		string.append("The activity is "+ this.getactivity() +"\n");
+		string.append("The incentive is "+ this.getincentive() +"\n");
 				
-		return buffer.toString();
+		return string.toString();
 	}
 	
 	/**TO STRING ADMIN*/
