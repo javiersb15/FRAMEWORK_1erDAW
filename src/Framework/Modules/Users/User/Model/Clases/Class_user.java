@@ -130,7 +130,7 @@ public abstract class Class_user implements Comparable<Class_user>, Serializable
 			return this.avatar;
 		}
 		
-		public boolean getstate(){
+		public boolean isstate(){
 			return this.state;
 		}
 		
@@ -219,7 +219,7 @@ public abstract class Class_user implements Comparable<Class_user>, Serializable
 			buffer.append("The mobile is "+ this.getmobile() +"\n");
 			buffer.append("The age is "+ this.getage() +"\n");
 			buffer.append("The avatar is "+ this.getavatar() +"\n");
-			buffer.append("The state is "+ this.getstate() +"\n");
+			buffer.append("The state is "+ this.isstate() +"\n");
 			buffer.append("The email is "+ this.getemail() +"\n");
 			buffer.append("The user is "+ this.getuser() +"\n");
 			buffer.append("The pass is "+ this.getpass() +"\n");
@@ -255,7 +255,7 @@ public abstract class Class_user implements Comparable<Class_user>, Serializable
 				cad=cad+"The avatar is "+ this.getavatar() +"\n";
 			break;
 			case 7:
-				cad=cad+"The state is "+ this.getstate() +"\n";
+				cad=cad+"The state is "+ this.isstate() +"\n";
 			break;
 			case 8:
 				cad=cad+"The email is "+ this.getemail() +"\n";

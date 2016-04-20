@@ -32,7 +32,7 @@ public class dao_client {
             client_jframe_update.eti_date_birthday_update.setCalendar(a_1.getdate_birthday().stringtocalendar());
             client_jframe_update.eti_mobile_update.setText(a_1.getmobile());
             client_jframe_update.eti_avatar_update.setText(a_1.getavatar());            
-            if (a_1.getstate()==true){
+            if (a_1.isstate()==true){
                 client_jframe_update.eti_state_co_update.setSelected(true);
             }else{ 
                 client_jframe_update.eti_state_di_update.setSelected(true);

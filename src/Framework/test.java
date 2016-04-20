@@ -31,10 +31,9 @@ public class test {
                 Connection con = null;
                 Connection_DB conect = new Connection_DB();
                 PreparedStatement stmt = null;
-                int resultado = 0;
+                              
                 
-                
-                con = (Connection) conect.openconnection();
+                //con = conect.openconnection();
                 try {
                  Class_admin adm= new Class_admin("87654321X", "Javier", "Sanz", new Class_date("15/04/1993"), "654987321", "/root", true, "javier@gmail.com",
                          "javiersb15", "conTRA@123", new Class_date("15/04/2015"), 0.0f, 0.0f, 0);
@@ -51,7 +50,7 @@ public class test {
             stmt.setString(5, adm.getmobile());
             stmt.setInt(6, adm.getage());
             stmt.setString(7, adm.getavatar());
-            stmt.setBoolean(8, adm.getstate());
+            stmt.setBoolean(8, adm.isstate());
             stmt.setString(9, adm.getemail());
             stmt.setString(10, adm.getuser());
             stmt.setString(11, adm.getpass());
@@ -66,7 +65,7 @@ public class test {
             } catch (SQLException ex) {
                     Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                conect.closeconnection(con);
+                //conect.closeconnection(con);
                 }            
         });
     }

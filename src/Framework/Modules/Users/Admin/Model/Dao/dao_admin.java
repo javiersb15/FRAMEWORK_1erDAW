@@ -3,6 +3,7 @@ package Framework.Modules.Users.Admin.Model.Dao;
 import Framework.Class.Class_date;
 import Framework.Modules.Users.Admin.Model.Bll.bll_admin;
 import Framework.Modules.Users.Admin.Model.Clases.Class_admin;
+import Framework.Modules.Users.Admin.Model.Clases.Singleton_adm;
 import Framework.Modules.Users.Admin.View.admin_jframe_create;
 import Framework.Modules.Users.Admin.View.admin_jframe_update;
 import Framework.Modules.Users.User.Model.Clases.Files_class;
@@ -13,6 +14,7 @@ import java.util.Calendar;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import static Framework.Modules.Users.Admin.View.admin_jframe_create.eti_avatar_create;
+import Framework.Modules.Users.User.Model.Clases.Singleton;
 
 
 
@@ -32,7 +34,7 @@ public class dao_admin {
             admin_jframe_update.eti_date_birthday_update.setCalendar(a_1.getdate_birthday().stringtocalendar());
             admin_jframe_update.eti_mobile_update.setText(a_1.getmobile());
             admin_jframe_update.eti_avatar_update.setText(a_1.getavatar());            
-            if (a_1.getstate()==true){
+            if (a_1.isstate()==true){
                 admin_jframe_update.eti_state_co_update.setSelected(true);
             }else{ 
                 admin_jframe_update.eti_state_di_update.setSelected(true);
@@ -101,6 +103,7 @@ public class dao_admin {
         } else {
             admin= null;
         }
+
         return admin;
     }
         
@@ -131,7 +134,7 @@ public class dao_admin {
         correct5=givemail_update();
         correct6=giveuser_update();
         correct7=givepassword_update();
-        correct8=give_date_employ(admin_jframe_update.eti_date_birthday_update.getCalendar(), admin_jframe_create.eti_date_employ_create.getCalendar());
+        correct8=give_date_employ(admin_jframe_update.eti_date_birthday_update.getCalendar(), admin_jframe_update.eti_date_employ_update.getCalendar());
         correct9=giveactivity_update();
         correct10=correct_salary();
         correct11=correct_incentive();
@@ -159,6 +162,50 @@ public class dao_admin {
             admin_update= null;
         }
         return admin_update;
+    }
+        
+        public static Class_admin ask_adminDNI_update () {
+	boolean checkDNI;
+        String DNI;
+        Class_admin admin=null;
+        
+        checkDNI=DNI_update();
+        if (checkDNI==true){
+            admin = new Class_admin (admin_jframe_update.eti_dni_update.getText());
+        }
+        
+        return admin;
+    }
+        
+        public static boolean DNI_update () {
+        boolean check=true;
+        
+        String DNI = "", aux = "", caracteres = "TRWAGMYFPDXBNJZSQVHLCKET";
+		boolean confirm;
+		int number = 0, module = 0;
+		char character = ' ', control = ' ';
+		
+		DNI=admin_jframe_update.eti_dni_update.getText();
+		confirm=Validate.validate_dni(DNI);
+		if (confirm==false) {
+                    check = false;
+                }else{
+                    aux = "";
+                    for(int i=0; i<8; i++){
+                        aux += DNI.charAt(i);
+                    }	
+                    character = DNI.charAt(8);			
+                    number = Integer.parseInt(aux);
+                    module= number % 23;
+                    control = caracteres.charAt(module);
+                    if(control == character){
+                        check = true;
+                    }else{
+                        check = false;
+                    }
+                }
+        
+        return check;
     }
         
         public static boolean correct_salary(){

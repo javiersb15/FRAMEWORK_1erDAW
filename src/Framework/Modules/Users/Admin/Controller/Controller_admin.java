@@ -8,6 +8,7 @@ package Framework.Modules.Users.Admin.Controller;
 import Framework.Modules.Menu.Controller.Controller_menu;
 import Framework.Modules.Menu.View.choose_frame;
 import Framework.Modules.Users.Admin.Model.Bll.bll_admin;
+import Framework.Modules.Users.Admin.Model.Bll.bll_admin_db;
 import Framework.Modules.Users.Admin.Model.Clases.miniSimpleTableModel_admin;
 import Framework.Modules.Users.Admin.Model.Dao.dao_admin;
 import Framework.Modules.Users.Admin.Model.Utils.Extensions.Json;
@@ -180,7 +181,6 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
                 this.begin_pager.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosing(WindowEvent e) {
-                        Json.auto_create_json_admin();
                         JOptionPane.showMessageDialog(null,"Exit to the aplication");
                         begin_pager.dispose();
                         System.exit(0);
@@ -266,7 +266,6 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
                 addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosing(WindowEvent e) {
-                        Json.auto_create_json_admin();
                         JOptionPane.showMessageDialog(null,"Exit to the aplication");
                         dispose();
                         System.exit(0);
@@ -366,7 +365,6 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
                 addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosing(WindowEvent e) {
-                        Json.auto_create_json_admin();
                         JOptionPane.showMessageDialog(null,"Exit to the aplication");
                         dispose();
                         System.exit(0);

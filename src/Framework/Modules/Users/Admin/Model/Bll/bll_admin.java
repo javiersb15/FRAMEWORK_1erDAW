@@ -5,6 +5,7 @@ import static Framework.Class.Singleton_tools.cancel;
 import static Framework.Class.Singleton_tools.okey;
 import Framework.Modules.Users.Admin.Controller.Controller_admin;
 import Framework.Modules.Users.Admin.Model.Clases.Class_admin;
+import Framework.Modules.Users.Admin.Model.Clases.Singleton_adm;
 import Framework.Modules.Users.Admin.Model.Clases.miniSimpleTableModel_admin;
 import Framework.Modules.Users.Admin.Model.Dao.dao_admin;
 import Framework.Modules.Users.Admin.Model.Utils.Extensions.Json;
@@ -62,8 +63,7 @@ public class bll_admin {
                 }                
 	return adm;
 	}
-        
-       
+              
        	
 	/**CREATE ADMIN*/
 	public static void create_admin(){
@@ -72,16 +72,18 @@ public class bll_admin {
 		Class_admin adm=null;
 				
                 adm=dao_admin.create();
+                Singleton_adm.adm=adm;
                 if(adm==null)
                     JOptionPane.showMessageDialog(null, "User not create");
                 else {
                     position=bll_admin.search_admin(adm);
 		if (position !=-1){
 			JOptionPane.showMessageDialog(null, "This Administrator is already exist", "Error Administrator", JOptionPane.ERROR_MESSAGE);
-		}else{ adm=dao_admin.create();
-		Singleton.Admin_array.add(adm);
+		}else{ 
+                adm=dao_admin.create();                
+                Singleton.Admin_array.add(adm);                    
                     JOptionPane.showMessageDialog(null, "User create");
-                    Json.auto_create_json_admin();
+                    bll_admin_db.insert_admin_bll();
 		}
                 }
 	}
@@ -93,13 +95,15 @@ public class bll_admin {
 		Class_admin adm=null;
 				
                 adm=dao_admin.create_update();
+                Singleton_adm.adm=adm;
                 if(adm==null)
                     JOptionPane.showMessageDialog(null, "User not modified");
                 else {
                     position=bll_admin.search_admin(adm);
 		if (position !=-1){
 			JOptionPane.showMessageDialog(null, "This Administrator is already exist", "Error Administrator", JOptionPane.ERROR_MESSAGE);
-		}else{ adm=dao_admin.create_update();
+		}else{ 
+                adm=dao_admin.create_update();
 		Singleton.Admin_array.add(adm);
                     JOptionPane.showMessageDialog(null, "User modify");
 		}
@@ -139,7 +143,51 @@ public class bll_admin {
 	}      
         
 	/**UPDATE ADMIN*/
-	 /*public static void update_admin() {
+	 public static void update_admin() {
+            
+            int location1 = -1, location2 = -1;
+                String dni = Controller_admin.DNI;
+		Class_admin a1 = new Class_admin (dni);
+		Singleton_adm.adm=a1;
+		location1 = bll_admin.search_admin(a1);
+		if (location1 == -1) {
+                        check=false;
+                }else{
+                        if (admin_jframe_update.eti_dni_update.getText().equals(dni)){
+                                a1 = dao_admin.create_update();
+                                bll_admin_db.update_admin_bll();
+                                    if (a1==null){
+                                        check=false;
+                                    } else {
+                                        Singleton.Admin_array.set(location1, a1);
+                                        check=true;
+                                   }
+                        }else{
+                                a1 = dao_admin.ask_adminDNI_update();
+                                if (a1==null){
+                                        admin_jframe_update.lab_dni.setIcon(Singleton_tools.cancel);
+                                        check=false;
+                                }else{
+                                        location2 = bll_admin.search_admin(a1);
+                                        if (location2 != -1) {
+                                                admin_jframe_update.lab_dni.setIcon(Singleton_tools.cancel);
+                                                check=false;
+                                        } else {
+                                                a1 = dao_admin.create_update();
+                                                if (a1==null){
+                                                    check=false;
+                                                } else {
+                                                        Singleton.Admin_array.set(location1, a1);
+                                                        check=true;
+                                                }
+                                        }
+                                }
+                        }
+                        
+                }    
+        }
+         
+         /*public static void update_admin() {
             
             int position1=-1, position2=-1;               
 		
@@ -151,7 +199,8 @@ public class bll_admin {
                     position2=bll_admin.search_admin(adm);
                     if(position2 ==-1){
 				Singleton.Admin_array.set(position1, adm);
-                                
+                Singleton_adm.adm=adm;
+                bll_admin_db.update_admin_bll();
                                 Json.auto_create_json_admin();
 			}else {
 				JOptionPane.showMessageDialog(null, "This DNI dosent't exist hola", "Error", JOptionPane.ERROR_MESSAGE);
@@ -159,7 +208,7 @@ public class bll_admin {
                 }                
         }*/
          
-         public static boolean update_admin() {
+         /*public static boolean update_admin() {
         String dni = null;
         boolean ok = false;
         int selection, inicio, selection1, pos=0;
@@ -196,7 +245,7 @@ public class bll_admin {
             ok = false;
         }
         return ok;
-    }
+    }*/
 
 	/**DELETE ADMIN*/
 	        

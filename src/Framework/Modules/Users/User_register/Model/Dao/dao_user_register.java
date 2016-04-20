@@ -31,7 +31,7 @@ public class dao_user_register {
             user_register_jframe_update.eti_date_birthday_update.setCalendar(a_1.getdate_birthday().stringtocalendar());
             user_register_jframe_update.eti_mobile_update.setText(a_1.getmobile());
             user_register_jframe_update.eti_avatar_update.setText(a_1.getavatar());            
-            if (a_1.getstate()==true){
+            if (a_1.isstate()==true){
                 user_register_jframe_update.eti_state_co_update.setSelected(true);
             }else{ 
                 user_register_jframe_update.eti_state_di_update.setSelected(true);

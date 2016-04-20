@@ -2,6 +2,7 @@ package Framework.Modules.Users.Admin.Model.Clases;
 
 import Framework.Class.Class_date;
 import static Framework.Modules.Users.Admin.Controller.Controller_admin.combo;
+import Framework.Modules.Users.Admin.Model.Bll.bll_admin_db;
 import Framework.Modules.Users.Admin.Model.Utils.Extensions.Json;
 import Framework.Modules.Users.Admin.Model.Utils.Pager.pagina_admin;
 import Framework.Modules.Users.Admin.View.pager_adm;
@@ -103,8 +104,9 @@ public class miniSimpleTableModel_admin extends AbstractTableModel {
     public void cargar() {
         datos.clear();
         datosaux.clear();
+        bll_admin_db.select_admin_bll();
         
-        Json.auto_open_json_admin();
+        //Json.auto_open_json_admin();
         
         Class_admin adm= null;
         java.util.Date date= new java.util.Date();

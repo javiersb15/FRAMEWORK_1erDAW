@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
+import javax.swing.JOptionPane;
 
 @XStreamAlias("Class_date")
 public class Class_date implements Serializable {
