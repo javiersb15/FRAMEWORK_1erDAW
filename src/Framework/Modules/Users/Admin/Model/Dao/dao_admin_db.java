@@ -43,7 +43,7 @@ public class dao_admin_db {
             stmt.setString(1, Singleton_adm.adm.getDNI());
             stmt.setString(2, Singleton_adm.adm.getname());
             stmt.setString(3, Singleton_adm.adm.getsurname());
-            stmt.setString(4, Singleton_adm.adm.getdate_birthday().toStringformat());
+            stmt.setString(4, Singleton_adm.adm.getdate_birthday().toString());
             stmt.setString(5, Singleton_adm.adm.getmobile());
             stmt.setInt(6, Singleton_adm.adm.getage());
             stmt.setString(7, Singleton_adm.adm.getavatar());
@@ -52,7 +52,7 @@ public class dao_admin_db {
             stmt.setString(10, Singleton_adm.adm.getuser());
             stmt.setString(11, Singleton_adm.adm.getpass());
             stmt.setFloat(12, Singleton_adm.adm.getbenefit());
-            stmt.setString(13, Singleton_adm.adm.getdate_employ().toStringformat());
+            stmt.setString(13, Singleton_adm.adm.getdate_employ().toString());
             stmt.setInt(14, Singleton_adm.adm.getantique());
             stmt.setFloat(15, Singleton_adm.adm.getsalary());
             stmt.setFloat(16, Singleton_adm.adm.getincentive());
@@ -75,9 +75,8 @@ public class dao_admin_db {
         return correct;
     }
     
-    public void select_admin_dao(Connection con) {
-        boolean state2=false;
-        int state=0;
+    public static void select_admin_dao(Connection con) {
+        boolean state=false;
         ResultSet rs = null;
         PreparedStatement stmt = null;
        
@@ -89,26 +88,26 @@ public class dao_admin_db {
             Class_admin adm=null;
 
             while (rs.next()) {
-                      
-           if (state == 0){
-                state2= false;
+            adm = new Class_admin();   
+           if (rs.getInt("state")== 0){
+                state= false;
            }else
-                state2=true;
+                state=true;
            
-            adm = new Class_admin();
+            
             adm.setDNI(rs.getString("DNI"));
             adm.setname(rs.getString("name"));
             adm.setsurname(rs.getString("surname"));
-            adm.setdate_birthday(new Class_date(rs.getString("date_birthday")));
+            adm.setdate_birthday(new Class_date(rs.getString("date_birthday"),"1"));
             adm.setmobile(rs.getString("mobile"));
             adm.setage(rs.getInt("age"));
             adm.setavatar(rs.getString("avatar"));
-            adm.setstate(rs.getBoolean("state"));
+            adm.setstate(state);
             adm.setemail(rs.getString("email"));
             adm.setuser(rs.getString("user"));
             adm.setpass(rs.getString("pass"));
             adm.setbenefit(rs.getFloat("benefit"));
-            adm.setdate_employ(new Class_date(rs.getString("date_employ")));
+            adm.setdate_employ(new Class_date(rs.getString("date_employ"),"1"));
             adm.setantique(rs.getInt("antique"));
             adm.setsalary(rs.getFloat("salary"));
             adm.setincentive(rs.getFloat("incentive"));
@@ -130,45 +129,46 @@ public class dao_admin_db {
         }
     }
     
-    public void update_admin_dao(Connection con) {
+    public static void update_admin_dao(Connection con) {
         int state=0;
         
         PreparedStatement stmt = null;
-        
+       
         try {
-            stmt = con.prepareStatement ("UPDATE users SET"
-                            +"DNI=?, name=?, surname=?, date_birthday=?, mobile=?, age=?, avatar=?,"
-                            +" state=?, email=?, user=?, pass=?, benefit=?, date_employ=?, antique=?, salary=?, "
-                            +" incentive=?, activity=? WHERE DNI=?");           
-            
-            if (Singleton_adm.adm.isstate()==true){
-               state=1;
-              //System.out.println(state);
-          }else{
-               state=0;
-           }
-            
-            stmt.setString(1, Singleton_adm.adm.getDNI());
-            stmt.setString(2, Singleton_adm.adm.getname());
-            stmt.setString(3, Singleton_adm.adm.getsurname());
-            stmt.setString(4, Singleton_adm.adm.getdate_birthday().toStringformat());            
-            stmt.setString(5, Singleton_adm.adm.getmobile());
-            stmt.setInt(6, Singleton_adm.adm.getage());
-            stmt.setString(7, Singleton_adm.adm.getavatar());
-            stmt.setInt(8, state);
-            stmt.setString(9, Singleton_adm.adm.getemail());
-            stmt.setString(10, Singleton_adm.adm.getuser());
-            stmt.setString(11, Singleton_adm.adm.getpass());
-            stmt.setFloat(12, Singleton_adm.adm.getbenefit());
-            stmt.setString(13, Singleton_adm.adm.getdate_employ().toStringformat());
-            stmt.setInt(14, Singleton_adm.adm.getantique());
-            stmt.setFloat(15, Singleton_adm.adm.getsalary());
-            stmt.setFloat(16, Singleton_adm.adm.getincentive());
-            stmt.setInt(17, Singleton_adm.adm.getactivity());
-            
-            stmt.setString(18, Singleton_adm.adm.getDNI());
-            stmt.executeUpdate();
+                      
 
+        //stmt = con.prepareStatement ("UPDATE db_users.users SET DNI='00000023T', name='pepito', surname='sanz', date_birthday='15/04/1993', mobile='654123987', age=23, avatar='/root', state=true, email='javier@gmail.com', user='javiersb15', pass='holaASD@12', benefit=654.0, date_employ='15/04/2014', antique=2, salary=147.0, incentive=654.0, activity=354 WHERE DNI='00000023T'");
+        stmt = con.prepareStatement ("UPDATE db_users.users SET DNI=?, name=?, surname=?, date_birthday=?, mobile=?, age=?, avatar=?, state=?, email=?, user=?, pass=?, benefit=?, date_employ=?, antique=?, salary=?, incentive=?, activity=? WHERE DNI=?");
+       
+        
+
+           if (Singleton_adm.adm.isstate()==true){
+                   state=1;
+            }else{
+                    state=0;
+            }
+            
+              stmt.setString(1, Singleton_adm.adm.getDNI());
+              stmt.setString(2, Singleton_adm.adm.getname());
+              stmt.setString(3, Singleton_adm.adm.getsurname());
+              stmt.setString(4, Singleton_adm.adm.getdate_birthday().toString());             
+              stmt.setString(5, Singleton_adm.adm.getmobile());
+              stmt.setInt(6, Singleton_adm.adm.getage());
+              stmt.setString(7, Singleton_adm.adm.getavatar());
+              stmt.setInt(8, state);
+              stmt.setString(9, Singleton_adm.adm.getemail());
+              stmt.setString(10, Singleton_adm.adm.getuser());
+              stmt.setString(11, Singleton_adm.adm.getpass());
+              stmt.setFloat(12, Singleton_adm.adm.getbenefit());
+              stmt.setString(13, Singleton_adm.adm.getdate_employ().toString());
+              stmt.setInt(14, Singleton_adm.adm.getantique());
+              stmt.setFloat(15, Singleton_adm.adm.getsalary());
+              stmt.setFloat(16, Singleton_adm.adm.getincentive());
+              stmt.setInt(17, Singleton_adm.adm.getactivity());
+            
+              stmt.setString(18, Singleton_adm.adm.getDNI());
+              
+            stmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "El usuario ha sido modificado correctamente!");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Ha habido un problema al actualizar el usuario!");
@@ -183,15 +183,14 @@ public class dao_admin_db {
         }
     }
     
-     public boolean delete_admin_dao(Connection con) {
+     public static boolean delete_admin_dao(Connection con) {
 
         PreparedStatement stmt = null;
         boolean correct = false;
-        Class_admin adm= new Class_admin();
 
         try {
             stmt = con.prepareStatement("DELETE FROM users WHERE DNI=?");
-            stmt.setString(1, adm.getDNI());
+            stmt.setString(1, Singleton_adm.adm.getDNI());
             stmt.executeUpdate();
             correct = true;
         } catch (SQLException ex) {

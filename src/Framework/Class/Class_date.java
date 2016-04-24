@@ -28,14 +28,15 @@ public class Class_date implements Serializable {
     /**
      * CONSTRUCTOR CALENDAR
      */
-    /*public Class_date(Calendar date) {
-        this.day = date.get(Calendar.DATE);
-        this.month = date.get(Calendar.MONTH) + 1;
-        this.year = date.get(Calendar.YEAR);
-        //a partir de aqui Daniel dice que trabajar con la clase conf para el formato
-        //switch case con los diferentes formatos
-        this.date = day + "/" + month + "/" + year;
-    }*/
+    public Class_date (String date, String db) {
+          String[] information = new String[3];
+                information = date.split("/");
+                this.day = Integer.parseInt(information[0]);
+                this.month = Integer.parseInt(information[1]);
+                this.year = Integer.parseInt(information[2]);
+                this.date = day + "/" + month + "/" + year;
+               
+    }
     public Class_date(Calendar fecha) {
         this.day = fecha.get(Calendar.DATE);
         this.month = fecha.get(Calendar.MONTH) + 1;
@@ -360,7 +361,7 @@ public class Class_date implements Serializable {
     public String toString() {
         String cad = " ";
 
-        cad = cad + (this.getday() + "/" + this.getmonth() + "/" + this.getyear());
+        cad = String.format("%02d", this.getday()) + "/" + String.format("%02d", this.getmonth()) + "/" + this.getyear();
 
         return cad;
     }

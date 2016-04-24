@@ -4,6 +4,7 @@ import java.io.Serializable;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import Framework.Class.Class_date;
 import Framework.Modules.Users.User.Model.Clases.Class_user;
+import com.mongodb.DBObject;
 
 @XStreamAlias("Class_client")
 public class Class_client extends Class_user implements Serializable {
@@ -20,6 +21,34 @@ public class Class_client extends Class_user implements Serializable {
 	@XStreamAlias("antique")
 	private int antique;
 
+         public Class_client to_DB_Worker(DBObject dBObjectWorker) {
+             float f1 =0.0f;
+             String s=" ";
+             Class_date d=new Class_date((String) dBObjectWorker.get("date_birthday"));
+             
+             s=(String) dBObjectWorker.get("buy");
+             f1=Float.parseFloat(s);
+             
+             Class_client cli=new Class_client();
+        cli.setDNI((String) dBObjectWorker.get("DNI"));
+        cli.setname((String) dBObjectWorker.get("name"));
+        cli.setsurname((String) dBObjectWorker.get("surname"));
+        cli.setdate_birthday(d);
+        cli.setbuy(f1);
+	return cli;
+    }
+         
+         //date_clase passar a string i els floats passar-los a string i viceversa.
+
+    /*public BasicDBObject Worker_to_DB() {
+	BasicDBObject dBObjectWorker = new BasicDBObject();
+	dBObjectWorker.append("nombre", this.getNombre());
+	dBObjectWorker.append("apellidos", this.getApellidos());
+	dBObjectWorker.append("edad", this.getEdad());
+	return dBObjectWorker;
+    }*/
+        
+        
 	/**CONSTRUCTOR*/
 	public Class_client(String DNI, String name, String surname, Class_date date_birthday, String mobile,
 			String avatar, boolean state, String email, String user, String pass, float buy, boolean premium, 

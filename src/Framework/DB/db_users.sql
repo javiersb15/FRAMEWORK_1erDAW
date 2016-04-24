@@ -24,22 +24,22 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `DNI` varchar(100) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `surname` varchar(45) NOT NULL,
-  `date_birthday` varchar(100) NOT NULL,
-  `mobile` varchar(9) NOT NULL,
-  `age` int(11) NOT NULL,
-  `avatar` varchar(200) NOT NULL,
-  `state` tinyint(1) NOT NULL,
-  `email` varchar(45) NOT NULL,
-  `user` varchar(45) NOT NULL,
-  `pass` varchar(100) NOT NULL,
-  `benefit` float NOT NULL,
-  `date_employ` varchar(100) NOT NULL,
-  `antique` int(11) NOT NULL,
-  `salary` float NOT NULL,
-  `incentive` float NOT NULL,
-  `activity` int(11) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `surname` varchar(45) DEFAULT NULL,
+  `date_birthday` varchar(100) DEFAULT NULL,
+  `mobile` varchar(9) DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  `avatar` varchar(900) DEFAULT NULL,
+  `state` tinyint(1) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `user` varchar(45) DEFAULT NULL,
+  `pass` varchar(100) DEFAULT NULL,
+  `benefit` float DEFAULT NULL,
+  `date_employ` varchar(100) DEFAULT NULL,
+  `antique` int(11) DEFAULT NULL,
+  `salary` float DEFAULT NULL,
+  `incentive` float DEFAULT NULL,
+  `activity` int(11) DEFAULT NULL,
   PRIMARY KEY (`DNI`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -62,4 +62,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-15 17:27:43
+-- Dump completed on 2016-04-22 13:43:52

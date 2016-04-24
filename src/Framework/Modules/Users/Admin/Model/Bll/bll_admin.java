@@ -145,46 +145,28 @@ public class bll_admin {
 	/**UPDATE ADMIN*/
 	 public static void update_admin() {
             
-            int location1 = -1, location2 = -1;
+            int location1 = -1;
                 String dni = Controller_admin.DNI;
 		Class_admin a1 = new Class_admin (dni);
-		Singleton_adm.adm=a1;
-		location1 = bll_admin.search_admin(a1);
+                location1 = bll_admin.search_admin(a1);
 		if (location1 == -1) {
                         check=false;
                 }else{
                         if (admin_jframe_update.eti_dni_update.getText().equals(dni)){
                                 a1 = dao_admin.create_update();
-                                bll_admin_db.update_admin_bll();
+                                Singleton_adm.adm=a1;
+                                //System.out.println(a1.toString());
+                                 //System.out.println(1);
+                                //System.out.println(admin_jframe_update.eti_name_update.getText());
                                     if (a1==null){
-                                        check=false;
+                                       check=false;
                                     } else {
                                         Singleton.Admin_array.set(location1, a1);
+                                        bll_admin_db.update_admin_bll();
                                         check=true;
                                    }
-                        }else{
-                                a1 = dao_admin.ask_adminDNI_update();
-                                if (a1==null){
-                                        admin_jframe_update.lab_dni.setIcon(Singleton_tools.cancel);
-                                        check=false;
-                                }else{
-                                        location2 = bll_admin.search_admin(a1);
-                                        if (location2 != -1) {
-                                                admin_jframe_update.lab_dni.setIcon(Singleton_tools.cancel);
-                                                check=false;
-                                        } else {
-                                                a1 = dao_admin.create_update();
-                                                if (a1==null){
-                                                    check=false;
-                                                } else {
-                                                        Singleton.Admin_array.set(location1, a1);
-                                                        check=true;
-                                                }
-                                        }
-                                }
                         }
-                        
-                }    
+                } 
         }
          
          /*public static void update_admin() {
@@ -265,18 +247,19 @@ public class bll_admin {
                 
                 dni = (String) pager_adm.TABLA.getModel().getValueAt(selection1, 0);
                 Class_admin adm = new Class_admin(dni);
+                Singleton_adm.adm=adm;
                 pos = bll_admin.search_admin((Class_admin) adm);
                 
                 int opc = JOptionPane.showConfirmDialog(null, "Do you want this person with DNI: " + dni +" "+"?",
                         "Info", JOptionPane.WARNING_MESSAGE);
 
                 if (opc == 0) {
+                    bll_admin_db.delete_admin_bll();
                     ((miniSimpleTableModel_admin) pager_adm.TABLA.getModel()).removeRow(selection1);
                     pagina_admin.initLinkBox();
                     adm = Singleton.Admin_array.get(pos);
                     Singleton.Admin_array.remove(adm);                    
                     miniSimpleTableModel_admin.datosaux.remove(adm);
-                    Json.auto_create_json_admin();
                     ((miniSimpleTableModel_admin) pager_adm.TABLA.getModel()).cargar();
                     pager_adm.jLabel3.setText(String.valueOf(Singleton.Admin_array.size()));
                     pagina_admin.initLinkBox();
@@ -431,11 +414,10 @@ public class bll_admin {
         }
         
                    
-        public static void givepassword() {
-        
+        public static void givepassword() {        
         
         if (dao_admin.givepassword()==false) {
-            admin_jframe_create.lab_pass.setBackground(Color.red);
+            admin_jframe_create.eti_pass_create.setBackground(Color.red);
             admin_jframe_create.lab_pass.setIcon(cancel);    
             } else {
                 admin_jframe_create.eti_pass_create.setBackground(Color.CYAN);
@@ -448,7 +430,7 @@ public class bll_admin {
          public static void giveactivity() {
            
            if (dao_admin.giveactivity()==false) {
-            admin_jframe_create.lab_activity.setBackground(Color.red);
+            admin_jframe_create.eti_activity_create.setBackground(Color.red);
             admin_jframe_create.lab_activity.setIcon(cancel);    
             } else {
                 admin_jframe_create.eti_activity_create.setBackground(Color.CYAN);
@@ -460,7 +442,7 @@ public class bll_admin {
        public static void givesalary() {
            
         if (dao_admin.givesalary()==false) {
-            admin_jframe_create.lab_salary.setBackground(Color.red);
+            admin_jframe_create.eti_salary_create.setBackground(Color.red);
             admin_jframe_create.lab_salary.setIcon(cancel);    
             } else {
                 admin_jframe_create.eti_salary_create.setBackground(Color.CYAN);
@@ -471,7 +453,7 @@ public class bll_admin {
        
        public static void giveincentive() {
         if (dao_admin.giveincentive()==false) {
-            admin_jframe_create.lab_incentive.setBackground(Color.red);
+            admin_jframe_create.eti_incentive_create.setBackground(Color.red);
             admin_jframe_create.lab_incentive.setIcon(cancel);    
             } else {
                 admin_jframe_create.eti_incentive_create.setBackground(Color.CYAN);
@@ -482,7 +464,7 @@ public class bll_admin {
        
         public static void Validatedatebirthday(Calendar birthdate) {
             if (dao_admin.give_date_birthday(birthdate)==false) {
-            admin_jframe_create.lab_date_birthday.setBackground(Color.red);
+            admin_jframe_create.eti_date_birthday_create.setBackground(Color.red);
             admin_jframe_create.lab_date_birthday.setIcon(cancel);    
             } else {
                 admin_jframe_create.eti_date_birthday_create.setBackground(Color.CYAN);
@@ -493,7 +475,7 @@ public class bll_admin {
         
          public static void Validatedateemploy(Calendar birthdate, Calendar dateemploy) {
             if (dao_admin.give_date_employ(birthdate,dateemploy)==false) {
-            admin_jframe_create.lab_date_employ.setBackground(Color.red);
+            admin_jframe_create.eti_date_employ_create.setBackground(Color.red);
             admin_jframe_create.lab_date_employ.setIcon(cancel);    
             } else {
                 admin_jframe_create.eti_date_employ_create.setBackground(Color.CYAN);
@@ -516,7 +498,7 @@ public class bll_admin {
                 givesurname_update();
                 break;
             case "date_birthday":
-                Validatedatebirthday_update(admin_jframe_create.eti_date_birthday_create.getCalendar());
+                Validatedatebirthday_update(admin_jframe_update.eti_date_birthday_update.getCalendar());
                 break;
             case "mobile":
                 givemobile_update();
@@ -537,7 +519,7 @@ public class bll_admin {
                 givepassword_update();
                 break;
             case "date_employ":
-                Validatedateemploy_update(admin_jframe_create.eti_date_birthday_create.getCalendar(), admin_jframe_create.eti_date_employ_create.getCalendar());
+                Validatedateemploy_update(admin_jframe_update.eti_date_birthday_update.getCalendar(), admin_jframe_update.eti_date_employ_update.getCalendar());
                 break;
             case "salary":
                  givesalary_update();
@@ -637,7 +619,7 @@ public class bll_admin {
         
         
         if (dao_admin.givepassword_update()==false) {
-            admin_jframe_update.lab_pass.setBackground(Color.red);
+            admin_jframe_update.eti_pass_update.setBackground(Color.red);
             admin_jframe_update.lab_pass.setIcon(cancel);    
             } else {
                 admin_jframe_update.eti_pass_update.setBackground(Color.CYAN);
@@ -650,7 +632,7 @@ public class bll_admin {
          public static void giveactivity_update() {
            
            if (dao_admin.giveactivity_update()==false) {
-            admin_jframe_update.lab_activity.setBackground(Color.red);
+            admin_jframe_update.eti_activity_update.setBackground(Color.red);
             admin_jframe_update.lab_activity.setIcon(cancel);    
             } else {
                 admin_jframe_update.eti_activity_update.setBackground(Color.CYAN);
@@ -662,7 +644,7 @@ public class bll_admin {
        public static void givesalary_update() {
            
         if (dao_admin.givesalary_update()==false) {
-            admin_jframe_update.lab_salary.setBackground(Color.red);
+            admin_jframe_update.eti_salary_update.setBackground(Color.red);
             admin_jframe_update.lab_salary.setIcon(cancel);    
             } else {
                 admin_jframe_update.eti_salary_update.setBackground(Color.CYAN);
@@ -673,7 +655,7 @@ public class bll_admin {
        
        public static void giveincentive_update() {
         if (dao_admin.giveincentive_update()==false) {
-            admin_jframe_update.lab_incentive.setBackground(Color.red);
+            admin_jframe_update.eti_incentive_update.setBackground(Color.red);
             admin_jframe_update.lab_incentive.setIcon(cancel);    
             } else {
                 admin_jframe_update.eti_incentive_update.setBackground(Color.CYAN);
@@ -683,8 +665,8 @@ public class bll_admin {
         }
        
         public static void Validatedatebirthday_update(Calendar birthdate) {
-            if (dao_admin.Validatedatebirthday_update(birthdate)==false) {
-            admin_jframe_update.lab_date_birthday.setBackground(Color.red);
+            if (dao_admin.give_date_birthday_update(birthdate)==false) {
+            admin_jframe_update.eti_date_birthday_update.setBackground(Color.red);
             admin_jframe_update.lab_date_birthday.setIcon(cancel);    
             } else {
                 admin_jframe_update.eti_date_birthday_update.setBackground(Color.CYAN);
@@ -694,8 +676,8 @@ public class bll_admin {
         }
         
          public static void Validatedateemploy_update(Calendar birthdate, Calendar dateemploy) {
-            if (dao_admin.Validatedateemploy_update(birthdate,dateemploy)==false) {
-            admin_jframe_update.lab_date_employ.setBackground(Color.red);
+            if (dao_admin.give_date_employ_update(birthdate,dateemploy)==false) {
+            admin_jframe_update.eti_date_employ_update.setBackground(Color.red);
             admin_jframe_update.lab_date_employ.setIcon(cancel);    
             } else {
                 admin_jframe_update.eti_date_employ_update.setBackground(Color.CYAN);

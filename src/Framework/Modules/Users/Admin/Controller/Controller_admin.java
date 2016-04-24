@@ -32,6 +32,7 @@ import static Framework.Modules.Users.Admin.View.admin_jframe_create.eti_salary_
 import static Framework.Modules.Users.Admin.View.admin_jframe_create.eti_surname_create;
 import static Framework.Modules.Users.Admin.View.admin_jframe_create.eti_user_create;
 import Framework.Modules.Users.Admin.View.admin_jframe_update;
+import static Framework.Modules.Users.Admin.View.admin_jframe_update.btn_update_update;
 import static Framework.Modules.Users.Admin.View.admin_jframe_update.eti_activity_update;
 import static Framework.Modules.Users.Admin.View.admin_jframe_update.eti_avatar_update;
 import static Framework.Modules.Users.Admin.View.admin_jframe_update.eti_date_birthday_update;
@@ -349,7 +350,7 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
                 
                 this.begin_update.setVisible(true);
                 DNI=eti_dni_update.getText();
-                //eti_dni_update.setEnabled(false);
+                eti_dni_update.setEnabled(false);
                 eti_date_birthday_update.getDateEditor().setEnabled(false);
                 eti_date_employ_update.getDateEditor().setEnabled(false);
 
@@ -413,7 +414,7 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
                 begin_update.eti_pass_update.addMouseListener(this);
                 begin_update.eti_pass_update.addKeyListener(this);
                 
-                begin_update.eti_avatar_update.setName("eti_avatar_update_update");
+                begin_update.eti_avatar_update.setName("eti_avatar_update");
                 begin_update.eti_avatar_update.addMouseListener(this);
 
                 begin_update.eti_activity_update.setActionCommand("eti_activity_update");
@@ -682,7 +683,7 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
             
             case eti_surname_create:
                 if(e.getKeyCode()==KeyEvent.VK_ENTER){
-                    eti_date_birthday_update.requestFocus();
+                    eti_date_birthday_create.requestFocus();
                 }else{
                     bll_admin.givedates("surname");
                 }
@@ -714,7 +715,7 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
             
             case eti_pass_create:
                 if(e.getKeyCode()==KeyEvent.VK_ENTER){
-                    eti_date_birthday_update.requestFocus();
+                    eti_date_birthday_create.requestFocus();
                 }else{
                     bll_admin.givedates("pass");
                 }
@@ -818,7 +819,7 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
             
             case eti_incentive_update:
                 if(e.getKeyCode()==KeyEvent.VK_ENTER){
-                    eti_incentive_update.requestFocus();
+                    btn_update_update.requestFocus();
                 }else{
                     bll_admin.givedates_update("incentive");
                 }
@@ -927,7 +928,7 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
             break;
             
             case eti_surname_create:
-                bll_admin.givedates("surnames");
+                bll_admin.givedates("surname");
             break;
             
             case eti_mobile_create:
@@ -967,7 +968,7 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
             break;
             
             case eti_surname_update:
-                bll_admin.givedates_update("surnames");
+                bll_admin.givedates_update("surname");
             break;
             
             case eti_mobile_update:

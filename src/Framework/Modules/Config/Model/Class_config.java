@@ -1,5 +1,6 @@
 package Framework.Modules.Config.Model;
 
+import Framework.Class.Connection_DB;
 import static Framework.Class.Connection_DB.inicializa_BasicDataSourceFactory;
 import Framework.Modules.Users.Admin.Model.Bll.Functions_auto_open;
 import Framework.Modules.Users.Admin.Model.Clases.Class_admin;
@@ -51,7 +52,7 @@ public class Class_config implements Serializable{
 		if (instance==null){
 			instance=new Class_config();
 			
-		inicializa_BasicDataSourceFactory();
+		Connection_DB.inicializa_BasicDataSourceFactory();
                 Theme.select_theme("Nimbus");
 		Class_language.getInstance();
 		
