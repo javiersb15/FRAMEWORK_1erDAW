@@ -173,7 +173,6 @@ public class Controller_client implements ActionListener, MouseListener, KeyList
                 this.begin_pager.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosing(WindowEvent e) {
-                        Json.auto_create_json_client();
                         JOptionPane.showMessageDialog(null,"Exit to the aplication");
                         begin_pager.dispose();
                         System.exit(0);

@@ -140,5 +140,14 @@ public class Functions {
 				option=true;
 						
 			return option	;
-		}		
+		}
+                
+                public static Float parsefloat (double num){
+                    String s=num + " ";
+                    float num2=0.0f;
+                    
+                    num2=Float.parseFloat(s);
+                    
+                    return num2;                    
+                }
 }

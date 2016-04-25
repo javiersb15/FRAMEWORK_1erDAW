@@ -425,35 +425,34 @@ public class dao_admin {
         boolean correct, correct1, correct2, correct3, correct4, correct5, correct6, correct7, correct8, correct9, correct10, correct11, correct12;
 
         correct = givedni_update();
-        System.out.println(correct +" " +"dni");
+        //System.out.println(correct +" " +"dni");
         correct1 = givename_update();
-        System.out.println(correct +" " +"name");
+        //System.out.println(correct +" " +"name");
         correct2 = givesurname_update();
-        System.out.println(correct +" " +"surname");
+        //System.out.println(correct +" " +"surname");
         correct3 = give_date_birthday_update(admin_jframe_update.eti_date_birthday_update.getCalendar());
-        System.out.println(correct +" " +"date_birthday");
+        //System.out.println(correct +" " +"date_birthday");
         correct4 = givemobile_update();
-        System.out.println(correct +" " +"mobile");
+        //System.out.println(correct +" " +"mobile");
         correct5 = givemail_update();
-        System.out.println(correct +" " +"mail");
+        //System.out.println(correct +" " +"mail");
         correct6 = giveuser_update();
-        System.out.println(correct +" " +"user");
+        //System.out.println(correct +" " +"user");
         correct7 = givepassword_update();
-        System.out.println(correct +" " +"pass");
+        //System.out.println(correct +" " +"pass");
         correct8 = give_date_employ_update(admin_jframe_update.eti_date_birthday_update.getCalendar(), admin_jframe_update.eti_date_employ_update.getCalendar());
-        System.out.println(correct +" " +"date_employ");
+        //System.out.println(correct +" " +"date_employ");
         correct9 = giveactivity_update();
-        System.out.println(correct +" " +"activity");
+        //System.out.println(correct +" " +"activity");
         correct10 = correct_salary_update();
-        System.out.println(correct +" " +"salary");
+        //System.out.println(correct +" " +"salary");
         correct11 = correct_incentive_update();
-        System.out.println(correct +" " +"incentive");
+        //System.out.println(correct +" " +"incentive");
         correct12 = correct_activity_update();
-        System.out.println(correct +" " +"activity");
+        //System.out.println(correct +" " +"activity");
 
         //if (correct == true && correct1 == true && correct2 == true && correct3 == true && correct4 == true && correct5 == true && correct6 == true && correct7 == true && correct8 == true && correct9 == true && correct10 == true && correct11 == true && correct12 == true) {
             dni = admin_jframe_update.eti_dni_update.getText();
-            //System.out.println(dni);
             name = admin_jframe_update.eti_name_update.getText();
             surname = admin_jframe_update.eti_surname_update.getText();
             date_birthday = new Class_date(((JTextFieldDateEditor) admin_jframe_update.eti_date_birthday_update.getDateEditor()).getText());

@@ -2,7 +2,7 @@ package Framework.Modules.Users.Client.Model.Clases;
 
 import Framework.Class.Class_date;
 import static Framework.Modules.Users.Client.Controller.Controller_client.combo;
-import Framework.Modules.Users.Client.Model.Utils.Extensions.Json;
+import Framework.Modules.Users.Client.Model.Bll.bll_client_db;
 import Framework.Modules.Users.Client.Model.Utils.Pager.pagina_client;
 import Framework.Modules.Users.Client.View.pager_client;
 import Framework.Modules.Users.User.Model.Clases.Singleton;
@@ -105,8 +105,10 @@ public class miniSimpleTableModel_client extends AbstractTableModel {
     public void cargar() {
         datos.clear();
         datosaux.clear();
+        Singleton.Client_array.clear();
+        bll_client_db.select_client_bll();
         
-        Json.auto_open_json_client();
+        //Json.auto_open_json_client();
         
         Class_client cli= null;
         java.util.Date date= new java.util.Date();

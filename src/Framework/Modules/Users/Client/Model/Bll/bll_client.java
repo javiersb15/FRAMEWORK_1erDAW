@@ -4,9 +4,9 @@ import static Framework.Class.Singleton_tools.cancel;
 import static Framework.Class.Singleton_tools.okey;
 import Framework.Modules.Users.Client.Controller.Controller_client;
 import Framework.Modules.Users.Client.Model.Clases.Class_client;
+import Framework.Modules.Users.Client.Model.Clases.Singleton_cli;
 import Framework.Modules.Users.Client.Model.Clases.miniSimpleTableModel_client;
 import Framework.Modules.Users.Client.Model.Dao.dao_client;
-import Framework.Modules.Users.Client.Model.Utils.Extensions.Json;
 import Framework.Modules.Users.Client.Model.Utils.Pager.pagina_client;
 import Framework.Modules.Users.Client.View.client_jframe_create;
 import Framework.Modules.Users.Client.View.client_jframe_update;
@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 
 
 public class bll_client {
+    public static boolean check;
 	
 	/**CLIENT*/
 	
@@ -71,6 +72,7 @@ public class bll_client {
 		Class_client cli=null;
 			
                 cli=dao_client.create();
+                Singleton_cli.cli=cli;
                 if(cli==null)
                     JOptionPane.showMessageDialog(null, "User not create");
                 else {
@@ -80,7 +82,7 @@ public class bll_client {
 		}else{ cli=dao_client.create();
 		Singleton.Client_array.add(cli);
                     JOptionPane.showMessageDialog(null, "User create");
-                    Json.auto_create_json_client();
+                    bll_client_db.insert_client_bll();
 		}
                 }
 	}
@@ -141,23 +143,28 @@ public class bll_client {
 	/**UPDATE CLIENT*/
 	 public static void update_client() {
             
-            int position1=-1, position2=-1;               
-		if(Singleton.Client_array.isEmpty()){
-			JOptionPane.showMessageDialog(null, "There aren't any Administrator", "Administrator", JOptionPane.ERROR_MESSAGE);
-		}else{
-		Class_client cli=new Class_client(Controller_client.DNI);
-                position1=bll_client.search_client(cli);
-                if(position1 !=-1){                    
-                    cli=dao_client.create_update();
-                    position2=bll_client.search_client(cli);
-                    if(position2 ==-1){
-				Singleton.Client_array.set(position1, cli); 
-                                Json.auto_create_json_client();
-			}else {
-				JOptionPane.showMessageDialog(null, "This DNI dosent't exist", "Error", JOptionPane.ERROR_MESSAGE);
+            int location1 = -1;
+                String dni = Controller_client.DNI;
+		Class_client a1 = new Class_client (dni);
+                location1 = bll_client.search_client(a1);
+		if (location1 == -1) {
+                        check=false;
+                }else{
+                        if (client_jframe_update.eti_dni_update.getText().equals(dni)){
+                                a1 = dao_client.create_update();
+                                Singleton_cli.cli=a1;
+                                //System.out.println(a1.toString());
+                                 //System.out.println(1);
+                                //System.out.println(admin_jframe_update.eti_name_update.getText());
+                                    if (a1==null){
+                                       check=false;
+                                    } else {
+                                        Singleton.Client_array.set(location1, a1);
+                                        bll_client_db.update_client_bll();
+                                        check=true;
+                                   }
                         }
-                }
-                }
+                } 
         }      
         
 	/**DELETE CLIENT*/
@@ -165,9 +172,7 @@ public class bll_client {
          public static void delete_client() {
         String dni;
         int pos;
-        int n, selection, inicio, selection1;
-
-         
+        int n, selection, inicio, selection1;         
         
         n=((miniSimpleTableModel_client) pager_client.TABLA.getModel()).getRowCount();  
         if(n!=0){
@@ -189,9 +194,10 @@ public class bll_client {
                     ((miniSimpleTableModel_client) pager_client.TABLA.getModel()).removeRow(selection1);
                     pagina_client.initLinkBox();
                     cli = Singleton.Client_array.get(pos);
+                    Singleton_cli.cli=cli;
+                    bll_client_db.delete_client_bll();
                     Singleton.Client_array.remove(cli);                    
                     miniSimpleTableModel_client.datosaux.remove(cli);
-                    Json.auto_create_json_client();
                     ((miniSimpleTableModel_client) pager_client.TABLA.getModel()).cargar();
                     pager_client.jLabel3.setText(String.valueOf(Singleton.Client_array.size()));
                     pagina_client.initLinkBox();
@@ -347,7 +353,7 @@ public class bll_client {
         
         
         if (dao_client.givepassword()==false) {
-            client_jframe_create.lab_pass.setBackground(Color.red);
+            client_jframe_create.eti_pass_create.setBackground(Color.red);
             client_jframe_create.lab_pass.setIcon(cancel);    
             } else {
                 client_jframe_create.eti_pass_create.setBackground(Color.CYAN);
@@ -360,7 +366,7 @@ public class bll_client {
          public static void givebuy() {
            
            if (dao_client.givebuy()==false) {
-            client_jframe_create.lab_buy.setBackground(Color.red);
+            client_jframe_create.eti_buy_create.setBackground(Color.red);
             client_jframe_create.lab_buy.setIcon(cancel);    
             } else {
                 client_jframe_create.eti_buy_create.setBackground(Color.CYAN);
@@ -384,7 +390,7 @@ public class bll_client {
        
         public static void Validatedatebirthday(Calendar birthdate) {
             if (dao_client.give_date_birthday(birthdate)==false) {
-            client_jframe_create.lab_date_birthday.setBackground(Color.red);
+            client_jframe_create.eti_date_birthday_create.setBackground(Color.red);
             client_jframe_create.lab_date_birthday.setIcon(cancel);    
             } else {
                 client_jframe_create.eti_date_birthday_create.setBackground(Color.CYAN);
@@ -395,7 +401,7 @@ public class bll_client {
         
          public static void Validatedatestart(Calendar birthdate, Calendar dateemploy) {
             if (dao_client.give_date_start(birthdate,dateemploy)==false) {
-            client_jframe_create.lab_date_start.setBackground(Color.red);
+            client_jframe_create.eti_date_start_create.setBackground(Color.red);
             client_jframe_create.lab_date_start.setIcon(cancel);    
             } else {
                 client_jframe_create.eti_date_start_create.setBackground(Color.CYAN);
@@ -418,7 +424,7 @@ public class bll_client {
                 givesurname_update();
                 break;
             case "date_birthday":
-                Validatedatebirthday_update(client_jframe_create.eti_date_birthday_create.getCalendar());
+                Validatedatebirthday_update(client_jframe_update.eti_date_birthday_update.getCalendar());
                 break;
             case "mobile":
                 givemobile_update();
@@ -439,7 +445,7 @@ public class bll_client {
                 givepassword_update();
                 break;
             case "date_start":
-                Validatedatestart_update(client_jframe_create.eti_date_birthday_create.getCalendar(), client_jframe_create.eti_date_start_create.getCalendar());
+                Validatedatestart_update(client_jframe_update.eti_date_birthday_update.getCalendar(), client_jframe_update.eti_date_start_update.getCalendar());
                 break;
             case "buy":
                  givebuy_update();
@@ -536,7 +542,7 @@ public class bll_client {
         
         
         if (dao_client.givepassword_update()==false) {
-            client_jframe_update.lab_pass.setBackground(Color.red);
+            client_jframe_update.eti_pass_update.setBackground(Color.red);
             client_jframe_update.lab_pass.setIcon(cancel);    
             } else {
                 client_jframe_update.eti_pass_update.setBackground(Color.CYAN);
@@ -549,7 +555,7 @@ public class bll_client {
          public static void givebuy_update() {
            
            if (dao_client.givebuy_update()==false) {
-            client_jframe_update.lab_buy.setBackground(Color.red);
+            client_jframe_update.eti_buy_update.setBackground(Color.red);
             client_jframe_update.lab_buy.setIcon(cancel);    
             } else {
                 client_jframe_update.eti_buy_update.setBackground(Color.CYAN);
@@ -573,7 +579,7 @@ public class bll_client {
        
         public static void Validatedatebirthday_update(Calendar birthdate) {
             if (dao_client.Validatedatebirthday_update(birthdate)==false) {
-            client_jframe_update.lab_date_birthday.setBackground(Color.red);
+            client_jframe_update.eti_date_birthday_update.setBackground(Color.red);
             client_jframe_update.lab_date_birthday.setIcon(cancel);    
             } else {
                 client_jframe_update.eti_date_birthday_update.setBackground(Color.CYAN);
@@ -584,7 +590,7 @@ public class bll_client {
         
          public static void Validatedatestart_update(Calendar birthdate, Calendar dateemploy) {
             if (dao_client.Validatedatestart_update(birthdate,dateemploy)==false) {
-            client_jframe_update.lab_date_start.setBackground(Color.red);
+            client_jframe_update.eti_date_start_update.setBackground(Color.red);
             client_jframe_update.lab_date_start.setIcon(cancel);    
             } else {
                 client_jframe_update.eti_date_start_update.setBackground(Color.CYAN);

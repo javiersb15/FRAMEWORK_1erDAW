@@ -4,6 +4,8 @@ import java.io.Serializable;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import Framework.Class.Class_date;
 import Framework.Modules.Users.User.Model.Clases.Class_user;
+import Framework.Utils.Functions;
+import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 
 @XStreamAlias("Class_client")
@@ -21,32 +23,56 @@ public class Class_client extends Class_user implements Serializable {
 	@XStreamAlias("antique")
 	private int antique;
 
-         public Class_client to_DB_Worker(DBObject dBObjectWorker) {
-             float f1 =0.0f;
-             String s=" ";
-             Class_date d=new Class_date((String) dBObjectWorker.get("date_birthday"));
-             
-             s=(String) dBObjectWorker.get("buy");
-             f1=Float.parseFloat(s);
+      public Class_client to_DB_client(DBObject dBObjectWorker) {
+                         
              
              Class_client cli=new Class_client();
         cli.setDNI((String) dBObjectWorker.get("DNI"));
         cli.setname((String) dBObjectWorker.get("name"));
         cli.setsurname((String) dBObjectWorker.get("surname"));
-        cli.setdate_birthday(d);
-        cli.setbuy(f1);
+        cli.setdate_birthday(new Class_date((String) dBObjectWorker.get("date_birthday"), "1"));
+        cli.setage((int) dBObjectWorker.get("age"));
+        cli.setmobile((String) dBObjectWorker.get("mobile"));
+        cli.setavatar((String) dBObjectWorker.get("avatar"));
+        cli.setstate((boolean) dBObjectWorker.get("state"));
+        cli.setemail((String) dBObjectWorker.get("email"));
+        cli.setuser((String) dBObjectWorker.get("user"));
+        cli.setpass((String) dBObjectWorker.get("pass"));
+        cli.setbenefit(Functions.parsefloat((double) dBObjectWorker.get("benefit")));
+        cli.setbuy(Functions.parsefloat((double) dBObjectWorker.get("buy")));
+        cli.setdate_start(new Class_date((String) dBObjectWorker.get("date_start"), "1"));
+        cli.setantique((int) dBObjectWorker.get("antique"));
+        cli.setpremium((boolean) dBObjectWorker.get("premium"));
+        cli.setclient_type((String) dBObjectWorker.get("client_type"));
+        
 	return cli;
     }
          
          //date_clase passar a string i els floats passar-los a string i viceversa.
 
-    /*public BasicDBObject Worker_to_DB() {
-	BasicDBObject dBObjectWorker = new BasicDBObject();
-	dBObjectWorker.append("nombre", this.getNombre());
-	dBObjectWorker.append("apellidos", this.getApellidos());
-	dBObjectWorker.append("edad", this.getEdad());
-	return dBObjectWorker;
-    }*/
+    public BasicDBObject client_to_DB() {
+                           
+	BasicDBObject cli2 = new BasicDBObject();
+	cli2.append("DNI", this.getDNI());
+	cli2.append("name", this.getname());
+	cli2.append("surname", this.getsurname());
+        cli2.append("date_birthday", this.getdate_birthday().toString());
+        cli2.append("age", this.getage());
+        cli2.append("movil", this.getmobile());
+        cli2.append("avatar", this.getavatar());
+        cli2.append("state", this.isstate());
+        cli2.append("email", this.getemail());
+        cli2.append("user", this.getuser());
+        cli2.append("pass", this.getpass());
+        cli2.append("benefit", this.getbenefit());
+        cli2.append("buy", this.getbuy());
+        cli2.append("date_start", this.getdate_start().toString());
+        cli2.append("antique", this.getantique());
+        cli2.append("premium", this.getpremium());
+        cli2.append("client_type", this.getclient_type());       
+        
+	return cli2;
+    }
         
         
 	/**CONSTRUCTOR*/

@@ -1,16 +1,13 @@
 package Framework.Modules.Config.Model;
 
 import Framework.Class.Connection_DB;
-import static Framework.Class.Connection_DB.inicializa_BasicDataSourceFactory;
-import Framework.Modules.Users.Admin.Model.Bll.Functions_auto_open;
+import Framework.Class.Mongo_DB;
+import Framework.Class.Singleton_tools;
 import Framework.Modules.Users.Admin.Model.Clases.Class_admin;
-import Framework.Modules.Users.Admin.Model.Utils.Extensions.Json;
-import Framework.Modules.Users.Admin.Model.Utils.Functions_dummy_admin;
 import Framework.Modules.Users.Client.Model.Clases.Class_client;
 import Framework.Modules.Users.Client.Model.Utils.Functions_dummy_client;
 import Framework.Modules.Users.User.Model.Clases.Singleton;
 import Framework.Modules.Users.User_register.Model.Clases.Class_user_register;
-import Framework.Modules.Users.User_register.Model.Utils.Functions_dummy_usr_reg;
 import Framework.Utils.Theme;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import java.io.Serializable;
@@ -53,6 +50,8 @@ public class Class_config implements Serializable{
 			instance=new Class_config();
 			
 		Connection_DB.inicializa_BasicDataSourceFactory();
+                Singleton_tools.mongo=new Mongo_DB();
+                Singleton_tools.client=Mongo_DB.connect();
                 Theme.select_theme("Nimbus");
 		Class_language.getInstance();
 		
@@ -61,11 +60,9 @@ public class Class_config implements Serializable{
 		Singleton.User_register_array=new ArrayList <Class_user_register>();
 		
 		//Functions_auto_open.auto_open();
-		Functions_dummy_admin.cargar_admin();
-                Functions_dummy_client.cargar_client();
-		Functions_dummy_usr_reg.cargar_user_register();
-		Theme.select_theme("Nimbus");
-                Json.auto_create_json_admin();
+		//Functions_dummy_admin.cargar_admin();
+                //Functions_dummy_client.cargar_client();
+		//Functions_dummy_usr_reg.cargar_user_register();
 		}
 		return instance;
 	}

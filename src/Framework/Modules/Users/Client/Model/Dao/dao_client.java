@@ -144,13 +144,13 @@ public class dao_client {
             date_birthday=new Class_date (((JTextFieldDateEditor)client_jframe_update.eti_date_birthday_update.getDateEditor()).getText());
             mobile=client_jframe_update.eti_mobile_update.getText();
             avatar=client_jframe_update.eti_avatar_update.getText();
-            state=state();
+            state=state_update();
             email=client_jframe_update.eti_email_update.getText();
             user=client_jframe_update.eti_user_update.getText();
             pass=client_jframe_update.eti_pass_update.getText();
             date_start=new Class_date (((JTextFieldDateEditor)client_jframe_update.eti_date_start_update.getDateEditor()).getText());
             buy=Float.parseFloat(client_jframe_update.eti_buy_update.getText());
-            premium=premium();
+            premium=premium_update();
             client_type=client_jframe_update.eti_tipeclient_update.getText();
             
             client= new Class_client(dni, name, surname, date_birthday, mobile, avatar, state, email, user, pass, buy, premium, date_start, client_type);
@@ -160,13 +160,56 @@ public class dao_client {
         return client;
     }
         
+        public static Class_client ask_clientDNI_update () {
+	boolean checkDNI;
+        String DNI;
+        Class_client admin=null;
+        
+        checkDNI=DNI_update();
+        if (checkDNI==true){
+            admin = new Class_client (client_jframe_update.eti_dni_update.getText());
+        }        
+        return admin;
+    }
+        
+        public static boolean DNI_update () {
+        boolean check=true;
+        
+        String DNI = "", aux = "", caracteres = "TRWAGMYFPDXBNJZSQVHLCKET";
+		boolean confirm;
+		int number = 0, module = 0;
+		char character = ' ', control = ' ';
+		
+		DNI=client_jframe_update.eti_dni_update.getText();
+		confirm=Validate.validate_dni(DNI);
+		if (confirm==false) {
+                    check = false;
+                }else{
+                    aux = "";
+                    for(int i=0; i<8; i++){
+                        aux += DNI.charAt(i);
+                    }	
+                    character = DNI.charAt(8);			
+                    number = Integer.parseInt(aux);
+                    module= number % 23;
+                    control = caracteres.charAt(module);
+                    if(control == character){
+                        check = true;
+                    }else{
+                        check = false;
+                    }
+                }
+        
+        return check;
+    }
+        
         public static boolean state(){
             boolean correct=false;
             
             if(client_jframe_create.eti_state_co_create.isSelected())
                 correct=true;
             if(client_jframe_create.eti_state_di_create.isSelected())
-                correct=true;            
+                correct=false;            
             return correct;
         }
         
@@ -176,7 +219,7 @@ public class dao_client {
             if(client_jframe_create.eti_premi_true_create.isSelected())
                 correct=true;
             if(client_jframe_create.eti_premi_false_create.isSelected())
-                correct=true;            
+                correct=false;            
             return correct;
         }
         
@@ -618,5 +661,25 @@ public class dao_client {
            ImageIcon temporal=new ImageIcon(img);
            ImageIcon imagen=new ImageIcon(temporal.getImage().getScaledInstance(160, -1, Image.SCALE_DEFAULT));
             client_jframe_update.lab_avatar.setIcon(imagen);
-       }          
+       }   
+
+        public static boolean state_update(){
+            boolean correct=false;
+            
+            if(client_jframe_update.eti_state_co_update.isSelected())
+                correct=true;
+            if(client_jframe_update.eti_state_di_update.isSelected())
+                correct=false;            
+            return correct;
+        }   
+
+        public static boolean premium_update(){
+            boolean correct=false;
+            
+            if(client_jframe_update.eti_premi_true_update.isSelected())
+                correct=true;
+            if(client_jframe_update.eti_premi_false_update.isSelected())
+                correct=false;            
+            return correct;
+        }
 }

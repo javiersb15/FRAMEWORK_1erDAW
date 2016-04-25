@@ -1,6 +1,5 @@
 package Framework.Modules.Users.Admin.Model.Bll;
 
-import Framework.Class.Singleton_tools;
 import static Framework.Class.Singleton_tools.cancel;
 import static Framework.Class.Singleton_tools.okey;
 import Framework.Modules.Users.Admin.Controller.Controller_admin;
@@ -8,7 +7,6 @@ import Framework.Modules.Users.Admin.Model.Clases.Class_admin;
 import Framework.Modules.Users.Admin.Model.Clases.Singleton_adm;
 import Framework.Modules.Users.Admin.Model.Clases.miniSimpleTableModel_admin;
 import Framework.Modules.Users.Admin.Model.Dao.dao_admin;
-import Framework.Modules.Users.Admin.Model.Utils.Extensions.Json;
 import Framework.Modules.Users.Admin.Model.Utils.Pager.pagina_admin;
 import Framework.Modules.Users.Admin.View.admin_jframe_create;
 import Framework.Modules.Users.Admin.View.admin_jframe_update;
@@ -169,66 +167,6 @@ public class bll_admin {
                 } 
         }
          
-         /*public static void update_admin() {
-            
-            int position1=-1, position2=-1;               
-		
-		Class_admin adm=new Class_admin(Controller_admin.DNI);
-                
-                position1=bll_admin.search_admin(adm);
-                if(position1 !=-1){                    
-                    adm=dao_admin.create_update();
-                    position2=bll_admin.search_admin(adm);
-                    if(position2 ==-1){
-				Singleton.Admin_array.set(position1, adm);
-                Singleton_adm.adm=adm;
-                bll_admin_db.update_admin_bll();
-                                Json.auto_create_json_admin();
-			}else {
-				JOptionPane.showMessageDialog(null, "This DNI dosent't exist hola", "Error", JOptionPane.ERROR_MESSAGE);
-                        }
-                }                
-        }*/
-         
-         /*public static boolean update_admin() {
-        String dni = null;
-        boolean ok = false;
-        int selection, inicio, selection1, pos=0;
-
-        if (((miniSimpleTableModel_admin) pager_adm.TABLA.getModel()).getRowCount() != 0) {
-            int selec = pager_adm.TABLA.getSelectedRow();
-
-            if (selec == -1) {
-                ok = false;
-                JOptionPane.showMessageDialog(null, "There_is_not_a_selected_user");
-
-            } else {
-
-                inicio = (pagina_admin.currentPageIndex - 1) * pagina_admin.itemsPerPage; //nos situamos al inicio de la pÃ¡gina en cuestiÃ³n
-                selection = pager_adm.TABLA.getSelectedRow(); //nos situamos en la fila
-                selection1 = inicio + selection; //nos situamos en la fila correspondiente de esa pÃ¡gina
-
-                dni =(String) pager_adm.TABLA.getModel().getValueAt(selection1, 0);
-                Class_admin adm = new Class_admin(dni);
-                adm = Singleton.Admin_array.get(pos);
-                search_admin(adm);
-
-                new Controller_admin(new admin_jframe_update(), 2).begin(2);
-                dao_admin.modifyadmin();
-                ((miniSimpleTableModel_admin) pager_adm.TABLA.getModel()).cargar();
-                pagina_admin.inicializa();
-                pagina_admin.initLinkBox();
-
-                ok = true;
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "List_empty");
-
-            ok = false;
-        }
-        return ok;
-    }*/
-
 	/**DELETE ADMIN*/
 	        
          public static void delete_admin() {

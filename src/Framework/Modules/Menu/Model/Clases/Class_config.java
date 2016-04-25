@@ -56,11 +56,9 @@ public class Class_config implements Serializable{
 		Singleton.Admin_array=new ArrayList <Class_admin>();
 		Singleton.Client_array=new ArrayList <Class_client>();
 		Singleton.User_register_array=new ArrayList <Class_user_register>();
-		
-		Functions_auto_open.auto_open();
-		
+				
                 //Functions_dummy_admin.cargar_admin();
-                //Functions_dummy_client.cargar_client();
+               Functions_dummy_client.cargar_client();
 		//Functions_dummy_usr_reg.cargar_user_register();
 		
 		}
