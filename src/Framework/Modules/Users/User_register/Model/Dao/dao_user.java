@@ -1,6 +1,6 @@
 package Framework.Modules.Users.User_register.Model.Dao;
 
-import Framework.Modules.Config.Model.Class_config;
+import Framework.Modules.Menu.Model.Clases.Class_config;
 import Framework.Class.Class_date;
 import Framework.Modules.Users.User.Model.Clases.Singleton;
 import Framework.Modules.Users.User_register.Model.Bll.bll_users;

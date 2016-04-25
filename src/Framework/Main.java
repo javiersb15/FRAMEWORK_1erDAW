@@ -5,7 +5,7 @@
  */
 package Framework;
 
-import Framework.Modules.Config.Model.Class_config;
+import Framework.Modules.Menu.Model.Clases.Class_config;
 import Framework.Modules.Menu.View.choose_frame;
 import Framework.Modules.Menu.Controller.Controller_menu;
 

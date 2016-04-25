@@ -115,14 +115,14 @@ public class bll_client {
 		String[] submenu={"Read all data", "Read only the DNI"};
 		
                 
-		if(Singleton.Admin_array.isEmpty()){
+		if(Singleton.Client_array.isEmpty()){
 			JOptionPane.showMessageDialog(null, "There aren't any Administrator", "Administrator", JOptionPane.ERROR_MESSAGE);
 		}else{
 			menu=Menus.menubutton(submenu, "What do you want?", "Choosing");
 			switch (menu){
 				case 0:
 					for (int i=0; i<Singleton.Admin_array.size(); i++){
-						JOptionPane.showMessageDialog(null, Singleton.Admin_array.get(i).toString(), "Print", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null, Singleton.Client_array.get(i).toString(), "Print", JOptionPane.INFORMATION_MESSAGE);
 					}
 					break;
 				case 1:
@@ -185,17 +185,17 @@ public class bll_client {
                 
                 dni = (String) pager_client.TABLA.getModel().getValueAt(selection1, 0);
                 Class_client cli = new Class_client(dni);
+                Singleton_cli.cli=cli;
                 pos = bll_client.search_client((Class_client) cli);
                 
                 int opc = JOptionPane.showConfirmDialog(null, "Do you want this person with DNI: " + dni +" "+"?",
                         "Info", JOptionPane.WARNING_MESSAGE);
 
-                if (opc == 0) {
+                if (opc == 0) {                    
+                    bll_client_db.delete_client_bll();
                     ((miniSimpleTableModel_client) pager_client.TABLA.getModel()).removeRow(selection1);
                     pagina_client.initLinkBox();
                     cli = Singleton.Client_array.get(pos);
-                    Singleton_cli.cli=cli;
-                    bll_client_db.delete_client_bll();
                     Singleton.Client_array.remove(cli);                    
                     miniSimpleTableModel_client.datosaux.remove(cli);
                     ((miniSimpleTableModel_client) pager_client.TABLA.getModel()).cargar();

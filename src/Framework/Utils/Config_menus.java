@@ -1,10 +1,9 @@
 package Framework.Utils;
 
+import Framework.Modules.Menu.Model.Clases.Class_config;
 import java.text.NumberFormat;
 import java.util.Locale;
 import javax.swing.JOptionPane;
-import Framework.Modules.Menu.Model.Class_config;
-import Framework.Modules.Menu.Model.Class_language;
 
 public class Config_menus {
 	
@@ -17,20 +16,20 @@ public class Config_menus {
 		switch (Class_config.getInstance().getCurrency()) {
 		
 		/**Euro*/
-		case '€':
+		case "€":
 			NumberFormat coin_euro = NumberFormat.getCurrencyInstance(Locale.FRANCE);
 			credit=coin_euro.format(money);				
 			break;
 			
 		/**Libra*/
-		case '£':
+		case "£":
 			money= money * valuelibra;
 			NumberFormat coin_libra = NumberFormat.getCurrencyInstance(Locale.UK);
 			credit=coin_libra.format(money);
 			break;
 
 		/**Dolar*/
-		case '$':
+		case "$":
 			money=money * valuedolar;
 			NumberFormat coin_dolar = NumberFormat.getCurrencyInstance(Locale.US);
 			credit=coin_dolar.format(money);
@@ -65,7 +64,7 @@ public class Config_menus {
 	
 	/**MENU COIN*/
 	public static void menucoin() {
-				String [] options_currency={"�", "�", "$"};
+				String [] options_currency={"€", "£", "$"};
 				int selection_currency=0;
 				int[] format={0, 0, 0, 0};
 				
@@ -74,17 +73,17 @@ public class Config_menus {
 				switch(selection_currency){
 				/**euro*/
 					case 0:
-						Class_config.getInstance().setCurrency('�');
+						Class_config.getInstance().setCurrency("€");
 						break;
 						
 				/**libra*/		
 					case 1:
-						Class_config.getInstance().setCurrency('�');
+						Class_config.getInstance().setCurrency("£");
 						break;
 						
 				/**dolar*/		
 					case 2:
-						Class_config.getInstance().setCurrency('$');
+						Class_config.getInstance().setCurrency("$");
 						break;
 				}
 	}
@@ -100,17 +99,17 @@ public class Config_menus {
 				switch(selection_decimal){
 				/**one decimal*/
 					case 0:
-						Class_config.getInstance().setDecimal_number(1);
+						Class_config.getInstance().setDecimal_number("1");
 						break;
 						
 				/**two decimal*/		
 					case 1:
-						Class_config.getInstance().setDecimal_number(2);
+						Class_config.getInstance().setDecimal_number("2");
 						break;
 						
 				/**three decimal*/		
 					case 2:
-						Class_config.getInstance().setDecimal_number(3);
+						Class_config.getInstance().setDecimal_number("3");
 						break;
 				}
 	}

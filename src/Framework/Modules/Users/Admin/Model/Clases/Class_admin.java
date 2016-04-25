@@ -4,7 +4,7 @@ import java.io.Serializable;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import Framework.Class.Class_date;
 import Framework.Modules.Users.User.Model.Clases.Class_user;
-import Framework.Modules.Menu.Model.Config_menus;
+import Framework.Utils.Config_menus;
 import Framework.Utils.Format;
 
 @XStreamAlias("Class_admin")
