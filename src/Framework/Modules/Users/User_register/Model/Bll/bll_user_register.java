@@ -18,9 +18,8 @@ import java.awt.Color;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 
-
-
 public class bll_user_register {
+    public static boolean check;
 	
 	/**USER REGISTER*/
 	
@@ -78,7 +77,7 @@ public class bll_user_register {
                 else {
                     position=bll_user_register.search_user_register(usr_reg);
 		if (position !=-1){
-			JOptionPane.showMessageDialog(null, "This Administrator is already exist", "Error Administrator", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "This User Register is already exist", "Error User Register", JOptionPane.ERROR_MESSAGE);
 		}else{ usr_reg=dao_user_register.create();
 		Singleton.User_register_array.add(usr_reg);
                     JOptionPane.showMessageDialog(null, "User create");
@@ -99,7 +98,7 @@ public class bll_user_register {
                 else {
                     position=bll_user_register.search_user_register(usr_reg);
 		if (position !=-1){
-			JOptionPane.showMessageDialog(null, "This Administrator is already exist", "Error Administrator", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "This User Register is already exist", "Error User Register", JOptionPane.ERROR_MESSAGE);
 		}else{ usr_reg=dao_user_register.create_update();
 		Singleton.User_register_array.add(usr_reg);
                     JOptionPane.showMessageDialog(null, "User modify");
@@ -116,7 +115,7 @@ public class bll_user_register {
 		
                 
 		if(Singleton.User_register_array.isEmpty()){
-			JOptionPane.showMessageDialog(null, "There aren't any Administrator", "Administrator", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "There aren't any User Register", "User Register", JOptionPane.ERROR_MESSAGE);
 		}else{
 			menu=Menus.menubutton(submenu, "What do you want?", "Choosing");
 			switch (menu){
@@ -143,23 +142,24 @@ public class bll_user_register {
 	/**UPDATE USER REGISTER*/
 	 public static void update_user_register() {
             
-            int position1=-1, position2=-1;               
-		if(Singleton.User_register_array.isEmpty()){
-			JOptionPane.showMessageDialog(null, "There aren't any Administrator", "Administrator", JOptionPane.ERROR_MESSAGE);
-		}else{
-		Class_user_register usr_reg=new Class_user_register(Controller_user_register.DNI);
-                position1=bll_user_register.search_user_register(usr_reg);
-                if(position1 !=-1){                    
-                    usr_reg=dao_user_register.create_update();
-                    position2=bll_user_register.search_user_register(usr_reg);
-                    if(position2 ==-1){
-				Singleton.User_register_array.set(position1, usr_reg); 
-                                Json.auto_create_json_usr_reg();
-			}else {
-				JOptionPane.showMessageDialog(null, "This DNI dosent't exist", "Error", JOptionPane.ERROR_MESSAGE);
+            int location1 = -1;
+                String dni = Controller_user_register.DNI;
+		Class_user_register usr_reg = new Class_user_register (dni);
+                location1 = bll_user_register.search_user_register(usr_reg);
+		if (location1 == -1) {
+                        check=false;
+                }else{
+                        if (user_register_jframe_update.eti_dni_update.getText().equals(dni)){
+                                usr_reg = dao_user_register.create_update();
+                                    if (usr_reg==null){
+                                       check=false;
+                                    } else {
+                                        Singleton.User_register_array.set(location1, usr_reg);
+                                        Json.auto_create_json_usr_reg();
+                                        check=true;
+                                   }
                         }
-                }
-                }
+                } 
         }      
         
 	/**DELETE USER REGISTER*/
@@ -344,7 +344,7 @@ public class bll_user_register {
         
         
         if (dao_user_register.givepassword()==false) {
-            user_register_jframe_create.lab_pass.setBackground(Color.red);
+            user_register_jframe_create.eti_pass_create.setBackground(Color.red);
             user_register_jframe_create.lab_pass.setIcon(cancel);    
             } else {
                 user_register_jframe_create.eti_pass_create.setBackground(Color.CYAN);
@@ -357,7 +357,7 @@ public class bll_user_register {
          public static void giveactivity() {
            
            if (dao_user_register.giveactivity()==false) {
-            user_register_jframe_create.lab_activity.setBackground(Color.red);
+            user_register_jframe_create.eti_activity_create.setBackground(Color.red);
             user_register_jframe_create.lab_activity.setIcon(cancel);    
             } else {
                 user_register_jframe_create.eti_activity_create.setBackground(Color.CYAN);
@@ -368,7 +368,7 @@ public class bll_user_register {
        
         public static void Validatedatebirthday(Calendar birthdate) {
             if (dao_user_register.give_date_birthday(birthdate)==false) {
-            user_register_jframe_create.lab_date_birthday.setBackground(Color.red);
+            user_register_jframe_create.eti_date_birthday_create.setBackground(Color.red);
             user_register_jframe_create.lab_date_birthday.setIcon(cancel);    
             } else {
                 user_register_jframe_create.eti_date_birthday_create.setBackground(Color.CYAN);
@@ -391,7 +391,7 @@ public class bll_user_register {
                 givesurname_update();
                 break;
             case "date_birthday":
-                Validatedatebirthday_update(user_register_jframe_create.eti_date_birthday_create.getCalendar());
+                Validatedatebirthday_update(user_register_jframe_update.eti_date_birthday_update.getCalendar());
                 break;
             case "mobile":
                 givemobile_update();
@@ -503,7 +503,7 @@ public class bll_user_register {
         
         
         if (dao_user_register.givepassword_update()==false) {
-            user_register_jframe_update.lab_pass.setBackground(Color.red);
+            user_register_jframe_update.eti_pass_update.setBackground(Color.red);
             user_register_jframe_update.lab_pass.setIcon(cancel);    
             } else {
                 user_register_jframe_update.eti_pass_update.setBackground(Color.CYAN);
@@ -516,7 +516,7 @@ public class bll_user_register {
          public static void giveactivity_update() {
            
            if (dao_user_register.giveactivity_update()==false) {
-            user_register_jframe_update.lab_activity.setBackground(Color.red);
+            user_register_jframe_update.eti_activity_update.setBackground(Color.red);
             user_register_jframe_update.lab_activity.setIcon(cancel);    
             } else {
                 user_register_jframe_update.eti_activity_update.setBackground(Color.CYAN);
@@ -527,7 +527,7 @@ public class bll_user_register {
          
         public static void Validatedatebirthday_update(Calendar birthdate) {
             if (dao_user_register.Validatedatebirthday_update(birthdate)==false) {
-            user_register_jframe_update.lab_date_birthday.setBackground(Color.red);
+            user_register_jframe_update.eti_date_birthday_update.setBackground(Color.red);
             user_register_jframe_update.lab_date_birthday.setIcon(cancel);    
             } else {
                 user_register_jframe_update.eti_date_birthday_update.setBackground(Color.CYAN);

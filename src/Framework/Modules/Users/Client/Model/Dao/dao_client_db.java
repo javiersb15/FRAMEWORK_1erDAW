@@ -86,5 +86,3 @@ public class dao_client_db {
 	}	
     }
 }
-
- 

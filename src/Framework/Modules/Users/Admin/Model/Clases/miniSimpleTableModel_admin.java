@@ -1,6 +1,7 @@
 package Framework.Modules.Users.Admin.Model.Clases;
 
 import Framework.Class.Class_date;
+import Framework.Modules.Menu.Model.Clases.Class_language;
 import static Framework.Modules.Users.Admin.Controller.Controller_admin.combo;
 import Framework.Modules.Users.Admin.Model.Bll.bll_admin_db;
 import Framework.Modules.Users.Admin.Model.Utils.Extensions.Json;
@@ -16,7 +17,7 @@ public class miniSimpleTableModel_admin extends AbstractTableModel {
     public static ArrayList<Class_admin> datos = new ArrayList<Class_admin>();
     public static ArrayList<Class_admin> datosaux = new ArrayList<Class_admin>();
     
-    String[] columnas = {"DNI", "Name", "Surname", "Date of birthday"};
+    String[] columnas = {Class_language.getInstance().getProperty("dni"), Class_language.getInstance().getProperty("name"), Class_language.getInstance().getProperty("surname"), Class_language.getInstance().getProperty("date_birthday")};
 
     ////////////////////estos métodos son necesarios para que jtable funcione/////////////////////
     @Override

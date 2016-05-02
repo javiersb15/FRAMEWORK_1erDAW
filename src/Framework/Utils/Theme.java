@@ -6,9 +6,9 @@ import javax.swing.UIManager;
 
 
 public class Theme {
-	public static void select_theme(String theme) {
+	public static void select_theme() {
 		try {
-            switch (theme) {
+            switch (Class_config.getInstance().getTheme()) {
                 case "Metal":
                 	UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
                     break;

@@ -3,18 +3,18 @@ package Framework.Modules.Menu.Model.Clases;
 import Framework.Class.Connection_DB;
 import Framework.Class.Mongo_DB;
 import Framework.Class.Singleton_tools;
+import Framework.Modules.Menu.Model.Functions.json_auto_config;
 import Framework.Modules.Users.Admin.Model.Clases.Class_admin;
+import Framework.Modules.Users.Admin.Model.Utils.Functions_dummy_admin;
 import Framework.Modules.Users.Client.Model.Clases.Class_client;
 import Framework.Modules.Users.Client.Model.Utils.Functions_dummy_client;
 import Framework.Modules.Users.User.Model.Clases.Singleton;
 import Framework.Modules.Users.User_register.Model.Clases.Class_user_register;
+import Framework.Modules.Users.User_register.Model.Utils.Extensions.Json;
 import Framework.Utils.Theme;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import java.io.Serializable;
 import java.util.ArrayList;
-
-
-
 
 
 @XStreamAlias("Class_config")
@@ -38,28 +38,30 @@ public class Class_config implements Serializable{
 		
 	public Class_config(){
 		this.format_date="dd/MM/yyyy";
-		this.currency="€";
+		this.currency="EURO";
 		this.format_file="1";
-		this.language="Valencian";
+		this.language="ENGLISH";
 		this.theme="Nimbus";
-		this.decimal_number="2";	
+		this.decimal_number="2 DECIMAL";	
 	}
 	
 	public static Class_config getInstance(){
 		if (instance==null){
 			instance=new Class_config();
+                        
+                json_auto_config.open_json_config();
 			
 		Connection_DB.inicializa_BasicDataSourceFactory();
                 Singleton_tools.mongo=new Mongo_DB();
                 Singleton_tools.client=Mongo_DB.connect();
-                Theme.select_theme("Nimbus");
+                Theme.select_theme();
 		Class_language.getInstance();
 		
 		Singleton.Admin_array=new ArrayList <Class_admin>();
 		Singleton.Client_array=new ArrayList <Class_client>();
-		Singleton.User_register_array=new ArrayList <Class_user_register>();
+		Singleton.User_register_array=new ArrayList <Class_user_register>();		
 		
-		//Functions_auto_open.auto_open();
+                Json.auto_open_json_usr_reg();
 		//Functions_dummy_admin.cargar_admin();
                 //Functions_dummy_client.cargar_client();
 		//Functions_dummy_usr_reg.cargar_user_register();
@@ -97,6 +99,7 @@ public class Class_config implements Serializable{
 
 	public void setLanguage(String language) {
 		this.language = language;
+                Class_language.getInstance().setlanguage();
 	}
 
 	public String getTheme() {
@@ -105,6 +108,7 @@ public class Class_config implements Serializable{
 
 	public void setTheme(String theme) {
 		this.theme = theme;
+                Theme.select_theme();
 	}
 
 	public String getDecimal_number() {
@@ -120,8 +124,18 @@ public class Class_config implements Serializable{
 	}
 	
 	public String toString() {
-		return "Configuration [format_data="+format_date+", Currency="+currency
-				+", File format="+format_file+", Languages="+language+", Theme="+theme+", "
-						+ "Decimal number="+decimal_number+"]";
+		StringBuffer string =new StringBuffer();
+                string.append(Class_language.getInstance().getProperty("Date")+": "+this.getFormat_date()+"\n");
+                string.append(Class_language.getInstance().getProperty("Currency")+": "+this.getCurrency()+"\n");
+                string.append(Class_language.getInstance().getProperty("Language")+": "+this.getLanguage()+"\n");
+                string.append(Class_language.getInstance().getProperty("Theme")+": "+this.getTheme()+"\n");
+                string.append(Class_language.getInstance().getProperty("Decimal")+": "+this.getDecimal_number()+"\n");
+                return string.toString();
 	}
+        
+        /*public String toString() {
+		return "Configuration [format_data="+format_date+", Currency="+currency
+				+", Languages="+language+", Theme="+theme+", "
+						+ "Decimal number="+decimal_number+"]";
+	}*/
 }

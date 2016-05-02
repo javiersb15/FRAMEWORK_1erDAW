@@ -5,6 +5,8 @@
  */
 package Framework.Modules.Menu.View;
 
+import Framework.Modules.Menu.Model.Clases.Class_language;
+
 /**
  *
  * 
@@ -34,13 +36,13 @@ public class choose_frame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btn_adm.setText("Admin");
+        btn_adm.setText(Class_language.getInstance().getProperty("Admin"));
 
-        btn_client.setText("Client");
+        btn_client.setText(Class_language.getInstance().getProperty("Client"));
 
-        btn_user_reg.setText("User_Register");
+        btn_user_reg.setText(Class_language.getInstance().getProperty("User_Register"));
 
-        btn_config.setText("Configuration");
+        btn_config.setText(Class_language.getInstance().getProperty("Configure"));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -53,7 +55,7 @@ public class choose_frame extends javax.swing.JFrame {
                 .addComponent(btn_client)
                 .addGap(27, 27, 27)
                 .addComponent(btn_user_reg)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_config)
                 .addContainerGap())
         );

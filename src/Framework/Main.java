@@ -5,15 +5,16 @@
  */
 package Framework;
 
+import Framework.Modules.Login.Controller.Controller_login;
+import Framework.Modules.Login.View.login_frame;
 import Framework.Modules.Menu.Model.Clases.Class_config;
-import Framework.Modules.Menu.View.choose_frame;
-import Framework.Modules.Menu.Controller.Controller_menu;
 
 
 /**
  *
  * @author usuario
  */
+
 public class Main {
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -22,7 +23,7 @@ public class Main {
         /* Create and display the form */
        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Controller_menu(new choose_frame(),0).began(0);      
+                new Controller_login(new login_frame()).began();      
             }
         });
     }

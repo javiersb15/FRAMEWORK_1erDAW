@@ -6,9 +6,9 @@
 package Framework.Modules.Users.Admin.Controller;
 
 import Framework.Modules.Menu.Controller.Controller_menu;
+import Framework.Modules.Menu.Model.Clases.Class_language;
 import Framework.Modules.Menu.View.choose_frame;
 import Framework.Modules.Users.Admin.Model.Bll.bll_admin;
-import Framework.Modules.Users.Admin.Model.Bll.bll_admin_db;
 import Framework.Modules.Users.Admin.Model.Clases.miniSimpleTableModel_admin;
 import Framework.Modules.Users.Admin.Model.Dao.dao_admin;
 import Framework.Modules.Users.Admin.Model.Utils.Extensions.Json;
@@ -18,6 +18,7 @@ import Framework.Modules.Users.Admin.Model.Utils.Pager.pagina_admin;
 import Framework.Modules.Users.Admin.Model.Utils.autocomplete.AutocompleteJComboBox;
 import Framework.Modules.Users.Admin.Model.Utils.autocomplete.StringSearchable;
 import Framework.Modules.Users.Admin.View.admin_jframe_create;
+import static Framework.Modules.Users.Admin.View.admin_jframe_create.btn_create_create;
 import static Framework.Modules.Users.Admin.View.admin_jframe_create.eti_activity_create;
 import static Framework.Modules.Users.Admin.View.admin_jframe_create.eti_avatar_create;
 import static Framework.Modules.Users.Admin.View.admin_jframe_create.eti_date_birthday_create;
@@ -182,7 +183,7 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
                 this.begin_pager.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosing(WindowEvent e) {
-                        JOptionPane.showMessageDialog(null,"Exit to the aplication");
+                        JOptionPane.showMessageDialog(null,Class_language.getInstance().getProperty("Exit"));
                         begin_pager.dispose();
                         System.exit(0);
                     }
@@ -267,7 +268,7 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
                 addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosing(WindowEvent e) {
-                        JOptionPane.showMessageDialog(null,"Exit to the aplication");
+                        JOptionPane.showMessageDialog(null,Class_language.getInstance().getProperty("Exit"));
                         dispose();
                         System.exit(0);
                     }
@@ -366,7 +367,7 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
                 addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosing(WindowEvent e) {
-                        JOptionPane.showMessageDialog(null,"Exit to the aplication");
+                        JOptionPane.showMessageDialog(null,Class_language.getInstance().getProperty("Exit"));
                         dispose();
                         System.exit(0);
                     }
@@ -456,7 +457,7 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
                 int select_read =-1;
                 select_read=begin_pager.TABLA.getSelectedRow();
                 if (select_read==-1){
-                JOptionPane.showMessageDialog(null, "Usuario no seleccionado");
+                JOptionPane.showMessageDialog(null, Class_language.getInstance().getProperty("selected"));
                 }else{
                 bll_admin.print_admin();
                 }
@@ -466,7 +467,7 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
                 int select_update =-1;
                 select_update=begin_pager.TABLA.getSelectedRow();
                 if (select_update==-1){
-                JOptionPane.showMessageDialog(null, "Usuario no seleccionado");
+                JOptionPane.showMessageDialog(null, Class_language.getInstance().getProperty("selected"));
                 }else{
                 begin_pager.dispose();       
                 new Controller_admin(new admin_jframe_update(), 2).begin(2);
@@ -683,7 +684,7 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
             
             case eti_surname_create:
                 if(e.getKeyCode()==KeyEvent.VK_ENTER){
-                    eti_date_birthday_create.requestFocus();
+                    eti_mobile_create.requestFocus();
                 }else{
                     bll_admin.givedates("surname");
                 }
@@ -715,7 +716,7 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
             
             case eti_pass_create:
                 if(e.getKeyCode()==KeyEvent.VK_ENTER){
-                    eti_date_birthday_create.requestFocus();
+                    eti_activity_create.requestFocus();
                 }else{
                     bll_admin.givedates("pass");
                 }
@@ -739,7 +740,7 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
             
             case eti_incentive_create:
                 if(e.getKeyCode()==KeyEvent.VK_ENTER){
-                    eti_incentive_create.requestFocus();
+                    btn_create_create.requestFocus();
                 }else{
                     bll_admin.givedates("incentive");
                 }
@@ -763,7 +764,7 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
             
             case eti_surname_update:
                 if(e.getKeyCode()==KeyEvent.VK_ENTER){
-                    eti_date_birthday_update.requestFocus();
+                    eti_mobile_update.requestFocus();
                 }else{
                     bll_admin.givedates_update("surname");
                 }
@@ -795,7 +796,7 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
             
             case eti_pass_update:
                 if(e.getKeyCode()==KeyEvent.VK_ENTER){
-                    eti_date_birthday_update.requestFocus();
+                    eti_activity_update.requestFocus();
                 }else{
                     bll_admin.givedates_update("pass");
                 }

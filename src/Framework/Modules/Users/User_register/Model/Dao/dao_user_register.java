@@ -7,6 +7,7 @@ import Framework.Modules.Users.User_register.Model.Clases.Class_user_register;
 import Framework.Modules.Users.User_register.View.user_register_jframe_create;
 import static Framework.Modules.Users.User_register.View.user_register_jframe_create.eti_avatar_create;
 import Framework.Modules.Users.User_register.View.user_register_jframe_update;
+import static Framework.Modules.Users.User_register.View.user_register_jframe_update.eti_avatar_update;
 import Framework.Utils.Validate;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Image;
@@ -18,28 +19,28 @@ import javax.swing.JFileChooser;
 public class dao_user_register {
 
 	
-	/**MODIFY ADMIN*/
-	public static void modifyadmin() {
-            Class_user_register a_1=null;
-            a_1=bll_user_register.select_user_register();
+	/**MODIFY USER REGISTER*/
+	public static void modifyuser_register() {
+            Class_user_register u_1=null;
+            u_1=bll_user_register.select_user_register();
             
             
-            if (a_1!=null){
-            user_register_jframe_update.eti_dni_update.setText(a_1.getDNI());
-            user_register_jframe_update.eti_name_update.setText(a_1.getname());
-            user_register_jframe_update.eti_surname_update.setText(a_1.getsurname());
-            user_register_jframe_update.eti_date_birthday_update.setCalendar(a_1.getdate_birthday().stringtocalendar());
-            user_register_jframe_update.eti_mobile_update.setText(a_1.getmobile());
-            user_register_jframe_update.eti_avatar_update.setText(a_1.getavatar());            
-            if (a_1.isstate()==true){
+            if (u_1!=null){
+            user_register_jframe_update.eti_dni_update.setText(u_1.getDNI());
+            user_register_jframe_update.eti_name_update.setText(u_1.getname());
+            user_register_jframe_update.eti_surname_update.setText(u_1.getsurname());
+            user_register_jframe_update.eti_date_birthday_update.setCalendar(u_1.getdate_birthday().stringtocalendar());
+            user_register_jframe_update.eti_mobile_update.setText(u_1.getmobile());
+            user_register_jframe_update.eti_avatar_update.setText(u_1.getavatar());            
+            if (u_1.isstate()==true){
                 user_register_jframe_update.eti_state_co_update.setSelected(true);
             }else{ 
                 user_register_jframe_update.eti_state_di_update.setSelected(true);
             }
-            user_register_jframe_update.eti_email_update.setText(a_1.getemail());
-            user_register_jframe_update.eti_user_update.setText(a_1.getuser());
-            user_register_jframe_update.eti_pass_update.setText(a_1.getpass());
-            user_register_jframe_update.eti_activity_update.setText(a_1.getactivity()+"");	
+            user_register_jframe_update.eti_email_update.setText(u_1.getemail());
+            user_register_jframe_update.eti_user_update.setText(u_1.getuser());
+            user_register_jframe_update.eti_pass_update.setText(u_1.getpass());
+            user_register_jframe_update.eti_activity_update.setText(u_1.getactivity()+"");	
             }
         }
         
@@ -67,7 +68,7 @@ public class dao_user_register {
         correct5=givemail();
         correct6=giveuser();
         correct7=givepassword();
-        correct8=correct_activity();
+        correct8=giveactivity();
 
         if (correct== true && correct1==true && correct2==true && correct3==true && correct4==true && correct5==true && correct6==true && correct7==true && correct8==true) {
             dni=user_register_jframe_create.eti_dni_create.getText();
@@ -94,7 +95,7 @@ public class dao_user_register {
         public static Class_user_register create_update() {
            Class_user_register user_register_update=null;           
        
-        String DNI =" ";
+        String DNI = null;
         String name;
         String surname;
         Class_date date_birthday=null;
@@ -104,9 +105,6 @@ public class dao_user_register {
         String email;
         String user;
         String pass;
-        Class_date date_employ=null;
-        float salary;
-        float incentive;
         int activity;
         boolean correct, correct1, correct2, correct3, correct4, correct5, correct6, correct7, correct8;
 
@@ -118,7 +116,7 @@ public class dao_user_register {
         correct5=givemail_update();
         correct6=giveuser_update();
         correct7=givepassword_update();
-        correct8=correct_activity();
+        correct8=giveactivity_update();
 
         if (correct== true && correct1==true && correct2==true && correct3==true && correct4==true && correct5==true && correct6==true && correct7==true && correct8==true) {
             DNI=user_register_jframe_update.eti_dni_update.getText();
@@ -127,7 +125,7 @@ public class dao_user_register {
             date_birthday=new Class_date (((JTextFieldDateEditor)user_register_jframe_update.eti_date_birthday_update.getDateEditor()).getText());
             mobile=user_register_jframe_update.eti_mobile_update.getText();
             avatar=user_register_jframe_update.eti_avatar_update.getText();
-            state=state();
+            state=state_update();
             email=user_register_jframe_update.eti_email_update.getText();
             user=user_register_jframe_update.eti_user_update.getText();
             pass=user_register_jframe_update.eti_pass_update.getText();
@@ -148,21 +146,10 @@ public class dao_user_register {
             if(user_register_jframe_create.eti_state_co_create.isSelected())
                 correct=true;
             if(user_register_jframe_create.eti_state_di_create.isSelected())
-                correct=true;            
+                correct=false;            
             return correct;
         }
-        
-         public static boolean correct_activity(){
-            float activity=0.0f;
-            
-            try {
-            activity= Float.parseFloat(user_register_jframe_create.eti_activity_create.getText());
-            return true;
-        }   catch (Exception e) {
-            return false;
-        }
-        }
-        
+                
           public static boolean givedni() {
         boolean correct = false;
         
@@ -561,7 +548,7 @@ public class dao_user_register {
 
         if (valor == JFileChooser.APPROVE_OPTION) {
             img = selector.getSelectedFile().getPath();
-            eti_avatar_create.setText(selector.getSelectedFile().getPath());
+            eti_avatar_update.setText(selector.getSelectedFile().getPath());
         }
 
         return img;
@@ -571,5 +558,15 @@ public class dao_user_register {
            ImageIcon temporal=new ImageIcon(img);
            ImageIcon imagen=new ImageIcon(temporal.getImage().getScaledInstance(160, -1, Image.SCALE_DEFAULT));
             user_register_jframe_update.lab_avatar.setIcon(imagen);
-       }          
+       } 
+       
+       public static boolean state_update(){
+            boolean correct=false;
+            
+            if(user_register_jframe_update.eti_state_co_update.isSelected())
+                correct=true;
+            if(user_register_jframe_update.eti_state_di_update.isSelected())
+                correct=false;            
+            return correct;
+        }
 }

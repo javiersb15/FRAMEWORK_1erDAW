@@ -27,7 +27,7 @@ public class dao_admin_db {
         int correct = 0, state=0;
         try {
            
-           stmt = con.prepareStatement ("INSERT INTO users"
+           stmt = con.prepareStatement ("INSERT INTO db_admin.admin"
                             +"(DNI, name, surname, date_birthday, mobile, age, avatar,"
                             +" state, email, user, pass, benefit, date_employ, antique, salary, "
                             +" incentive, activity)"
@@ -35,7 +35,6 @@ public class dao_admin_db {
            
            if (Singleton_adm.adm.isstate()==true){
                state=1;
-              //System.out.println(state);
           }else{
                state=0;
            }
@@ -82,7 +81,7 @@ public class dao_admin_db {
        
         Singleton.Admin_array.clear();
         try {
-            stmt = con.prepareStatement("SELECT * FROM users");
+            stmt = con.prepareStatement("SELECT * FROM db_admin.admin");
             rs = stmt.executeQuery();
 
             Class_admin adm=null;
@@ -138,7 +137,7 @@ public class dao_admin_db {
                       
 
         //stmt = con.prepareStatement ("UPDATE db_users.users SET DNI='00000023T', name='pepito', surname='sanz', date_birthday='15/04/1993', mobile='654123987', age=23, avatar='/root', state=true, email='javier@gmail.com', user='javiersb15', pass='holaASD@12', benefit=654.0, date_employ='15/04/2014', antique=2, salary=147.0, incentive=654.0, activity=354 WHERE DNI='00000023T'");
-        stmt = con.prepareStatement ("UPDATE db_users.users SET DNI=?, name=?, surname=?, date_birthday=?, mobile=?, age=?, avatar=?, state=?, email=?, user=?, pass=?, benefit=?, date_employ=?, antique=?, salary=?, incentive=?, activity=? WHERE DNI=?");
+        stmt = con.prepareStatement ("UPDATE db_admin.admin SET DNI=?, name=?, surname=?, date_birthday=?, mobile=?, age=?, avatar=?, state=?, email=?, user=?, pass=?, benefit=?, date_employ=?, antique=?, salary=?, incentive=?, activity=? WHERE DNI=?");
        
         
 
@@ -189,7 +188,7 @@ public class dao_admin_db {
         boolean correct = false;
 
         try {
-            stmt = con.prepareStatement("DELETE FROM users WHERE DNI=?");
+            stmt = con.prepareStatement("DELETE FROM db_admin.admin WHERE DNI=?");
             stmt.setString(1, Singleton_adm.adm.getDNI());
             stmt.executeUpdate();
             correct = true;
@@ -206,6 +205,4 @@ public class dao_admin_db {
         }
         return correct;
     }
-     
-     
 }

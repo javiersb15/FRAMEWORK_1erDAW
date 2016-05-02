@@ -1,5 +1,7 @@
 package Framework.Modules.Users.Admin.View;
 
+import Framework.Modules.Menu.Model.Clases.Class_language;
+
 
 public class pager_adm extends javax.swing.JFrame {
     
@@ -119,7 +121,7 @@ public class pager_adm extends javax.swing.JFrame {
                 .addComponent(btn_pager_xml)
                 .addGap(25, 25, 25)
                 .addComponent(btn_pager_txt)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,7 +133,7 @@ public class pager_adm extends javax.swing.JFrame {
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Volver");
+        jButton1.setText(Class_language.getInstance().getProperty("return"));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "5", "10", "15", "20", "50", "100" }));
 
@@ -163,13 +165,13 @@ public class pager_adm extends javax.swing.JFrame {
             .addGap(0, 31, Short.MAX_VALUE)
         );
 
-        btn_pager_create.setText("Create");
+        btn_pager_create.setText(Class_language.getInstance().getProperty("Create"));
 
-        btn_pager_read.setText("Read");
+        btn_pager_read.setText(Class_language.getInstance().getProperty("Read"));
 
-        btn_pager_update.setText("Update");
+        btn_pager_update.setText(Class_language.getInstance().getProperty("Update"));
 
-        btn_pager_delete.setText("Delete");
+        btn_pager_delete.setText(Class_language.getInstance().getProperty("Delete"));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -201,7 +203,7 @@ public class pager_adm extends javax.swing.JFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 48, Short.MAX_VALUE))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btn_pager_create)
                         .addGap(18, 18, 18)

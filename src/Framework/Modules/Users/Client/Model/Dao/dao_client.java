@@ -20,7 +20,7 @@ public class dao_client {
 
 	
 	/**MODIFY CLIENT*/
-	public static void modifyadmin() {
+	public static void modifyclient() {
             Class_client a_1=null;
             a_1=bll_client.select_client();
             
@@ -109,7 +109,7 @@ public class dao_client {
         public static Class_client create_update() {
            Class_client client=null;           
        
-        String dni = null;
+        String DNI = null;
         String name;
         String surname;
         Class_date date_birthday=null;
@@ -125,20 +125,20 @@ public class dao_client {
         String client_type;
         boolean correct, correct1, correct2, correct3, correct4, correct5, correct6, correct7, correct8, correct9, correct10;
 
-        correct=givedni();
-        correct1=givename();
-        correct2=givesurname();
-        correct3=give_date_birthday(client_jframe_update.eti_date_birthday_update.getCalendar());
-        correct4=givemobile();
-        correct5=givemail();
-        correct6=giveuser();
-        correct7=givepassword();
-        correct8=give_date_start(client_jframe_update.eti_date_birthday_update.getCalendar(), client_jframe_update.eti_date_start_update.getCalendar());
-        correct9=givebuy();
-        correct10=givetypeclient();
+        correct=givedni_update();
+        correct1=givename_update();
+        correct2=givesurname_update();
+        correct3=give_date_birthday_update(client_jframe_update.eti_date_birthday_update.getCalendar());
+        correct4=givemobile_update();
+        correct5=givemail_update();
+        correct6=giveuser_update();
+        correct7=givepassword_update();
+        correct8=give_date_start_update(client_jframe_update.eti_date_birthday_update.getCalendar(), client_jframe_update.eti_date_start_update.getCalendar());
+        correct9=givebuy_update();
+        correct10=givetypeclient_update();
 
-        if (correct== true && correct1==true && correct2==true && correct3==true && correct4==true && correct5==true && correct6==true && correct7==true && correct8==true && correct9==true && correct10==true) {
-            dni=client_jframe_update.eti_dni_update.getText();
+        //if (correct== true && correct1==true && correct2==true && correct3==true && correct4==true && correct5==true && correct6==true && correct7==true && correct8==true && correct9==true && correct10==true) {
+            DNI=client_jframe_update.eti_dni_update.getText();
             name=client_jframe_update.eti_name_update.getText();
             surname=client_jframe_update.eti_surname_update.getText();
             date_birthday=new Class_date (((JTextFieldDateEditor)client_jframe_update.eti_date_birthday_update.getDateEditor()).getText());
@@ -153,54 +153,11 @@ public class dao_client {
             premium=premium_update();
             client_type=client_jframe_update.eti_tipeclient_update.getText();
             
-            client= new Class_client(dni, name, surname, date_birthday, mobile, avatar, state, email, user, pass, buy, premium, date_start, client_type);
-        } else {
-            client= null;
-        }
+            client= new Class_client(DNI, name, surname, date_birthday, mobile, avatar, state, email, user, pass, buy, premium, date_start, client_type);
+        //} else {
+            //client= null;
+        //}
         return client;
-    }
-        
-        public static Class_client ask_clientDNI_update () {
-	boolean checkDNI;
-        String DNI;
-        Class_client admin=null;
-        
-        checkDNI=DNI_update();
-        if (checkDNI==true){
-            admin = new Class_client (client_jframe_update.eti_dni_update.getText());
-        }        
-        return admin;
-    }
-        
-        public static boolean DNI_update () {
-        boolean check=true;
-        
-        String DNI = "", aux = "", caracteres = "TRWAGMYFPDXBNJZSQVHLCKET";
-		boolean confirm;
-		int number = 0, module = 0;
-		char character = ' ', control = ' ';
-		
-		DNI=client_jframe_update.eti_dni_update.getText();
-		confirm=Validate.validate_dni(DNI);
-		if (confirm==false) {
-                    check = false;
-                }else{
-                    aux = "";
-                    for(int i=0; i<8; i++){
-                        aux += DNI.charAt(i);
-                    }	
-                    character = DNI.charAt(8);			
-                    number = Integer.parseInt(aux);
-                    module= number % 23;
-                    control = caracteres.charAt(module);
-                    if(control == character){
-                        check = true;
-                    }else{
-                        check = false;
-                    }
-                }
-        
-        return check;
     }
         
         public static boolean state(){
@@ -487,7 +444,7 @@ public class dao_client {
         return correct;
     }
         
-        public static boolean Validatedatebirthday_update(Calendar birthdate) {
+        public static boolean give_date_birthday_update(Calendar birthdate) {
             boolean check = false;
             
             Class_date fecha = new Class_date(birthdate);
@@ -505,7 +462,7 @@ public class dao_client {
             return check;
         }
         
-        public static boolean Validatedatestart_update(Calendar birthdate, Calendar datestart) {
+        public static boolean give_date_start_update(Calendar birthdate, Calendar datestart) {
             boolean check = false;
             Class_date fbirthday = new Class_date(birthdate);
             Class_date fstart = new Class_date(datestart);

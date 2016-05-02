@@ -16,20 +16,20 @@ public class Config_menus {
 		switch (Class_config.getInstance().getCurrency()) {
 		
 		/**Euro*/
-		case "€":
+		case "EURO":
 			NumberFormat coin_euro = NumberFormat.getCurrencyInstance(Locale.FRANCE);
 			credit=coin_euro.format(money);				
 			break;
 			
 		/**Libra*/
-		case "£":
+		case "LIBRA":
 			money= money * valuelibra;
 			NumberFormat coin_libra = NumberFormat.getCurrencyInstance(Locale.UK);
 			credit=coin_libra.format(money);
 			break;
 
 		/**Dolar*/
-		case "$":
+		case "DOLAR":
 			money=money * valuedolar;
 			NumberFormat coin_dolar = NumberFormat.getCurrencyInstance(Locale.US);
 			credit=coin_dolar.format(money);
@@ -153,16 +153,16 @@ public class Config_menus {
 				   "Choosing",0,JOptionPane.QUESTION_MESSAGE,null,tipo,tipo[0]);
 		if(resp == 0){
 			Class_config.getInstance().setTheme("Metal");
-				Theme.select_theme("Metal");
+				//Theme.select_theme("Metal");
 		}else if (resp == 1){
 			Class_config.getInstance().setTheme("Windows");
-				Theme.select_theme("Windows");
+				//Theme.select_theme("Windows");
 		}else if (resp == 2){
 			Class_config.getInstance().setTheme("Motif");
-				Theme.select_theme("Motif");
+				//Theme.select_theme("Motif");
 		}else if (resp == 3){
 			Class_config.getInstance().setTheme("Nimbus");
-				Theme.select_theme("Nimbus");
+				//Theme.select_theme("Nimbus");
 		}
 	}
 }

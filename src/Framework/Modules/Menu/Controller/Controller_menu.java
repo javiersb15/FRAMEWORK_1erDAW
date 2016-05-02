@@ -6,6 +6,7 @@
 package Framework.Modules.Menu.Controller;
 
 import Framework.Modules.Menu.Model.Bll.Bll_config;
+import Framework.Modules.Menu.Model.Clases.Class_language;
 import Framework.Modules.Menu.View.choose_frame;
 import Framework.Modules.Menu.View.config_frame;
 import Framework.Modules.Users.Admin.Controller.Controller_admin;
@@ -13,6 +14,7 @@ import Framework.Modules.Users.Admin.View.pager_adm;
 import Framework.Modules.Users.Client.Controller.Controller_client;
 import Framework.Modules.Users.Client.View.pager_client;
 import Framework.Modules.Users.User_register.Controller.Controller_user_register;
+import Framework.Modules.Users.User_register.Model.Utils.Extensions.Json;
 import Framework.Modules.Users.User_register.View.pager_user_register;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -75,7 +77,8 @@ public class Controller_menu implements ActionListener {
                 this.begin_choose.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosing(WindowEvent e) {
-                        JOptionPane.showMessageDialog(null,"Exit to the aplication");
+                        Json.auto_create_json_usr_reg();
+                        JOptionPane.showMessageDialog(null,Class_language.getInstance().getProperty("Exit"));
                         begin_choose.dispose();
                         System.exit(0);
                     }
@@ -107,7 +110,8 @@ public class Controller_menu implements ActionListener {
                 this.begin_config.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosing(WindowEvent e) {
-                        JOptionPane.showMessageDialog(null,"Exit to the aplication");
+                        Json.auto_create_json_usr_reg();
+                        JOptionPane.showMessageDialog(null,Class_language.getInstance().getProperty("Exit"));
                         begin_config.dispose();
                         System.exit(0);
                     }

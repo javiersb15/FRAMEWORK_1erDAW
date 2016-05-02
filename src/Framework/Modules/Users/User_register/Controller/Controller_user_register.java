@@ -20,6 +20,7 @@ import Framework.Modules.Users.User_register.Model.Utils.autocomplete.StringSear
 import Framework.Modules.Users.User_register.View.pager_user_register;
 import static Framework.Modules.Users.User_register.View.pager_user_register.jComboBox1;
 import Framework.Modules.Users.User_register.View.user_register_jframe_create;
+import static Framework.Modules.Users.User_register.View.user_register_jframe_create.btn_create_create;
 import static Framework.Modules.Users.User_register.View.user_register_jframe_create.eti_activity_create;
 import static Framework.Modules.Users.User_register.View.user_register_jframe_create.eti_avatar_create;
 import static Framework.Modules.Users.User_register.View.user_register_jframe_create.eti_date_birthday_create;
@@ -31,6 +32,7 @@ import static Framework.Modules.Users.User_register.View.user_register_jframe_cr
 import static Framework.Modules.Users.User_register.View.user_register_jframe_create.eti_surname_create;
 import static Framework.Modules.Users.User_register.View.user_register_jframe_create.eti_user_create;
 import Framework.Modules.Users.User_register.View.user_register_jframe_update;
+import static Framework.Modules.Users.User_register.View.user_register_jframe_update.btn_update_update;
 import static Framework.Modules.Users.User_register.View.user_register_jframe_update.eti_activity_update;
 import static Framework.Modules.Users.User_register.View.user_register_jframe_update.eti_avatar_update;
 import static Framework.Modules.Users.User_register.View.user_register_jframe_update.eti_date_birthday_update;
@@ -250,6 +252,7 @@ public class Controller_user_register implements ActionListener, MouseListener, 
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
+                Json.auto_create_json_usr_reg();
                 JOptionPane.showMessageDialog(null,"Exit to the aplication");
                 dispose();
                 System.exit(0);
@@ -316,9 +319,11 @@ public class Controller_user_register implements ActionListener, MouseListener, 
      
       case 2:
          
-        dao_user_register.modifyadmin();
+        dao_user_register.modifyuser_register();
+        
         this.begin_update.setVisible(true);
         DNI=eti_dni_update.getText();
+        eti_dni_update.setEnabled(false);
         eti_date_birthday_update.getDateEditor().setEnabled(false);
         
         begin_update.setTitle("Update User Register");
@@ -332,6 +337,7 @@ public class Controller_user_register implements ActionListener, MouseListener, 
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
+                Json.auto_create_json_usr_reg();
                 JOptionPane.showMessageDialog(null,"Exit to the aplication");
                 dispose();
                 System.exit(0);
@@ -624,7 +630,7 @@ public class Controller_user_register implements ActionListener, MouseListener, 
             
             case eti_surname_create:
                 if(e.getKeyCode()==KeyEvent.VK_ENTER){
-                    eti_date_birthday_update.requestFocus();
+                    eti_mobile_create.requestFocus();
                 }else{
                     bll_user_register.givedates("surname");
                 }
@@ -664,7 +670,7 @@ public class Controller_user_register implements ActionListener, MouseListener, 
             
             case eti_activity_create:
                 if(e.getKeyCode()==KeyEvent.VK_ENTER){
-                    eti_activity_create.requestFocus();
+                    btn_create_create.requestFocus();
                 }else{
                     bll_user_register.givedates("activity");
                 }
@@ -688,7 +694,7 @@ public class Controller_user_register implements ActionListener, MouseListener, 
             
             case eti_surname_update:
                 if(e.getKeyCode()==KeyEvent.VK_ENTER){
-                    eti_date_birthday_update.requestFocus();
+                    eti_mobile_update.requestFocus();
                 }else{
                     bll_user_register.givedates_update("surname");
                 }
@@ -728,7 +734,7 @@ public class Controller_user_register implements ActionListener, MouseListener, 
             
             case eti_activity_update:
                 if(e.getKeyCode()==KeyEvent.VK_ENTER){
-                    eti_activity_update.requestFocus();
+                    btn_update_update.requestFocus();
                 }else{
                     bll_user_register.givedates_update("activity");
                 }
@@ -821,7 +827,7 @@ public class Controller_user_register implements ActionListener, MouseListener, 
             break;
             
             case eti_surname_create:
-                bll_user_register.givedates("surnames");
+                bll_user_register.givedates("surname");
             break;
             
             case eti_mobile_create:
@@ -853,7 +859,7 @@ public class Controller_user_register implements ActionListener, MouseListener, 
             break;
             
             case eti_surname_update:
-                bll_user_register.givedates_update("surnames");
+                bll_user_register.givedates_update("surname");
             break;
             
             case eti_mobile_update:

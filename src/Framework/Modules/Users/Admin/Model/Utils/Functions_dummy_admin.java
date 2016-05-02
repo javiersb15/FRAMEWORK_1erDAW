@@ -1,6 +1,7 @@
 package Framework.Modules.Users.Admin.Model.Utils;
 
 import Framework.Class.Class_date;
+import Framework.Modules.Users.Admin.Model.Bll.bll_admin_db;
 import Framework.Modules.Users.Admin.Model.Clases.Class_admin;
 import Framework.Modules.Users.User.Model.Clases.Singleton;
 
@@ -17,7 +18,7 @@ public class Functions_dummy_admin{
 	private static boolean state[]={true,true,false,true,true,false};
 	private static String mail[]={"luis1987@hotmail.com","lucas2004@gmail.com","luciabeniel@hotmail.com","pep@gmail.com","litrets23@gmail.com","jaimito123@gmail.com"};
 	private static String user[]={"Pepito123","Lalllama23","Poasdm23s","Contrase�a123","Contra123","contra12345"};
-	private static String pass[]={"Casado123","Emparejado123","Soltero123","Casado123","Soltero123","hola@123"};
+	private static String pass[]={"1234qwerTY","1234qwerTY","1234qwerTY","1234qwerTY","1234qwerTY","1234qwerTY"};
 	private static Class_date date_employ[]={new Class_date("30/08/2015"),new Class_date("18/10/2015"),new Class_date("11/07/2015"),new Class_date("22/06/2015"),new Class_date("11/08/2015"),new Class_date("5/10/2015")};
 	private static float salary[]={28.25568f,286.22558f,88.25568f,78.32452f,81.10005f,40.00214f};
 	private static int activity[]={12,200,400,5000,2212,2000};

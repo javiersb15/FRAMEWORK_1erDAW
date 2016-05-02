@@ -5,6 +5,9 @@
  */
 package Framework.Class;
 
+import Framework.Modules.Users.Admin.Model.Clases.Class_admin;
+import Framework.Modules.Users.Client.Model.Clases.Class_client;
+import Framework.Modules.Users.User_register.Model.Clases.Class_user_register;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.Mongo;
@@ -30,4 +33,6 @@ public class Singleton_tools {
     public static DBCollection collection = null;
     public static String nom_table = null;
     public static Mongo_DB mongo = null;
+    public static String type_user="";
+    public static Class_user_register usr_reg;
  }

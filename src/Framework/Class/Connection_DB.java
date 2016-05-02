@@ -25,7 +25,7 @@ public class Connection_DB {
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            String urlOdbc = "jdbc:mysql://127.0.0.1:3306/db_users";
+            String urlOdbc = "jdbc:mysql://127.0.0.1:3306/db_admin";
             con = (java.sql.DriverManager.getConnection(urlOdbc, "root", ""));
             JOptionPane.showMessageDialog(null, "Connection established");
         } catch (Exception e) {
@@ -61,7 +61,7 @@ public class Connection_DB {
         setMaxIdle(): Nº máx de conexiones inactivas que queremos que haya. Si hay más, se irán cerrando.
         */
         propiedades.setProperty("driverClassName", "com.mysql.jdbc.Driver");
-        propiedades.setProperty("url", "jdbc:mysql://127.0.0.1:3306/db_users");
+        propiedades.setProperty("url", "jdbc:mysql://127.0.0.1:3306/db_admin");
         propiedades.setProperty("maxActive", "10");
         propiedades.setProperty("maxIdle", "8");
         propiedades.setProperty("minIdle", "0");

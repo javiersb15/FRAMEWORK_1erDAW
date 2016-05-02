@@ -34,7 +34,7 @@ public class json_auto_config {
 			 XStream xstream=new XStream(new JettisonMappedXmlDriver());
 	         xstream.setMode(XStream.NO_REFERENCES);
 			 xstream.alias("Admin", Class_admin.class);
-			 PATH = new java.io.File(".").getCanonicalPath()+"/src/Framework/Modules/Users/Model/Files/config_files/open_config/prova.json";
+			 PATH = new java.io.File(".").getCanonicalPath()+"/src/Framework/Modules/Menu/Model/Functions/config_files/create_config/prova.json";
 			 
 			 JsonReader lector=new JsonReader(new FileReader(PATH));
              JsonParser parseador=new JsonParser();
@@ -47,7 +47,6 @@ public class json_auto_config {
              Class_config.getInstance().setFormat_date(config.getFormat_date());
              Class_config.getInstance().setLanguage(config.getLanguage());
              Class_config.getInstance().setTheme(config.getTheme());
-             Theme.select_theme(config.getTheme());
 			 
 		}catch (Exception e){
 			JOptionPane.showMessageDialog(null, "Error configuration JSON", "Error", JOptionPane.ERROR_MESSAGE);
@@ -65,11 +64,11 @@ public class json_auto_config {
 	    	  try{
 	          XStream xstreamjson=new XStream(new JettisonMappedXmlDriver());
 	          xstreamjson.setMode(XStream.NO_REFERENCES);
-	          xstreamjson.alias("Config", Class_config.class);		              
+	          xstreamjson.alias("Class_config", Class_config.class);		              
 	          Gson gson=new Gson();
-		  String json1=gson.toJson(Class_config.getInstance());
+		  String json=gson.toJson(Class_config.getInstance());
 		  FileWriter fileXml=new FileWriter(PATH);
-	          fileXml.write(json1.toString());
+	          fileXml.write(json.toString());
 	          fileXml.close();
         } catch (Exception e) {
         	JOptionPane.showMessageDialog(null, "Error configuration config", "Error", JOptionPane.ERROR_MESSAGE);

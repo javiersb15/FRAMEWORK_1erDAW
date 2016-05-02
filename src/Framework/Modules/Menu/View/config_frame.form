@@ -65,7 +65,11 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="choose_format" alignment="0" max="32767" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="choose_format" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -88,8 +92,10 @@
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Date">
-                    <Property name="tabTitle" type="java.lang.String" value="Date"/>
+                  <JTabbedPaneConstraints tabName="&lt;User Code&gt;">
+                    <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="Class_language.getInstance().getProperty(&quot;Date&quot;)" type="code"/>
+                    </Property>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -124,7 +130,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="162" max="32767" attributes="0"/>
+                          <EmptySpace pref="109" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -143,7 +149,7 @@
                               <Component id="date_ddMMyyyy_guion" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="date_yyyyMMdd_guion" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="68" max="32767" attributes="0"/>
+                          <EmptySpace pref="50" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btn_accept_date" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btn_cancel_date" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -157,7 +163,9 @@
                 <Component class="javax.swing.JTextField" name="eti_format_date">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
-                    <Property name="text" type="java.lang.String" value="Choose Format Date"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="Class_language.getInstance().getProperty(&quot;date2&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="date_ddMMyyyy_barra">
@@ -206,7 +214,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btn_accept_date">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Accept"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="Class_language.getInstance().getProperty(&quot;accept&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -214,7 +224,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btn_cancel_date">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Cancel"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="Class_language.getInstance().getProperty(&quot;cancel&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -225,8 +237,10 @@
             <Container class="javax.swing.JPanel" name="paneltheme">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Theme">
-                    <Property name="tabTitle" type="java.lang.String" value="Theme"/>
+                  <JTabbedPaneConstraints tabName="&lt;User Code&gt;">
+                    <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="Class_language.getInstance().getProperty(&quot;Theme&quot;)" type="code"/>
+                    </Property>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -260,7 +274,7 @@
                                   <Component id="btn_cancel_theme" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="198" max="32767" attributes="0"/>
+                          <EmptySpace pref="99" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -279,7 +293,7 @@
                               <Component id="theme_motif" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="theme_nimbus" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="63" max="32767" attributes="0"/>
+                          <EmptySpace pref="45" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btn_accept_theme" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btn_cancel_theme" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -293,7 +307,9 @@
                 <Component class="javax.swing.JTextField" name="eti_format_theme">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
-                    <Property name="text" type="java.lang.String" value="Choose Format Theme"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="Class_language.getInstance().getProperty(&quot;theme2&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="theme_metal">
@@ -342,7 +358,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btn_accept_theme">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Accept"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="Class_language.getInstance().getProperty(&quot;accept&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -350,7 +368,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btn_cancel_theme">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Cancel"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="Class_language.getInstance().getProperty(&quot;cancel&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -361,8 +381,10 @@
             <Container class="javax.swing.JPanel" name="panelcurrency">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Currency">
-                    <Property name="tabTitle" type="java.lang.String" value="Currency"/>
+                  <JTabbedPaneConstraints tabName="&lt;User Code&gt;">
+                    <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="Class_language.getInstance().getProperty(&quot;Currency&quot;)" type="code"/>
+                    </Property>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -391,7 +413,7 @@
                                   <Component id="btn_cancel_currency" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="107" max="32767" attributes="0"/>
+                          <EmptySpace pref="60" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -406,7 +428,7 @@
                               <Component id="currency_dolar" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="currency_libra" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="100" max="32767" attributes="0"/>
+                          <EmptySpace pref="82" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btn_accept_currency" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btn_cancel_currency" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -431,7 +453,9 @@
                 <Component class="javax.swing.JTextField" name="eti_format_currency">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
-                    <Property name="text" type="java.lang.String" value="Choose Format Currency"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="Class_language.getInstance().getProperty(&quot;currency2&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="currency_dolar">
@@ -458,7 +482,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btn_accept_currency">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Accept"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="Class_language.getInstance().getProperty(&quot;accept&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -466,7 +492,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btn_cancel_currency">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Cancel"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="Class_language.getInstance().getProperty(&quot;cancel&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -477,8 +505,10 @@
             <Container class="javax.swing.JPanel" name="panellanguage">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Language">
-                    <Property name="tabTitle" type="java.lang.String" value="Language"/>
+                  <JTabbedPaneConstraints tabName="&lt;User Code&gt;">
+                    <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="Class_language.getInstance().getProperty(&quot;Language&quot;)" type="code"/>
+                    </Property>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -507,7 +537,7 @@
                                   <Component id="btn_cancel_language" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="106" max="32767" attributes="0"/>
+                          <EmptySpace pref="65" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -522,7 +552,7 @@
                               <Component id="language_spanish" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="language_english" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="95" max="32767" attributes="0"/>
+                          <EmptySpace pref="77" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btn_accept_language" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btn_cancel_language" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -536,7 +566,9 @@
                 <Component class="javax.swing.JTextField" name="eti_format_language">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
-                    <Property name="text" type="java.lang.String" value="Choose Format Language"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="Class_language.getInstance().getProperty(&quot;language2&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="language_valencian">
@@ -574,7 +606,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btn_accept_language">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Accept"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="Class_language.getInstance().getProperty(&quot;accept&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -582,7 +616,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btn_cancel_language">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Cancel"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="Class_language.getInstance().getProperty(&quot;cancel&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -593,8 +629,10 @@
             <Container class="javax.swing.JPanel" name="paneldecimal">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Decimal">
-                    <Property name="tabTitle" type="java.lang.String" value="Decimal"/>
+                  <JTabbedPaneConstraints tabName="&lt;User Code&gt;">
+                    <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="Class_language.getInstance().getProperty(&quot;Decimal&quot;)" type="code"/>
+                    </Property>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -624,7 +662,7 @@
                                   <Component id="btn_cancel_decimal" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="77" max="32767" attributes="0"/>
+                          <EmptySpace pref="36" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -639,7 +677,7 @@
                               <Component id="decimal_2decimal" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="decimal_3decimal" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="84" max="32767" attributes="0"/>
+                          <EmptySpace pref="66" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btn_accept_decimal" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btn_cancel_decimal" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -653,7 +691,9 @@
                 <Component class="javax.swing.JTextField" name="eti_format_decimal">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
-                    <Property name="text" type="java.lang.String" value="Choose Format Decimal"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="Class_language.getInstance().getProperty(&quot;decimal2&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="decimal_1decimal">
@@ -691,7 +731,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btn_accept_decimal">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Accept"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="Class_language.getInstance().getProperty(&quot;accept&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -699,7 +741,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btn_cancel_decimal">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Cancel"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="Class_language.getInstance().getProperty(&quot;cancel&quot;)" type="code"/>
+                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>

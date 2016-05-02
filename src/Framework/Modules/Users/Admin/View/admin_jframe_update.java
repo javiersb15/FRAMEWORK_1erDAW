@@ -5,6 +5,8 @@
  */
 package Framework.Modules.Users.Admin.View;
 
+import Framework.Modules.Menu.Model.Clases.Class_language;
+
 /**
  *
  * @author usuario
@@ -78,73 +80,73 @@ public class admin_jframe_update extends javax.swing.JFrame {
 
         title_admin.setEditable(false);
         title_admin.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        title_admin.setText("ADMINISTRATOR");
+        title_admin.setText(Class_language.getInstance().getProperty("Admin"));
 
         dni.setEditable(false);
-        dni.setText("DNI");
+        dni.setText(Class_language.getInstance().getProperty("dni"));
 
         eti_dni_update.setMaximumSize(new java.awt.Dimension(4, 19));
 
         name.setEditable(false);
-        name.setText("Name");
+        name.setText(Class_language.getInstance().getProperty("name"));
 
         eti_name_update.setMaximumSize(new java.awt.Dimension(4, 19));
 
         surname.setEditable(false);
-        surname.setText("Surname");
+        surname.setText(Class_language.getInstance().getProperty("surname"));
 
         eti_surname_update.setMaximumSize(new java.awt.Dimension(4, 19));
 
         date_birthday.setEditable(false);
-        date_birthday.setText("Date of birthday");
+        date_birthday.setText(Class_language.getInstance().getProperty("date_birthday"));
 
         mobile.setEditable(false);
-        mobile.setText("Mobile");
+        mobile.setText(Class_language.getInstance().getProperty("mobile"));
 
         eti_mobile_update.setMaximumSize(new java.awt.Dimension(4, 19));
 
         avatar.setEditable(false);
-        avatar.setText("Avatar");
+        avatar.setText(Class_language.getInstance().getProperty("avatar"));
 
         eti_avatar_update.setMaximumSize(new java.awt.Dimension(4, 19));
 
         state.setEditable(false);
-        state.setText("State");
+        state.setText(Class_language.getInstance().getProperty("state"));
 
         email.setEditable(false);
-        email.setText("Email");
+        email.setText(Class_language.getInstance().getProperty("email"));
 
         eti_email_update.setMaximumSize(new java.awt.Dimension(4, 19));
 
         user.setEditable(false);
-        user.setText("User");
+        user.setText(Class_language.getInstance().getProperty("user"));
 
         eti_user_update.setMaximumSize(new java.awt.Dimension(4, 19));
 
         pass.setEditable(false);
-        pass.setText("Pass");
+        pass.setText(Class_language.getInstance().getProperty("pass"));
 
         date_employ.setEditable(false);
-        date_employ.setText("Date of employ");
+        date_employ.setText(Class_language.getInstance().getProperty("date_employ"));
 
         salary.setEditable(false);
-        salary.setText("Salary");
+        salary.setText(Class_language.getInstance().getProperty("salary"));
 
         eti_salary_update.setMaximumSize(new java.awt.Dimension(4, 19));
 
         activity.setEditable(false);
-        activity.setText("Activity");
+        activity.setText(Class_language.getInstance().getProperty("activity"));
 
         eti_activity_update.setMaximumSize(new java.awt.Dimension(4, 19));
 
         incentive.setEditable(false);
-        incentive.setText("Incentive");
+        incentive.setText(Class_language.getInstance().getProperty("incentive"));
 
         eti_incentive_update.setMaximumSize(new java.awt.Dimension(4, 19));
 
-        btn_update_update.setText("Update");
+        btn_update_update.setText(Class_language.getInstance().getProperty("Update"));
 
-        btn_cancel_update.setText("Cancel");
+        btn_cancel_update.setText(Class_language.getInstance().getProperty("cancel"));
 
         eti_date_birthday_update.setDateFormatString("dd/MM/yyyy");
         eti_date_birthday_update.setMaxSelectableDate(new java.util.Date(253370764895000L));
@@ -192,10 +194,10 @@ public class admin_jframe_update extends javax.swing.JFrame {
         eti_pass_update.setMaximumSize(new java.awt.Dimension(4, 19));
 
         buttongroup_state.add(eti_state_co_update);
-        eti_state_co_update.setText("Connect");
+        eti_state_co_update.setText(Class_language.getInstance().getProperty("con"));
 
         buttongroup_state.add(eti_state_di_update);
-        eti_state_di_update.setText("Disconnect");
+        eti_state_di_update.setText(Class_language.getInstance().getProperty("dis"));
 
         lab_avatar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -216,7 +218,7 @@ public class admin_jframe_update extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addContainerGap(45, Short.MAX_VALUE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lab_surname, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lab_name, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -270,7 +272,7 @@ public class admin_jframe_update extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(salary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(activity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(eti_salary_update, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(eti_activity_update, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))

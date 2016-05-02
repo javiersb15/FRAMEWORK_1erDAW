@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: db_users
+-- Host: 127.0.0.1    Database: db_admin
 -- ------------------------------------------------------
 -- Server version	5.5.5-10.1.10-MariaDB
 
@@ -16,41 +16,41 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `users`
+-- Table structure for table `admin`
 --
 
-DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `admin`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `users` (
-  `DNI` varchar(100) NOT NULL,
-  `name` varchar(100) DEFAULT NULL,
-  `surname` varchar(45) DEFAULT NULL,
-  `date_birthday` varchar(100) DEFAULT NULL,
-  `mobile` varchar(9) DEFAULT NULL,
-  `age` int(11) DEFAULT NULL,
-  `avatar` varchar(900) DEFAULT NULL,
-  `state` tinyint(1) DEFAULT NULL,
-  `email` varchar(45) DEFAULT NULL,
-  `user` varchar(45) DEFAULT NULL,
-  `pass` varchar(100) DEFAULT NULL,
-  `benefit` float DEFAULT NULL,
-  `date_employ` varchar(100) DEFAULT NULL,
-  `antique` int(11) DEFAULT NULL,
-  `salary` float DEFAULT NULL,
-  `incentive` float DEFAULT NULL,
-  `activity` int(11) DEFAULT NULL,
+CREATE TABLE `admin` (
+  `DNI` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `surname` varchar(45) CHARACTER SET utf8 NOT NULL,
+  `date_birthday` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `mobile` varchar(9) CHARACTER SET utf8 NOT NULL,
+  `age` int(11) NOT NULL,
+  `avatar` varchar(200) CHARACTER SET utf8 NOT NULL,
+  `state` tinyint(1) NOT NULL,
+  `email` varchar(45) CHARACTER SET utf8 NOT NULL,
+  `user` varchar(45) CHARACTER SET utf8 NOT NULL,
+  `pass` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `benefit` float NOT NULL,
+  `date_employ` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `antique` int(11) NOT NULL,
+  `salary` float NOT NULL,
+  `incentive` float NOT NULL,
+  `activity` int(11) NOT NULL,
   PRIMARY KEY (`DNI`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table `admin`
 --
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+LOCK TABLES `admin` WRITE;
+/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
+/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -62,4 +62,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-22 13:43:52
+-- Dump completed on 2016-04-29 12:31:55

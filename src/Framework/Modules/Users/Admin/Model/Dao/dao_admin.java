@@ -425,31 +425,18 @@ public class dao_admin {
         boolean correct, correct1, correct2, correct3, correct4, correct5, correct6, correct7, correct8, correct9, correct10, correct11, correct12;
 
         correct = givedni_update();
-        //System.out.println(correct +" " +"dni");
         correct1 = givename_update();
-        //System.out.println(correct +" " +"name");
         correct2 = givesurname_update();
-        //System.out.println(correct +" " +"surname");
         correct3 = give_date_birthday_update(admin_jframe_update.eti_date_birthday_update.getCalendar());
-        //System.out.println(correct +" " +"date_birthday");
         correct4 = givemobile_update();
-        //System.out.println(correct +" " +"mobile");
         correct5 = givemail_update();
-        //System.out.println(correct +" " +"mail");
         correct6 = giveuser_update();
-        //System.out.println(correct +" " +"user");
         correct7 = givepassword_update();
-        //System.out.println(correct +" " +"pass");
         correct8 = give_date_employ_update(admin_jframe_update.eti_date_birthday_update.getCalendar(), admin_jframe_update.eti_date_employ_update.getCalendar());
-        //System.out.println(correct +" " +"date_employ");
         correct9 = giveactivity_update();
-        //System.out.println(correct +" " +"activity");
         correct10 = correct_salary_update();
-        //System.out.println(correct +" " +"salary");
         correct11 = correct_incentive_update();
-        //System.out.println(correct +" " +"incentive");
         correct12 = correct_activity_update();
-        //System.out.println(correct +" " +"activity");
 
         //if (correct == true && correct1 == true && correct2 == true && correct3 == true && correct4 == true && correct5 == true && correct6 == true && correct7 == true && correct8 == true && correct9 == true && correct10 == true && correct11 == true && correct12 == true) {
             dni = admin_jframe_update.eti_dni_update.getText();
@@ -468,54 +455,10 @@ public class dao_admin {
             activity = Integer.parseInt(admin_jframe_update.eti_activity_update.getText());
 
             admin = new Class_admin(dni, name, surname, date_birthday, mobile, avatar, state, email, user, pass, date_employ, salary, incentive, activity);
-       //} else {
+      // } else {
            // admin = null;
-       //}
-        //System.out.println(admin);
+      // }
         return admin;
-    }
-    
-    public static Class_admin ask_adminDNI_update () {
-	boolean checkDNI;
-        String DNI;
-        Class_admin admin=null;
-        
-        checkDNI=DNI_update();
-        if (checkDNI==true){
-            admin = new Class_admin (admin_jframe_update.eti_dni_update.getText());
-        }        
-        return admin;
-    }
-    
-    public static boolean DNI_update () {
-        boolean check=true;
-        
-        String DNI = "", aux = "", caracteres = "TRWAGMYFPDXBNJZSQVHLCKET";
-		boolean confirm;
-		int number = 0, module = 0;
-		char character = ' ', control = ' ';
-		
-		DNI=admin_jframe_update.eti_dni_update.getText();
-		confirm=Validate.validate_dni(DNI);
-		if (confirm==false) {
-                    check = false;
-                }else{
-                    aux = "";
-                    for(int i=0; i<8; i++){
-                        aux += DNI.charAt(i);
-                    }	
-                    character = DNI.charAt(8);			
-                    number = Integer.parseInt(aux);
-                    module= number % 23;
-                    control = caracteres.charAt(module);
-                    if(control == character){
-                        check = true;
-                    }else{
-                        check = false;
-                    }
-                }
-        
-        return check;
     }
     
         public static boolean correct_salary_update(){

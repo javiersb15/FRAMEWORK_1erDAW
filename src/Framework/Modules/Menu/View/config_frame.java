@@ -5,6 +5,8 @@
  */
 package Framework.Modules.Menu.View;
 
+import Framework.Modules.Menu.Model.Clases.Class_language;
+
 /**
  *
  * @author usuario
@@ -75,7 +77,7 @@ public class config_frame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         eti_format_date.setEditable(false);
-        eti_format_date.setText("Choose Format Date");
+        eti_format_date.setText(Class_language.getInstance().getProperty("date2"));
 
         date.add(date_ddMMyyyy_barra);
         date_ddMMyyyy_barra.setText("dd/MM/yyyy");
@@ -89,9 +91,9 @@ public class config_frame extends javax.swing.JFrame {
         date.add(date_yyyyMMdd_guion);
         date_yyyyMMdd_guion.setText("yyyy-MM-dd");
 
-        btn_accept_date.setText("Accept");
+        btn_accept_date.setText(Class_language.getInstance().getProperty("accept"));
 
-        btn_cancel_date.setText("Cancel");
+        btn_cancel_date.setText(Class_language.getInstance().getProperty("cancel"));
 
         javax.swing.GroupLayout paneldateLayout = new javax.swing.GroupLayout(paneldate);
         paneldate.setLayout(paneldateLayout);
@@ -116,7 +118,7 @@ public class config_frame extends javax.swing.JFrame {
                             .addGroup(paneldateLayout.createSequentialGroup()
                                 .addGap(32, 32, 32)
                                 .addComponent(btn_cancel_date)))))
-                .addContainerGap(162, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
         paneldateLayout.setVerticalGroup(
             paneldateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,17 +133,17 @@ public class config_frame extends javax.swing.JFrame {
                 .addGroup(paneldateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(date_ddMMyyyy_guion)
                     .addComponent(date_yyyyMMdd_guion))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(paneldateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_accept_date)
                     .addComponent(btn_cancel_date))
                 .addGap(54, 54, 54))
         );
 
-        choose_format.addTab("Date", paneldate);
+        choose_format.addTab(Class_language.getInstance().getProperty("Date"), paneldate);
 
         eti_format_theme.setEditable(false);
-        eti_format_theme.setText("Choose Format Theme");
+        eti_format_theme.setText(Class_language.getInstance().getProperty("theme2"));
 
         theme.add(theme_metal);
         theme_metal.setText("Metal");
@@ -155,9 +157,9 @@ public class config_frame extends javax.swing.JFrame {
         theme.add(theme_nimbus);
         theme_nimbus.setText("Nimbus");
 
-        btn_accept_theme.setText("Accept");
+        btn_accept_theme.setText(Class_language.getInstance().getProperty("accept"));
 
-        btn_cancel_theme.setText("Cancel");
+        btn_cancel_theme.setText(Class_language.getInstance().getProperty("cancel"));
 
         javax.swing.GroupLayout panelthemeLayout = new javax.swing.GroupLayout(paneltheme);
         paneltheme.setLayout(panelthemeLayout);
@@ -182,7 +184,7 @@ public class config_frame extends javax.swing.JFrame {
                         .addComponent(btn_accept_theme)
                         .addGap(30, 30, 30)
                         .addComponent(btn_cancel_theme)))
-                .addContainerGap(198, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
         panelthemeLayout.setVerticalGroup(
             panelthemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,20 +199,20 @@ public class config_frame extends javax.swing.JFrame {
                 .addGroup(panelthemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(theme_motif)
                     .addComponent(theme_nimbus))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(panelthemeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_accept_theme)
                     .addComponent(btn_cancel_theme))
                 .addGap(56, 56, 56))
         );
 
-        choose_format.addTab("Theme", paneltheme);
+        choose_format.addTab(Class_language.getInstance().getProperty("Theme"), paneltheme);
 
         currency.add(currency_euro);
         currency_euro.setText("EURO");
 
         eti_format_currency.setEditable(false);
-        eti_format_currency.setText("Choose Format Currency");
+        eti_format_currency.setText(Class_language.getInstance().getProperty("currency2"));
 
         currency.add(currency_dolar);
         currency_dolar.setText("DOLAR");
@@ -218,9 +220,9 @@ public class config_frame extends javax.swing.JFrame {
         currency.add(currency_libra);
         currency_libra.setText("LIBRA");
 
-        btn_accept_currency.setText("Accept");
+        btn_accept_currency.setText(Class_language.getInstance().getProperty("accept"));
 
-        btn_cancel_currency.setText("Cancel");
+        btn_cancel_currency.setText(Class_language.getInstance().getProperty("cancel"));
 
         javax.swing.GroupLayout panelcurrencyLayout = new javax.swing.GroupLayout(panelcurrency);
         panelcurrency.setLayout(panelcurrencyLayout);
@@ -243,7 +245,7 @@ public class config_frame extends javax.swing.JFrame {
                         .addComponent(btn_accept_currency)
                         .addGap(39, 39, 39)
                         .addComponent(btn_cancel_currency)))
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         panelcurrencyLayout.setVerticalGroup(
             panelcurrencyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,17 +257,17 @@ public class config_frame extends javax.swing.JFrame {
                     .addComponent(currency_euro)
                     .addComponent(currency_dolar)
                     .addComponent(currency_libra))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addGroup(panelcurrencyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_accept_currency)
                     .addComponent(btn_cancel_currency))
                 .addGap(59, 59, 59))
         );
 
-        choose_format.addTab("Currency", panelcurrency);
+        choose_format.addTab(Class_language.getInstance().getProperty("Currency"), panelcurrency);
 
         eti_format_language.setEditable(false);
-        eti_format_language.setText("Choose Format Language");
+        eti_format_language.setText(Class_language.getInstance().getProperty("language2"));
 
         language.add(language_valencian);
         language_valencian.setText("VALENCIAN");
@@ -276,9 +278,9 @@ public class config_frame extends javax.swing.JFrame {
         language.add(language_english);
         language_english.setText("ENGLISH");
 
-        btn_accept_language.setText("Accept");
+        btn_accept_language.setText(Class_language.getInstance().getProperty("accept"));
 
-        btn_cancel_language.setText("Cancel");
+        btn_cancel_language.setText(Class_language.getInstance().getProperty("cancel"));
 
         javax.swing.GroupLayout panellanguageLayout = new javax.swing.GroupLayout(panellanguage);
         panellanguage.setLayout(panellanguageLayout);
@@ -301,7 +303,7 @@ public class config_frame extends javax.swing.JFrame {
                         .addComponent(btn_accept_language)
                         .addGap(43, 43, 43)
                         .addComponent(btn_cancel_language)))
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         panellanguageLayout.setVerticalGroup(
             panellanguageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -313,17 +315,17 @@ public class config_frame extends javax.swing.JFrame {
                     .addComponent(language_valencian)
                     .addComponent(language_spanish)
                     .addComponent(language_english))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addGroup(panellanguageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_accept_language)
                     .addComponent(btn_cancel_language))
                 .addGap(57, 57, 57))
         );
 
-        choose_format.addTab("Language", panellanguage);
+        choose_format.addTab(Class_language.getInstance().getProperty("Language"), panellanguage);
 
         eti_format_decimal.setEditable(false);
-        eti_format_decimal.setText("Choose Format Decimal");
+        eti_format_decimal.setText(Class_language.getInstance().getProperty("decimal2"));
 
         decimal.add(decimal_1decimal);
         decimal_1decimal.setText("1 DECIMAL");
@@ -334,9 +336,9 @@ public class config_frame extends javax.swing.JFrame {
         decimal.add(decimal_3decimal);
         decimal_3decimal.setText("3 DECIMAL");
 
-        btn_accept_decimal.setText("Accept");
+        btn_accept_decimal.setText(Class_language.getInstance().getProperty("accept"));
 
-        btn_cancel_decimal.setText("Cancel");
+        btn_cancel_decimal.setText(Class_language.getInstance().getProperty("cancel"));
 
         javax.swing.GroupLayout paneldecimalLayout = new javax.swing.GroupLayout(paneldecimal);
         paneldecimal.setLayout(paneldecimalLayout);
@@ -359,7 +361,7 @@ public class config_frame extends javax.swing.JFrame {
                         .addComponent(btn_accept_decimal)
                         .addGap(36, 36, 36)
                         .addComponent(btn_cancel_decimal)))
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         paneldecimalLayout.setVerticalGroup(
             paneldecimalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -371,20 +373,23 @@ public class config_frame extends javax.swing.JFrame {
                     .addComponent(decimal_1decimal)
                     .addComponent(decimal_2decimal)
                     .addComponent(decimal_3decimal))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addGroup(paneldecimalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_accept_decimal)
                     .addComponent(btn_cancel_decimal))
                 .addGap(54, 54, 54))
         );
 
-        choose_format.addTab("Decimal", paneldecimal);
+        choose_format.addTab(Class_language.getInstance().getProperty("Decimal"), paneldecimal);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(choose_format)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(choose_format)
+                .addGap(29, 29, 29))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

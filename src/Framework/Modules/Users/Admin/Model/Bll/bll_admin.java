@@ -153,10 +153,7 @@ public class bll_admin {
                         if (admin_jframe_update.eti_dni_update.getText().equals(dni)){
                                 a1 = dao_admin.create_update();
                                 Singleton_adm.adm=a1;
-                                //System.out.println(a1.toString());
-                                 //System.out.println(1);
-                                //System.out.println(admin_jframe_update.eti_name_update.getText());
-                                    if (a1==null){
+                                if (a1==null){
                                        check=false;
                                     } else {
                                         Singleton.Admin_array.set(location1, a1);

@@ -78,7 +78,7 @@ public class bll_client {
                 else {
                     position=bll_client.search_client(cli);
 		if (position !=-1){
-			JOptionPane.showMessageDialog(null, "This Administrator is already exist", "Error Administrator", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "This Client is already exist", "Error Client", JOptionPane.ERROR_MESSAGE);
 		}else{ cli=dao_client.create();
 		Singleton.Client_array.add(cli);
                     JOptionPane.showMessageDialog(null, "User create");
@@ -99,7 +99,7 @@ public class bll_client {
                 else {
                     position=bll_client.search_client(cli);
 		if (position !=-1){
-			JOptionPane.showMessageDialog(null, "This Administrator is already exist", "Error Administrator", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "This Client is already exist", "Error Client", JOptionPane.ERROR_MESSAGE);
 		}else{ cli=dao_client.create_update();
 		Singleton.Client_array.add(cli);
                     JOptionPane.showMessageDialog(null, "User modify");
@@ -116,12 +116,12 @@ public class bll_client {
 		
                 
 		if(Singleton.Client_array.isEmpty()){
-			JOptionPane.showMessageDialog(null, "There aren't any Administrator", "Administrator", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "There aren't any Client", "Client", JOptionPane.ERROR_MESSAGE);
 		}else{
 			menu=Menus.menubutton(submenu, "What do you want?", "Choosing");
 			switch (menu){
 				case 0:
-					for (int i=0; i<Singleton.Admin_array.size(); i++){
+					for (int i=0; i<Singleton.Client_array.size(); i++){
 						JOptionPane.showMessageDialog(null, Singleton.Client_array.get(i).toString(), "Print", JOptionPane.INFORMATION_MESSAGE);
 					}
 					break;
@@ -155,7 +155,7 @@ public class bll_client {
                                 Singleton_cli.cli=a1;
                                 //System.out.println(a1.toString());
                                  //System.out.println(1);
-                                //System.out.println(admin_jframe_update.eti_name_update.getText());
+                                //System.out.println(client_jframe_update.eti_name_update.getText());
                                     if (a1==null){
                                        check=false;
                                     } else {
@@ -578,7 +578,7 @@ public class bll_client {
         }
        
         public static void Validatedatebirthday_update(Calendar birthdate) {
-            if (dao_client.Validatedatebirthday_update(birthdate)==false) {
+            if (dao_client.give_date_birthday_update(birthdate)==false) {
             client_jframe_update.eti_date_birthday_update.setBackground(Color.red);
             client_jframe_update.lab_date_birthday.setIcon(cancel);    
             } else {
@@ -589,7 +589,7 @@ public class bll_client {
         }
         
          public static void Validatedatestart_update(Calendar birthdate, Calendar dateemploy) {
-            if (dao_client.Validatedatestart_update(birthdate,dateemploy)==false) {
+            if (dao_client.give_date_start_update(birthdate,dateemploy)==false) {
             client_jframe_update.eti_date_start_update.setBackground(Color.red);
             client_jframe_update.lab_date_start.setIcon(cancel);    
             } else {

@@ -30,17 +30,17 @@ public class Dao_config {
     
     public static String setlanguage () {
         String language = "";
-        switch (language){
-            case "val":
-                config_frame.language_valencian.isSelected();
+        switch (getSelect((config_frame.language))){
+            case "VALENCIAN":
+                language="VALENCIAN";
                 break;
         
-            case "es":
-                config_frame.language_spanish.isSelected();
+            case "SPANISH":
+                language="SPANISH";
                 break;
         
-            case "en":
-                config_frame.language_english.isSelected();
+            case "ENGLISH":
+                language="ENGLISH";
                 break;
         }              
         return language;
@@ -72,15 +72,15 @@ public class Dao_config {
         String currency ="";     
         switch (getSelect(config_frame.currency)){
             case "EURO":
-                currency="€";
+                currency="EURO";
                 break;
             
             case "DOLAR":
-                currency="$";
+                currency="DOLAR";
                 break;
             
             case "LIBRA":
-                currency="£";
+                currency="LIBRA";
                 break;
         }        
         return currency;
@@ -128,15 +128,15 @@ public class Dao_config {
     
     public static void getlanguage () {
         switch (Class_config.getInstance().getLanguage()){            
-            case "val":
+            case "VALENCIAN":
                 config_frame.language_valencian.setSelected(true);
                 break;
                 
-            case "es":
+            case "SPANISH":
                 config_frame.language_spanish.setSelected(true);
                 break;
                 
-            case "en":
+            case "ENGLISH":
                 config_frame.language_english.setSelected(true);
                 break;
         }
@@ -148,8 +148,7 @@ public class Dao_config {
                 config_frame.date_ddMMyyyy_barra.setSelected(true);
                 break;
                 
-            case "dd-MM-yyyy":
-                
+            case "dd-MM-yyyy":                
                 config_frame.date_ddMMyyyy_guion.setSelected(true);
                 break;
                 
@@ -157,7 +156,7 @@ public class Dao_config {
                 config_frame.date_yyyyMMdd_barra.setSelected(true);
                 break;
                 
-            case "yyyy-MM--dd":
+            case "yyyy-MM-dd":
                 config_frame.date_yyyyMMdd_guion.setSelected(true);
                 break;
         }
@@ -165,15 +164,15 @@ public class Dao_config {
     
     public static void getcurrency () {
         switch (Class_config.getInstance().getCurrency()){            
-            case "€":
+            case "EURO":
                 config_frame.currency_euro.setSelected(true);
                 break;
                 
-            case "$":
+            case "DOLAR":
                 config_frame.currency_dolar.setSelected(true);
                 break;
                 
-            case "£":
+            case "LIBRA":
                 config_frame.currency_libra.setSelected(true);
                 break;
         }
@@ -201,15 +200,15 @@ public class Dao_config {
     
     public static void getdecimal () {
         switch (Class_config.getInstance().getDecimal_number()){            
-            case "1":
+            case "1 DECIMAL":
                 config_frame.decimal_1decimal.setSelected(true);
                 break;
                 
-            case "2":
+            case "2 DECIMAL":
                 config_frame.decimal_2decimal.setSelected(true);
                 break;
                 
-            case "3":
+            case "3 DECIMAL":
                 config_frame.decimal_3decimal.setSelected(true);
                 break;
         }

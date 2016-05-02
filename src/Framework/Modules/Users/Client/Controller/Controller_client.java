@@ -17,6 +17,7 @@ import Framework.Modules.Users.Client.Model.Utils.Pager.pagina_client;
 import Framework.Modules.Users.Client.Model.Utils.autocomplete.AutocompleteJComboBox;
 import Framework.Modules.Users.Client.Model.Utils.autocomplete.StringSearchable;
 import Framework.Modules.Users.Client.View.client_jframe_create;
+import static Framework.Modules.Users.Client.View.client_jframe_create.btn_create_create;
 import static Framework.Modules.Users.Client.View.client_jframe_create.eti_avatar_create;
 import static Framework.Modules.Users.Client.View.client_jframe_create.eti_buy_create;
 import static Framework.Modules.Users.Client.View.client_jframe_create.eti_date_birthday_create;
@@ -30,6 +31,7 @@ import static Framework.Modules.Users.Client.View.client_jframe_create.eti_surna
 import static Framework.Modules.Users.Client.View.client_jframe_create.eti_tipeclient_create;
 import static Framework.Modules.Users.Client.View.client_jframe_create.eti_user_create;
 import Framework.Modules.Users.Client.View.client_jframe_update;
+import static Framework.Modules.Users.Client.View.client_jframe_update.btn_update_update;
 import static Framework.Modules.Users.Client.View.client_jframe_update.eti_avatar_update;
 import static Framework.Modules.Users.Client.View.client_jframe_update.eti_buy_update;
 import static Framework.Modules.Users.Client.View.client_jframe_update.eti_date_birthday_update;
@@ -40,6 +42,7 @@ import static Framework.Modules.Users.Client.View.client_jframe_update.eti_mobil
 import static Framework.Modules.Users.Client.View.client_jframe_update.eti_name_update;
 import static Framework.Modules.Users.Client.View.client_jframe_update.eti_pass_update;
 import static Framework.Modules.Users.Client.View.client_jframe_update.eti_surname_update;
+import static Framework.Modules.Users.Client.View.client_jframe_update.eti_tipeclient_update;
 import static Framework.Modules.Users.Client.View.client_jframe_update.eti_user_update;
 import Framework.Modules.Users.Client.View.pager_client;
 import static Framework.Modules.Users.Client.View.pager_client.jComboBox1;
@@ -146,6 +149,7 @@ public class Controller_client implements ActionListener, MouseListener, KeyList
         eti_pass_update,
         eti_date_start_update,
         eti_buy_update,
+        eti_tipeclient_update,
         btn_update_update,
         btn_cancel_update
         
@@ -329,10 +333,11 @@ public class Controller_client implements ActionListener, MouseListener, KeyList
      
     case 2:
          
-        dao_client.modifyadmin();
+        dao_client.modifyclient();
         
         this.begin_update.setVisible(true);
         DNI=eti_dni_update.getText();
+        eti_dni_update.setEnabled(false);
         eti_date_birthday_update.getDateEditor().setEnabled(false);
         eti_date_start_update.getDateEditor().setEnabled(false);
         
@@ -509,7 +514,7 @@ public class Controller_client implements ActionListener, MouseListener, KeyList
             
             case btn_update_update:
                 bll_client.update_client();
-                begin_create.dispose();
+                begin_update.dispose();
                 new Controller_client(new pager_client(), 0).begin(0);
             break;
             
@@ -642,7 +647,7 @@ public class Controller_client implements ActionListener, MouseListener, KeyList
             
             case eti_surname_create:
                 if(e.getKeyCode()==KeyEvent.VK_ENTER){
-                    eti_date_birthday_create.requestFocus();
+                    eti_mobile_create.requestFocus();
                 }else{
                     bll_client.givedates("surname");
                 }
@@ -690,7 +695,7 @@ public class Controller_client implements ActionListener, MouseListener, KeyList
             
             case eti_tipeclient_create:
                 if(e.getKeyCode()==KeyEvent.VK_ENTER){
-                    eti_tipeclient_create.requestFocus();
+                    btn_create_create.requestFocus();
                 }else{
                     bll_client.givedates("client_type");
                 }
@@ -714,7 +719,7 @@ public class Controller_client implements ActionListener, MouseListener, KeyList
             
             case eti_surname_update:
                 if(e.getKeyCode()==KeyEvent.VK_ENTER){
-                    eti_date_birthday_update.requestFocus();
+                    eti_mobile_update.requestFocus();
                 }else{
                     bll_client.givedates_update("surname");
                 }
@@ -746,7 +751,7 @@ public class Controller_client implements ActionListener, MouseListener, KeyList
             
             case eti_pass_update:
                 if(e.getKeyCode()==KeyEvent.VK_ENTER){
-                    eti_date_birthday_update.requestFocus();
+                    eti_buy_update.requestFocus();
                 }else{
                     bll_client.givedates_update("pass");
                 }
@@ -754,9 +759,17 @@ public class Controller_client implements ActionListener, MouseListener, KeyList
             
             case eti_buy_update:
                 if(e.getKeyCode()==KeyEvent.VK_ENTER){
-                    eti_buy_update.requestFocus();
+                    eti_tipeclient_update.requestFocus();
                 }else{
                     bll_client.givedates_update("buy");
+                }
+            break;
+            
+            case eti_tipeclient_update:
+                if(e.getKeyCode()==KeyEvent.VK_ENTER){
+                    btn_update_update.requestFocus();
+                }else{
+                    bll_client.givedates("client_type");
                 }
             break;
             

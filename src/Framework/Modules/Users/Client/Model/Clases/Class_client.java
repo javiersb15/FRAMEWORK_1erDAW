@@ -23,8 +23,7 @@ public class Class_client extends Class_user implements Serializable {
 	@XStreamAlias("antique")
 	private int antique;
 
-      public Class_client to_DB_client(DBObject dBObjectWorker) {
-                         
+      public Class_client to_DB_client(DBObject dBObjectWorker) {                         
              
              Class_client cli=new Class_client();
         cli.setDNI((String) dBObjectWorker.get("DNI"));
@@ -44,6 +43,15 @@ public class Class_client extends Class_user implements Serializable {
         cli.setantique((int) dBObjectWorker.get("antique"));
         cli.setpremium((boolean) dBObjectWorker.get("premium"));
         cli.setclient_type((String) dBObjectWorker.get("client_type"));
+        
+	return cli;
+    }
+      
+      public Class_client to_DB_client_login(DBObject dBObjectWorker) {                         
+             
+             Class_client cli=new Class_client();
+        cli.setDNI((String) dBObjectWorker.get("DNI"));
+        cli.setpass((String) dBObjectWorker.get("pass"));
         
 	return cli;
     }
@@ -72,6 +80,15 @@ public class Class_client extends Class_user implements Serializable {
         cli2.append("client_type", this.getclient_type());       
         
 	return cli2;
+    }
+    
+    public BasicDBObject client_to_DB_login() {
+                           
+	BasicDBObject cli3 = new BasicDBObject();
+	cli3.append("DNI", this.getDNI());
+        cli3.append("pass", this.getpass());     
+        
+	return cli3;
     }
         
         
