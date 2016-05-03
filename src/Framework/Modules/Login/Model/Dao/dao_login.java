@@ -6,7 +6,9 @@
 package Framework.Modules.Login.Model.Dao;
 
 import static Framework.Class.Singleton_tools.collection;
+import Framework.Modules.Login.View.login_frame;
 import Framework.Modules.Users.Admin.Model.Bll.bll_admin_db;
+import Framework.Modules.Users.Client.Model.Bll.bll_client_db;
 import Framework.Modules.Users.Client.Model.Clases.Class_client;
 import Framework.Modules.Users.Client.Model.Clases.Singleton_cli;
 import Framework.Modules.Users.User.Model.Clases.Singleton;
@@ -102,6 +104,25 @@ public class dao_login {
             }
 	}
         return login;
+    }
+     
+     public static boolean login_client () {
+        boolean correcto = false;
+        //BLL_BD_client.find_BD(Login.txtDNI.getText());
+         bll_client_db.Find_client_bll(login_frame.eti_dni_login.getText());
+        if (Singleton_cli.cli==null){
+            correcto=false;
+        }else{
+            if (Singleton_cli.cli.getDNI().equals(login_frame.eti_dni_login.getText())) {
+                correcto=true;
+                if (Singleton_cli.cli.getpass().equals(login_frame.eti_pass_login.getText())) {
+                    correcto=true;
+                }else{
+                    correcto=false;
+                }
+            }
+        }
+        return correcto;
     }
      
      /*public static void insert_client_dao() {

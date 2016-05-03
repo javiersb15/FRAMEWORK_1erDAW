@@ -13,6 +13,8 @@ import static Framework.Modules.Login.View.login_frame.btn_accept_login;
 import static Framework.Modules.Login.View.login_frame.eti_pass_login;
 import Framework.Modules.Menu.Controller.Controller_menu;
 import Framework.Modules.Menu.View.choose_frame;
+import Framework.Modules.Users.Client.Controller.Controller_client;
+import Framework.Modules.Users.Client.View.client_jframe_update;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -75,7 +77,7 @@ public class Controller_login implements ActionListener , KeyListener{
     @Override
     public void actionPerformed(ActionEvent e) {     
         
-        /*switch (Action.valueOf(e.getActionCommand())) {
+        switch (Action.valueOf(e.getActionCommand())) {
          case btn_accept_login:
              
         if (bll_login.login_admin()==true){
@@ -83,11 +85,11 @@ public class Controller_login implements ActionListener , KeyListener{
             new Controller_menu(new choose_frame(), 0).began(0);
         }else{
             JOptionPane.showMessageDialog(null, "error");
-        } */ 
-    
-        begin_login.dispose();
-        new Controller_menu(new choose_frame(), 0).began(0);        
-        //}
+        }
+             
+        //begin_login.dispose();
+        //new Controller_menu(new choose_frame(), 0).began(0);        
+        }
     }
 
 

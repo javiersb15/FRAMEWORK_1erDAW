@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class bll_admin_db {
     
+    /**INSERT ADMIN*/
      public static int insert_admin_bll() {
 
         int correct;
@@ -32,6 +33,7 @@ public class bll_admin_db {
         return correct;
     }
      
+     /**SELECT ADMIN*/
      public static void select_admin_bll() {
 
         Connection con = null;
@@ -50,6 +52,7 @@ public class bll_admin_db {
         //conect.closeconnection(con);
     }
      
+     /**UPDATE ADMIN*/
      public static void update_admin_bll() {
 
         Connection con;       
@@ -62,6 +65,7 @@ public class bll_admin_db {
         //conect.closeconnection(con);
     }
      
+     /**DELETE ADMIN*/
       public static boolean delete_admin_bll() {
 
         Connection con;

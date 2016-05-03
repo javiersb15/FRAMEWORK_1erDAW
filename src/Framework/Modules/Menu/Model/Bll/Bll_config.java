@@ -17,6 +17,7 @@ import Framework.Modules.Menu.Model.Functions.json_auto_config;
  */
 public class Bll_config {
     
+    /**SETTERS CONFIG*/
     public static void setConfig () {
         Class_config.getInstance().setLanguage(Dao_config.setlanguage());
         Class_config.getInstance().setFormat_date(Dao_config.setdate());
@@ -26,6 +27,7 @@ public class Bll_config {
         json_auto_config.create_json_config();
     }
     
+    /**GETTERS CONFIG*/
     public static void getConfig () {
         Dao_config.getlanguage();
         Dao_config.getdate();

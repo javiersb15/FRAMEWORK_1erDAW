@@ -52,6 +52,7 @@ public class dao_client {
             }
         }
         
+        /**CREATE CLIENT*/
         public static Class_client create() {
            Class_client client=null;           
        
@@ -106,6 +107,7 @@ public class dao_client {
         return client;
     }
         
+        /**CREATE CLIENT UPDATE*/
         public static Class_client create_update() {
            Class_client client=null;           
        
@@ -160,6 +162,7 @@ public class dao_client {
         return client;
     }
         
+        /**GIVE STATE*/
         public static boolean state(){
             boolean correct=false;
             
@@ -170,6 +173,7 @@ public class dao_client {
             return correct;
         }
         
+        /**GIVE PREMIUM*/
         public static boolean premium(){
             boolean correct=false;
             
@@ -180,8 +184,8 @@ public class dao_client {
             return correct;
         }
         
-        
-          public static boolean givedni() {
+        /**GIVE DNI*/
+        public static boolean givedni() {
         boolean correct = false;
         
         if (client_jframe_create.eti_dni_create.getText().equals("")) {
@@ -201,6 +205,7 @@ public class dao_client {
         return correct;
     }
         
+        /**GIVE NAME*/
         public static boolean givename() {
         boolean correct = false;
         
@@ -221,6 +226,7 @@ public class dao_client {
         return correct;
     }
         
+        /**GIVE SURNAME*/
         public static boolean givesurname() {
         boolean correct = false;
         
@@ -240,6 +246,8 @@ public class dao_client {
         }
         return correct;
     }
+        
+        /**GIVE DATE BIRTHDAY*/
         public static boolean give_date_birthday(Calendar birthdate) {
             boolean correct = false;
             Class_date fecha = new Class_date(birthdate);
@@ -258,6 +266,7 @@ public class dao_client {
             return correct;
         }
         
+        /**GIVE DATE START*/
         public static boolean give_date_start(Calendar birthdate, Calendar datestart) {
             boolean correct= false;
             Class_date fbirthday = new Class_date(birthdate);
@@ -277,7 +286,7 @@ public class dao_client {
             return correct;
         }
         
-        
+        /**GIVE MOBILE*/
          public static boolean givemobile() {
         boolean correct = false;
        
@@ -293,7 +302,8 @@ public class dao_client {
         return correct;
     }
          
-         public static boolean givemail() {
+        /**GIVE MAIL*/
+        public static boolean givemail() {
         boolean correct = false;
        
         if (client_jframe_create.eti_email_create.getText().equals("")) {            
@@ -308,6 +318,7 @@ public class dao_client {
         return correct;
     }
         
+        /**GIVE USER*/
         public static boolean giveuser() {
         boolean correct = false;
        
@@ -327,7 +338,8 @@ public class dao_client {
         }
         return correct;
     }
-                   
+        
+        /**GIVE PASS*/
         public static boolean givepassword() {
         boolean correct = false;
         
@@ -343,6 +355,7 @@ public class dao_client {
         return correct;
     }
      
+       /**GIVE BUY*/
        public static boolean givebuy() {
         float buy=0.0f;
         boolean correct = false;
@@ -356,6 +369,7 @@ public class dao_client {
         return correct;
        }
        
+       /**GIVE TYPE CLIENT*/
        public static boolean givetypeclient() {
         boolean correct = false;
         
@@ -371,6 +385,7 @@ public class dao_client {
         return correct;
     }
        
+       /**GIVE SELECTOR IMAGEN*/
        public static String dialogoSelectorImagen() {
         String img = "";
 
@@ -393,12 +408,14 @@ public class dao_client {
         return img;
     }
        
+       /**GIVE AVATAR*/
        public static void giveavatar(String img){
            ImageIcon temporal=new ImageIcon(img);
            ImageIcon imagen=new ImageIcon(temporal.getImage().getScaledInstance(160, -1, Image.SCALE_DEFAULT));
             client_jframe_create.lab_avatar.setIcon(imagen);
        }
        
+       /**GIVE DNI UPDATE*/
        public static boolean givedni_update() {
         boolean correct = false;
         
@@ -414,6 +431,7 @@ public class dao_client {
         return correct;
     }
         
+       /**GIVE NAME UPDATE*/
         public static boolean givename_update() {
         boolean correct = false;
         
@@ -429,6 +447,7 @@ public class dao_client {
         return correct;
     }
         
+        /**GIVE SURNAME UPDATE*/
         public static boolean givesurname_update() {
         boolean correct = false;
         
@@ -444,6 +463,7 @@ public class dao_client {
         return correct;
     }
         
+        /**GIVE DATE BIRTHDAY*/
         public static boolean give_date_birthday_update(Calendar birthdate) {
             boolean check = false;
             
@@ -462,6 +482,7 @@ public class dao_client {
             return check;
         }
         
+        /**GIVE DATE START UPDATE*/
         public static boolean give_date_start_update(Calendar birthdate, Calendar datestart) {
             boolean check = false;
             Class_date fbirthday = new Class_date(birthdate);
@@ -480,7 +501,8 @@ public class dao_client {
             }            
             return check;
         }
-                
+        
+        /**GIVE MOBILE UPDATE*/
         public static boolean givemobile_update() {
             boolean correct = false;
        
@@ -496,6 +518,7 @@ public class dao_client {
             return correct;
         }
          
+        /**GIVE MAIL UPDATE*/
          public static boolean givemail_update() {
         boolean correct = false;
        
@@ -516,6 +539,7 @@ public class dao_client {
         return correct;
     }
         
+        /**GIVE USER UPDATE*/
         public static boolean giveuser_update() {
         boolean correct = false;
        
@@ -535,7 +559,8 @@ public class dao_client {
         }
         return correct;
     }
-                   
+        
+        /**GIVE PASS UPDATE*/
         public static boolean givepassword_update() {
         boolean correct = false;
         
@@ -556,6 +581,7 @@ public class dao_client {
         return correct;
     }
       
+       /**GIVE BUY UPDATE*/
        public static boolean givebuy_update() {
         float buy=0.0f;
         boolean correct = false;
@@ -571,6 +597,7 @@ public class dao_client {
         return correct;
        }
        
+       /**GIVE TYPE CLIENT UPDATE*/
        public static boolean givetypeclient_update() {
         boolean correct = false;
         
@@ -591,7 +618,7 @@ public class dao_client {
         return correct;
     }
        
-       
+       /**GIVE SELECTOR IMAGEN UPDATE*/
        public static String dialogoSelectorImagen_update() {
         String img = "";
 
@@ -614,12 +641,14 @@ public class dao_client {
         return img;
     }
        
+       /**GIVE AVATAR UPDATE*/
        public static void giveavatar_update(String img){
            ImageIcon temporal=new ImageIcon(img);
            ImageIcon imagen=new ImageIcon(temporal.getImage().getScaledInstance(160, -1, Image.SCALE_DEFAULT));
             client_jframe_update.lab_avatar.setIcon(imagen);
        }   
 
+       /**GIVE STATE UPDATE*/
         public static boolean state_update(){
             boolean correct=false;
             
@@ -630,6 +659,7 @@ public class dao_client {
             return correct;
         }   
 
+        /**GIVE PREMIUM UPDATE*/
         public static boolean premium_update(){
             boolean correct=false;
             

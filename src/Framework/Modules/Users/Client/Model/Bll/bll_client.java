@@ -81,7 +81,7 @@ public class bll_client {
 			JOptionPane.showMessageDialog(null, "This Client is already exist", "Error Client", JOptionPane.ERROR_MESSAGE);
 		}else{ cli=dao_client.create();
 		Singleton.Client_array.add(cli);
-                    JOptionPane.showMessageDialog(null, "User create");
+                    //JOptionPane.showMessageDialog(null, "User create");
                     bll_client_db.insert_client_bll();
 		}
                 }
@@ -170,52 +170,56 @@ public class bll_client {
 	/**DELETE CLIENT*/
 	        
          public static void delete_client() {
-        String dni;
+       String dni;
         int pos;
-        int n, selection, inicio, selection1;         
-        
-        n=((miniSimpleTableModel_client) pager_client.TABLA.getModel()).getRowCount();  
-        if(n!=0){
-            inicio=(pagina_client.currentPageIndex-1)*pagina_client.itemsPerPage; //nos situamos al inicio de la página en cuestión
-             selection=pager_client.TABLA.getSelectedRow(); //nos situamos en la fila
-             selection1=inicio+selection; //nos situamos en la fila correspondiente de esa página
-            if (selection1 == -1) {
+        int inicio, selection1;
+        int n = ((miniSimpleTableModel_client) pager_client.TABLA.getModel()).getRowCount();
+        Class_client client = null;
+        if (n != 0) {
+
+            inicio = (pagina_client.currentPageIndex - 1) * pagina_client.itemsPerPage;
+            int selec = pager_client.TABLA.getSelectedRow();
+            selection1 = inicio + selec;
+
+            if (selec == -1) {
                 JOptionPane.showMessageDialog(null, "There isn't anybody selected", "Error!", 2);
             } else {
-                
                 dni = (String) pager_client.TABLA.getModel().getValueAt(selection1, 0);
-                Class_client cli = new Class_client(dni);
-                Singleton_cli.cli=cli;
-                pos = bll_client.search_client((Class_client) cli);
-                
+                client = new Class_client(dni);
+                pos = bll_client.search_client(client);
                 int opc = JOptionPane.showConfirmDialog(null, "Do you want this person with DNI: " + dni +" "+"?",
                         "Info", JOptionPane.WARNING_MESSAGE);
 
-                if (opc == 0) {                    
-                    bll_client_db.delete_client_bll();
+                if (opc == 0) {
                     ((miniSimpleTableModel_client) pager_client.TABLA.getModel()).removeRow(selection1);
-                    pagina_client.initLinkBox();
-                    cli = Singleton.Client_array.get(pos);
-                    Singleton.Client_array.remove(cli);                    
-                    miniSimpleTableModel_client.datosaux.remove(cli);
+                    client = Singleton.Client_array.get(pos);
+
+                    bll_client_db.delete_client_bll();
+                    Singleton.Client_array.remove(client);     
+                    miniSimpleTableModel_client.datosaux.remove(pos);
                     ((miniSimpleTableModel_client) pager_client.TABLA.getModel()).cargar();
                     pager_client.jLabel3.setText(String.valueOf(Singleton.Client_array.size()));
                     pagina_client.initLinkBox();
                 }
-                if (pager_client.TABLA.getRowCount() == 0) {
-                    pagina_client.currentPageIndex-=1;
+                
+                if (pager_client.TABLA.getRowCount()==0){
+                    pagina_client.currentPageIndex -= 1;
                     pagina_client.initLinkBox();
                 }
+
             }
+
         } else {
             JOptionPane.showMessageDialog(null, "Empty list", "Error!", 2);
         }
-    }      
-         
+    }
+       
+       /**GIVE AVATAR*/
         public static void giveavatar(){
             dao_client.giveavatar(dao_client.dialogoSelectorImagen());
         }
         
+        /**GIVE AVATAR UPDATE*/
         public static void giveavatar_update(){
             dao_client.giveavatar_update(dao_client.dialogoSelectorImagen_update());
         }
@@ -267,6 +271,8 @@ public class bll_client {
         }
     }
         
+        
+        /**GIVE DNI*/
          public static void givedni() {
                 
         if (dao_client.givedni()==false) {
@@ -281,6 +287,7 @@ public class bll_client {
         }
         
         
+        /**GIVE NAME*/
         public static void givename() {        
         
         if (dao_client.givename()==false) {
@@ -294,6 +301,7 @@ public class bll_client {
         }
      
         
+        /**GIVE SURNAME*/
         public static void givesurname() {
                
         if (dao_client.givesurname()==false) {
@@ -307,7 +315,7 @@ public class bll_client {
             }
         }
      
-        
+       /**GIVE MOBILE*/ 
         public static void givemobile() {
        
         if (dao_client.givemobile()==false){
@@ -321,8 +329,8 @@ public class bll_client {
             }
         }
          
-         public static void givemail() {
-        
+        /**GIVE MAIL*/
+         public static void givemail() {        
        
         if (dao_client.givemail()==false) {
             client_jframe_create.eti_email_create.setBackground(Color.red);
@@ -335,7 +343,7 @@ public class bll_client {
             }
         }
     
-        
+        /**GIVE USER*/
         public static void giveuser() {
                
         if (dao_client.giveuser()==false) {
@@ -348,9 +356,8 @@ public class bll_client {
             }
         }
         
-                   
-        public static void givepassword() {
-        
+        /**GIVE PASS*/           
+        public static void givepassword() {        
         
         if (dao_client.givepassword()==false) {
             client_jframe_create.eti_pass_create.setBackground(Color.red);
@@ -360,9 +367,9 @@ public class bll_client {
                 client_jframe_create.lab_pass.setIcon(okey);
                 
             }
-        }
-      
+        }      
         
+        /**GIVE BUY*/
          public static void givebuy() {
            
            if (dao_client.givebuy()==false) {
@@ -375,6 +382,7 @@ public class bll_client {
             }
         }
          
+         /**GIVE TYPE CLIENT*/
          public static void givetypeclient() {
                
             if (dao_client.givetypeclient()==false) {
@@ -388,6 +396,7 @@ public class bll_client {
             }
         }
        
+        /**GIVE DATE BIRTHDAY*/
         public static void Validatedatebirthday(Calendar birthdate) {
             if (dao_client.give_date_birthday(birthdate)==false) {
             client_jframe_create.eti_date_birthday_create.setBackground(Color.red);
@@ -399,6 +408,7 @@ public class bll_client {
             }
         }
         
+        /**GIVE DATE START*/
          public static void Validatedatestart(Calendar birthdate, Calendar dateemploy) {
             if (dao_client.give_date_start(birthdate,dateemploy)==false) {
             client_jframe_create.eti_date_start_create.setBackground(Color.red);
@@ -410,7 +420,7 @@ public class bll_client {
             }
          }
          
-         /**GIVE DATES*/
+         /**GIVE DATES UPDATE*/
         public static void givedates_update(String type) {
         
         switch (type) {
@@ -456,6 +466,7 @@ public class bll_client {
         }
     }
         
+        /**GIVE DNI UPDATE*/
          public static void givedni_update() {
                 
         if (dao_client.givedni_update()==false) {
@@ -469,7 +480,7 @@ public class bll_client {
               }
         }
         
-        
+        /**GIVE NAME UPDATE*/
         public static void givename_update() {        
         
         if (dao_client.givename_update()==false) {
@@ -482,7 +493,7 @@ public class bll_client {
               }
         }
      
-        
+        /**GIVE SURNAME UPDATE*/
         public static void givesurname_update() {
                
         if (dao_client.givesurname_update()==false) {
@@ -496,7 +507,7 @@ public class bll_client {
             }
         }
      
-        
+        /**GIVE MOBILE UPDATE*/
         public static void givemobile_update() {
        
         if (dao_client.givemobile_update()==false){
@@ -510,8 +521,8 @@ public class bll_client {
             }
         }
          
-         public static void givemail_update() {
-        
+        /**GIVE MAIL*/
+         public static void givemail_update() {        
        
         if (dao_client.givemail_update()==false) {
             client_jframe_update.eti_email_update.setBackground(Color.red);
@@ -524,7 +535,7 @@ public class bll_client {
             }
         }
     
-        
+        /**GIVE USER UPDATE*/
         public static void giveuser_update() {
                
         if (dao_client.giveuser_update()==false) {
@@ -537,9 +548,8 @@ public class bll_client {
             }
         }
         
-                   
-        public static void givepassword_update() {
-        
+        /**GIVE PASS UPDATE*/           
+        public static void givepassword_update() {        
         
         if (dao_client.givepassword_update()==false) {
             client_jframe_update.eti_pass_update.setBackground(Color.red);
@@ -551,7 +561,7 @@ public class bll_client {
             }
         }
       
-        
+        /**GIVE BUY UPDATE*/
          public static void givebuy_update() {
            
            if (dao_client.givebuy_update()==false) {
@@ -564,6 +574,7 @@ public class bll_client {
             }
         }
          
+         /**GIVE TYPE CLIENT UPDATE*/
          public static void givetypeclient_update() {
                
             if (dao_client.givetypeclient()==false) {
@@ -577,6 +588,7 @@ public class bll_client {
             }
         }
        
+        /**GIVE DATE BIRTHDAY UPDATE*/
         public static void Validatedatebirthday_update(Calendar birthdate) {
             if (dao_client.give_date_birthday_update(birthdate)==false) {
             client_jframe_update.eti_date_birthday_update.setBackground(Color.red);
@@ -588,6 +600,7 @@ public class bll_client {
             }
         }
         
+        /**GIVE DATE START*/
          public static void Validatedatestart_update(Calendar birthdate, Calendar dateemploy) {
             if (dao_client.give_date_start_update(birthdate,dateemploy)==false) {
             client_jframe_update.eti_date_start_update.setBackground(Color.red);

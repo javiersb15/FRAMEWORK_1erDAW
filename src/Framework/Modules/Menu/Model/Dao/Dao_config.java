@@ -17,6 +17,7 @@ import javax.swing.ButtonGroup;
  */
 public class Dao_config {
     
+    /**FUNCTION BUTTON GROUP*/
     public static String getSelect(ButtonGroup buttonGroup) {
         for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
             AbstractButton button = buttons.nextElement();
@@ -28,6 +29,7 @@ public class Dao_config {
         return null;
     }
     
+    /**SET LANGUAGE*/
     public static String setlanguage () {
         String language = "";
         switch (getSelect((config_frame.language))){
@@ -46,6 +48,7 @@ public class Dao_config {
         return language;
     }
     
+    /**SET DATE*/
     public static String setdate () {
         String date = "";
         switch (getSelect(config_frame.date)){
@@ -68,6 +71,7 @@ public class Dao_config {
         return date;
     }
     
+    /**SET CURRENCY*/
     public static String setcurrency () {
         String currency ="";     
         switch (getSelect(config_frame.currency)){
@@ -86,6 +90,7 @@ public class Dao_config {
         return currency;
     }
     
+    /**SET THEME*/
     public static String settheme () {
         String theme = "";
         switch (getSelect(config_frame.theme)){
@@ -108,6 +113,7 @@ public class Dao_config {
         return theme;
     }   
     
+    /**SET DECIMAL*/
     public static String setdecimal () {
         String decimal ="";        
         switch (getSelect(config_frame.decimal)){
@@ -126,6 +132,7 @@ public class Dao_config {
         return decimal;
     }
     
+    /**GET LANGUAGE*/
     public static void getlanguage () {
         switch (Class_config.getInstance().getLanguage()){            
             case "VALENCIAN":
@@ -142,6 +149,7 @@ public class Dao_config {
         }
     }
     
+    /**GET DATE*/
     public static void getdate () {
         switch (Class_config.getInstance().getFormat_date()){            
             case "dd/MM/yyyy":
@@ -162,6 +170,7 @@ public class Dao_config {
         }
     }
     
+    /**GET CURRENCY*/
     public static void getcurrency () {
         switch (Class_config.getInstance().getCurrency()){            
             case "EURO":
@@ -178,6 +187,7 @@ public class Dao_config {
         }
     }
     
+    /**GET THEME*/
     public static void gettheme () {
         switch (Class_config.getInstance().getTheme()){            
             case "Metal":
@@ -198,6 +208,7 @@ public class Dao_config {
         }
     }
     
+    /**GET DECIMAL*/
     public static void getdecimal () {
         switch (Class_config.getInstance().getDecimal_number()){            
             case "1 DECIMAL":

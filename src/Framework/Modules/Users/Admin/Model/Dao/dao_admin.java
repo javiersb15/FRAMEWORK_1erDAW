@@ -108,6 +108,7 @@ public class dao_admin {
         return admin;
     }
         
+    /**CORRECTEC SALARY*/
         public static boolean correct_salary(){
             float salary=0.0f;
             
@@ -118,7 +119,8 @@ public class dao_admin {
             return false;
         }
         }
-               
+        
+        /**STATE*/
         public static boolean state(){
             boolean correct=false;
             
@@ -128,7 +130,8 @@ public class dao_admin {
                 correct=false;            
             return correct;
         }
-               
+           
+        /**CORRECT INCENTIVE*/
         public static boolean correct_incentive(){
             float incentive=0.0f;
             
@@ -140,6 +143,7 @@ public class dao_admin {
         }
         }
         
+        /**CORRECT ACTIVITY*/
          public static boolean correct_activity(){
             float activity=0.0f;
             
@@ -151,6 +155,7 @@ public class dao_admin {
         }
         }
          
+         /**GIVE DNI*/
           public static boolean givedni() {
         boolean correct = false;
         
@@ -171,6 +176,7 @@ public class dao_admin {
         return correct;
     }
         
+        /**GIVE NAME*/
         public static boolean givename() {
         boolean correct = false;
         
@@ -191,6 +197,7 @@ public class dao_admin {
         return correct;
     }
         
+        /**GIVE SURNAME*/
         public static boolean givesurname() {
         boolean correct = false;
         
@@ -210,6 +217,8 @@ public class dao_admin {
         }
         return correct;
     }
+        
+        /**GIVE DATE BIRTHDAY*/
         public static boolean give_date_birthday(Calendar birthdate) {
             boolean correct = false;
             Class_date fecha = new Class_date(birthdate);
@@ -228,6 +237,7 @@ public class dao_admin {
             return correct;
         }
         
+        /**GIVE DATE EMPLOY*/
         public static boolean give_date_employ(Calendar birthdate, Calendar dateemploy) {
             boolean correct= false;
             Class_date fbirthday = new Class_date(birthdate);
@@ -247,7 +257,7 @@ public class dao_admin {
             return correct;
         }
         
-        
+        /**GIVE MOBILE*/
          public static boolean givemobile() {
         boolean correct = false;
        
@@ -268,6 +278,7 @@ public class dao_admin {
         return correct;
     }
          
+         /**GIVE MAIL*/
          public static boolean givemail() {
         boolean correct = false;
        
@@ -288,6 +299,7 @@ public class dao_admin {
         return correct;
     }
         
+        /**GIVE USER*/
         public static boolean giveuser() {
         boolean correct = false;
        
@@ -307,7 +319,8 @@ public class dao_admin {
         }
         return correct;
     }
-                   
+        
+        /**GIVE PASS*/
         public static boolean givepassword() {
         boolean correct = false;
         
@@ -328,7 +341,7 @@ public class dao_admin {
         return correct;
     }
         
-        
+       /**GIVE ACTIVITY*/
        public static boolean giveactivity() {
            boolean correct = false;
            int activity=0;
@@ -344,6 +357,7 @@ public class dao_admin {
         return correct;
        }
        
+       /**GIVE SALARY*/
        public static boolean givesalary() {
         float salary=0.0f;
         boolean correct = false;
@@ -359,6 +373,7 @@ public class dao_admin {
         return correct;
        }
        
+       /**GIVE INCENTIVE*/
        public static boolean giveincentive() {
         float incentive=0.0f;
         boolean correct = false;
@@ -374,6 +389,7 @@ public class dao_admin {
         return correct;
        }
        
+       /**SELECTOR IMAGEN*/
        public static String dialogoSelectorImagen() {
         String img = "";
 
@@ -396,6 +412,7 @@ public class dao_admin {
         return img;
     }
        
+       /**GIVE AVATAR*/
        public static void giveavatar(String img){
            ImageIcon temporal=new ImageIcon(img);
            ImageIcon imagen=new ImageIcon(temporal.getImage().getScaledInstance(160, -1, Image.SCALE_DEFAULT));
@@ -461,6 +478,7 @@ public class dao_admin {
         return admin;
     }
     
+        /**CORRECT SALARY UPDATE*/
         public static boolean correct_salary_update(){
             float salary=0.0f;
             
@@ -471,7 +489,8 @@ public class dao_admin {
             return false;
         }
         }
-               
+        
+        /**STATE UPDATE*/
         public static boolean state_update(){
             boolean correct=false;
             
@@ -481,7 +500,8 @@ public class dao_admin {
                 correct=false;            
             return correct;
         }
-               
+         
+        /**INCENTIVE UPDATE*/
         public static boolean correct_incentive_update(){
             float incentive=0.0f;
             
@@ -493,6 +513,7 @@ public class dao_admin {
         }
         }
         
+        /**ACTIVITY UPDATE*/
          public static boolean correct_activity_update(){
             float activity=0.0f;
             
@@ -504,6 +525,7 @@ public class dao_admin {
         }
         }
          
+         /**GIVE DNI UPDATE*/
           public static boolean givedni_update() {
         boolean correct = false;
         
@@ -524,6 +546,7 @@ public class dao_admin {
         return correct;
     }
         
+        /**GIVE NAME UPDATE*/
         public static boolean givename_update() {
         boolean correct = false;
         
@@ -544,6 +567,7 @@ public class dao_admin {
         return correct;
     }
         
+        /**GIVE SURNAME UPDATE*/
         public static boolean givesurname_update() {
         boolean correct = false;
         
@@ -563,6 +587,8 @@ public class dao_admin {
         }
         return correct;
     }
+        
+        /**GIVE DATE BIRTHDAY UPDATE*/
         public static boolean give_date_birthday_update(Calendar birthdate) {
             boolean correct = false;
             Class_date fecha = new Class_date(birthdate);
@@ -581,6 +607,7 @@ public class dao_admin {
             return correct;
         }
         
+        /**GIVE DATE EMPLOY*/
         public static boolean give_date_employ_update(Calendar birthdate, Calendar dateemploy) {
             boolean correct= false;
             Class_date fbirthday = new Class_date(birthdate);
@@ -600,7 +627,7 @@ public class dao_admin {
             return correct;
         }
         
-        
+        /**GIVE MOBILE UPDATE*/
          public static boolean givemobile_update() {
         boolean correct = false;
        
@@ -621,6 +648,7 @@ public class dao_admin {
         return correct;
     }
          
+         /**GIVE MAIL  UPDATE*/
          public static boolean givemail_update() {
         boolean correct = false;
        
@@ -641,6 +669,7 @@ public class dao_admin {
         return correct;
     }
         
+        /**GIVE USER UPDATE*/
         public static boolean giveuser_update() {
         boolean correct = false;
        
@@ -660,7 +689,8 @@ public class dao_admin {
         }
         return correct;
     }
-                   
+        
+        /**GIVE PASS UPDATE*/
         public static boolean givepassword_update() {
         boolean correct = false;
         
@@ -681,7 +711,7 @@ public class dao_admin {
         return correct;
     }
         
-        
+       /**GIVE ACTIVITY UPDATE*/ 
        public static boolean giveactivity_update() {
            boolean correct = false;
            int activity=0;
@@ -697,6 +727,7 @@ public class dao_admin {
         return correct;
        }
        
+       /**GIVE SALARY UPDATE*/
        public static boolean givesalary_update() {
         float salary=0.0f;
         boolean correct = false;
@@ -712,6 +743,7 @@ public class dao_admin {
         return correct;
        }
        
+       /**GIVE INCENTIVE UPDATE*/
        public static boolean giveincentive_update() {
         float incentive=0.0f;
         boolean correct = false;
@@ -727,6 +759,7 @@ public class dao_admin {
         return correct;
        }
        
+       /**GIVE SELECTOR IMAGEN UPDATE*/
        public static String dialogoSelectorImagen_update() {
         String img = "";
 
@@ -748,6 +781,8 @@ public class dao_admin {
         return img;
     }
        
+       
+       /**GIVE AVATAR UPDATE*/
        public static void giveavatar_update(String img){
            ImageIcon temporal=new ImageIcon(img);
            ImageIcon imagen=new ImageIcon(temporal.getImage().getScaledInstance(160, -1, Image.SCALE_DEFAULT));

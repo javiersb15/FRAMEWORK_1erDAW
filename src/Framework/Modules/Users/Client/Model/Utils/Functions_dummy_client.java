@@ -5,9 +5,6 @@ import static Framework.Class.Singleton_tools.collection;
 import Framework.Modules.Users.Client.Model.Clases.Class_client;
 import Framework.Modules.Users.User.Model.Clases.Singleton;
 
-
-
-
 public class Functions_dummy_client{	
 	
 	/**CLIENT*/

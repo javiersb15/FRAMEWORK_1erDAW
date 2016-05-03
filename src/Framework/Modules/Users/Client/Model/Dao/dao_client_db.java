@@ -22,10 +22,12 @@ public class dao_client_db {
     
      public static DateFormat format_fecha = new SimpleDateFormat("dd/MM/yyyy");
     
+    /**GIVE INSERT CLIENT*/
     public static void insert_client_dao() {
         collection.insert(Singleton_cli.cli.client_to_DB());
     }
     
+    /**GIVE UPDATE CLIENT*/
     public static void update_client_dao() {
         //Prepara para insertar un nuevo campo
         BasicDBObject updateAnyos = new BasicDBObject();
@@ -39,10 +41,12 @@ public class dao_client_db {
         collection.updateMulti(searchById, updateAnyos);
     }
     
+    /**GIVE DELETE CLIENT */
      public static void delete_client_dao() {
         collection.remove(new BasicDBObject().append("DNI", Singleton_cli.cli.getDNI()));
     }
-     
+    
+     /**GIVE SELECT CLIENT*/
      public static void select_client_dao() {
         DBCursor cursor = null;
         Class_client cli = new Class_client();
@@ -64,9 +68,10 @@ public class dao_client_db {
 	}	
     }
      
-     public static void Find_client_dao() {
+     /**GIVE FIND CLIENT*/
+     public static void Find_client_dao(String dni) {
         DBCursor cursor = null;
-        String dni="";
+        //String dni="";
         
         try {
             BasicDBObject query = new BasicDBObject("DNI", dni);

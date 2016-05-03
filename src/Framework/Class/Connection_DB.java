@@ -84,6 +84,7 @@ public class Connection_DB {
         }
     }
     
+    /**GET CONECTION*/
     public static Connection getConexion() {
         Connection conexion=null;
         try {            
@@ -94,6 +95,7 @@ public class Connection_DB {
         return conexion;
     }
     
+    /**LIBERA CONEXIÓN*/
     public static void liberaConexion(Connection conexion) {
         try {
             if (null != conexion) 

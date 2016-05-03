@@ -22,8 +22,7 @@ public class dao_user_register {
 	/**MODIFY USER REGISTER*/
 	public static void modifyuser_register() {
             Class_user_register u_1=null;
-            u_1=bll_user_register.select_user_register();
-            
+            u_1=bll_user_register.select_user_register();            
             
             if (u_1!=null){
             user_register_jframe_update.eti_dni_update.setText(u_1.getDNI());
@@ -44,6 +43,7 @@ public class dao_user_register {
             }
         }
         
+        /**GIVE CREATE*/
         public static Class_user_register create() {
            Class_user_register user_register=null;           
        
@@ -92,6 +92,7 @@ public class dao_user_register {
         return user_register;
     }
         
+        /**CREATE UPDATE*/
         public static Class_user_register create_update() {
            Class_user_register user_register_update=null;           
        
@@ -140,6 +141,7 @@ public class dao_user_register {
         return user_register_update;
     }
         
+        /**STATE*/
         public static boolean state(){
             boolean correct=false;
             
@@ -149,7 +151,8 @@ public class dao_user_register {
                 correct=false;            
             return correct;
         }
-                
+          
+        /**GIVE DNI*/
           public static boolean givedni() {
         boolean correct = false;
         
@@ -170,6 +173,7 @@ public class dao_user_register {
         return correct;
     }
         
+        /**GIVE NAME*/
         public static boolean givename() {
         boolean correct = false;
         
@@ -190,6 +194,7 @@ public class dao_user_register {
         return correct;
     }
         
+        /**GIVE SURNAME*/
         public static boolean givesurname() {
         boolean correct = false;
         
@@ -209,6 +214,8 @@ public class dao_user_register {
         }
         return correct;
     }
+        
+        /**GIVE DATE BIRTHDAYY*/
         public static boolean give_date_birthday(Calendar birthdate) {
             boolean correct = false;
             Class_date fecha = new Class_date(birthdate);
@@ -227,6 +234,7 @@ public class dao_user_register {
             return correct;
         }
         
+        /**GIVE MOBILE*/
          public static boolean givemobile() {
         boolean correct = false;
        
@@ -247,6 +255,7 @@ public class dao_user_register {
         return correct;
     }
          
+         /**GIVE MAIL*/
          public static boolean givemail() {
         boolean correct = false;
        
@@ -267,6 +276,7 @@ public class dao_user_register {
         return correct;
     }
         
+        /**GIVE USER*/
         public static boolean giveuser() {
         boolean correct = false;
        
@@ -286,7 +296,8 @@ public class dao_user_register {
         }
         return correct;
     }
-                   
+        
+        /**GIVE PASS*/
         public static boolean givepassword() {
         boolean correct = false;
         
@@ -307,7 +318,7 @@ public class dao_user_register {
         return correct;
     }
         
-        
+       /**GIVE ACTIVITY*/ 
        public static boolean giveactivity() {
            boolean correct = false;
            int activity=0;
@@ -323,6 +334,7 @@ public class dao_user_register {
         return correct;
        }
        
+       /**DIALOGO SELECTOR IMAGEN*/
        public static String dialogoSelectorImagen() {
         String img = "";
 
@@ -345,16 +357,14 @@ public class dao_user_register {
         return img;
     }
        
-       
-       
+       /**GIVE AVATAR*/
        public static void giveavatar(String img){
            ImageIcon temporal=new ImageIcon(img);
            ImageIcon imagen=new ImageIcon(temporal.getImage().getScaledInstance(160, -1, Image.SCALE_DEFAULT));
             user_register_jframe_create.lab_avatar.setIcon(imagen);
-       }
+       }       
        
-       
-       
+       /**GIVE DNI UPDATE*/
        public static boolean givedni_update() {
         boolean correct = false;
         
@@ -375,6 +385,7 @@ public class dao_user_register {
         return correct;
     }
         
+       /**GIVE NAME UPDATE*/
         public static boolean givename_update() {
         boolean correct = false;
         
@@ -395,6 +406,7 @@ public class dao_user_register {
         return correct;
     }
         
+        /**GIVE SURNAME UPDATE*/
         public static boolean givesurname_update() {
         boolean correct = false;
         
@@ -414,6 +426,8 @@ public class dao_user_register {
         }
         return correct;
     }
+        
+        /**GIVE DATE BIRTHDAY UPDATE*/
         public static boolean Validatedatebirthday_update(Calendar birthdate) {
             boolean check = false;
             Class_date fecha = new Class_date(birthdate);
@@ -435,6 +449,7 @@ public class dao_user_register {
             return check;
         }
         
+        /**GIVE MOBILE UPDATE*/
          public static boolean givemobile_update() {
         boolean correct = false;
        
@@ -455,6 +470,7 @@ public class dao_user_register {
         return correct;
     }
          
+         /**GIVE MAIL UPDATE*/
          public static boolean givemail_update() {
         boolean correct = false;
        
@@ -475,6 +491,7 @@ public class dao_user_register {
         return correct;
     }
         
+        /**GIVE USER UPDATE*/
         public static boolean giveuser_update() {
         boolean correct = false;
        
@@ -494,7 +511,8 @@ public class dao_user_register {
         }
         return correct;
     }
-                   
+        
+        /**GIVE PASS UPDATE*/
         public static boolean givepassword_update() {
         boolean correct = false;
         
@@ -515,7 +533,7 @@ public class dao_user_register {
         return correct;
     }
       
-        
+       /**GIVE ACTIVITY UPDATE*/ 
        public static boolean giveactivity_update() {
            boolean correct = false;
            int activity=0;
@@ -531,7 +549,7 @@ public class dao_user_register {
         return correct;
        }
        
-       
+       /**SELECTOR IMAGEN UPDATE*/
        public static String dialogoSelectorImagen_update() {
         String img = "";
 
@@ -554,12 +572,14 @@ public class dao_user_register {
         return img;
     }
        
+       /**GIVE AVATAR UPDATE*/
        public static void giveavatar_update(String img){
            ImageIcon temporal=new ImageIcon(img);
            ImageIcon imagen=new ImageIcon(temporal.getImage().getScaledInstance(160, -1, Image.SCALE_DEFAULT));
             user_register_jframe_update.lab_avatar.setIcon(imagen);
        } 
        
+       /**STATE UPDATE*/
        public static boolean state_update(){
             boolean correct=false;
             

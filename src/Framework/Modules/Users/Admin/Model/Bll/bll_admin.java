@@ -44,6 +44,7 @@ public class bll_admin {
 	return adm;
 	}
         
+        /**SELECTED ADMIN*/
         public static Class_admin select_admin() {
             
             int selection, inicio, selection1, position=-1;
@@ -80,7 +81,7 @@ public class bll_admin {
 		}else{ 
                 adm=dao_admin.create();                
                 Singleton.Admin_array.add(adm);                    
-                    JOptionPane.showMessageDialog(null, "User create");
+                    //JOptionPane.showMessageDialog(null, "User create");
                     bll_admin_db.insert_admin_bll();
 		}
                 }
@@ -208,11 +209,13 @@ public class bll_admin {
             JOptionPane.showMessageDialog(null, "Empty list", "Error!", 2);
         }
     }      
-         
+        
+        /**GIVE AVATAR*/
         public static void giveavatar(){
             dao_admin.giveavatar(dao_admin.dialogoSelectorImagen());
         }
         
+        /**GIVE AVATAR UPDATE*/
         public static void giveavatar_update(){
             dao_admin.giveavatar_update(dao_admin.dialogoSelectorImagen_update());
         }
@@ -267,6 +270,7 @@ public class bll_admin {
         }
     }
         
+        /**GIVE DNI*/
          public static void givedni() {
                 
         if (dao_admin.givedni()==false) {
@@ -280,7 +284,7 @@ public class bll_admin {
               }
         }
         
-        
+        /**GIVE NAME*/
         public static void givename() {        
         
         if (dao_admin.givename()==false) {
@@ -293,7 +297,7 @@ public class bll_admin {
               }
         }
      
-        
+        /**GIVE SURNAME*/
         public static void givesurname() {
                
         if (dao_admin.givesurname()==false) {
@@ -307,7 +311,7 @@ public class bll_admin {
             }
         }
      
-        
+        /**GIVE MOBILE*/
         public static void givemobile() {
        
         if (dao_admin.givemobile()==false){
@@ -321,9 +325,9 @@ public class bll_admin {
             }
         }
          
+        /**GIVE MAIL*/
          public static void givemail() {
-        
-       
+               
         if (dao_admin.givemail()==false) {
             admin_jframe_create.eti_email_create.setBackground(Color.red);
             admin_jframe_create.lab_email.setIcon(cancel);
@@ -335,7 +339,7 @@ public class bll_admin {
             }
         }
     
-        
+        /**GIVE USER*/
         public static void giveuser() {
                
         if (dao_admin.giveuser()==false) {
@@ -348,7 +352,7 @@ public class bll_admin {
             }
         }
         
-                   
+        /**GIVE PASS*/           
         public static void givepassword() {        
         
         if (dao_admin.givepassword()==false) {
@@ -361,7 +365,7 @@ public class bll_admin {
             }
         }
       
-        
+        /**GIVE ACTIVITY*/
          public static void giveactivity() {
            
            if (dao_admin.giveactivity()==false) {
@@ -374,6 +378,7 @@ public class bll_admin {
             }
         }
        
+       /**GIVE SALARY*/
        public static void givesalary() {
            
         if (dao_admin.givesalary()==false) {
@@ -386,6 +391,7 @@ public class bll_admin {
             }
         }
        
+       /**GIVE INCENTIVE*/
        public static void giveincentive() {
         if (dao_admin.giveincentive()==false) {
             admin_jframe_create.eti_incentive_create.setBackground(Color.red);
@@ -397,6 +403,7 @@ public class bll_admin {
             }
         }
        
+       /**DATE BIRTHDAY*/
         public static void Validatedatebirthday(Calendar birthdate) {
             if (dao_admin.give_date_birthday(birthdate)==false) {
             admin_jframe_create.eti_date_birthday_create.setBackground(Color.red);
@@ -408,6 +415,7 @@ public class bll_admin {
             }
         }
         
+        /**DATE EMPLOY*/
          public static void Validatedateemploy(Calendar birthdate, Calendar dateemploy) {
             if (dao_admin.give_date_employ(birthdate,dateemploy)==false) {
             admin_jframe_create.eti_date_employ_create.setBackground(Color.red);
@@ -419,7 +427,7 @@ public class bll_admin {
             }
          }
          
-         /**GIVE DATES*/
+         /**GIVE DATES UPDATE*/
         public static void givedates_update(String type) {
         
         switch (type) {
@@ -468,6 +476,7 @@ public class bll_admin {
         }
     }
         
+        /**GIVE DNI UPDATE*/
          public static void givedni_update() {
                 
         if (dao_admin.givedni_update()==false) {
@@ -481,7 +490,7 @@ public class bll_admin {
               }
         }
         
-        
+        /**GIVE NAME UPDATE*/
         public static void givename_update() {        
         
         if (dao_admin.givename_update()==false) {
@@ -494,7 +503,7 @@ public class bll_admin {
               }
         }
      
-        
+        /**GIVE SURNAME UPDATE*/
         public static void givesurname_update() {
                
         if (dao_admin.givesurname_update()==false) {
@@ -508,7 +517,7 @@ public class bll_admin {
             }
         }
      
-        
+        /**GIVE MOBILE UPDATE*/
         public static void givemobile_update() {
        
         if (dao_admin.givemobile_update()==false){
@@ -522,8 +531,8 @@ public class bll_admin {
             }
         }
          
-         public static void givemail_update() {
-        
+        /**GIVE MAIL UPDATE*/
+         public static void givemail_update() {        
        
         if (dao_admin.givemail_update()==false) {
             admin_jframe_update.eti_email_update.setBackground(Color.red);
@@ -536,7 +545,7 @@ public class bll_admin {
             }
         }
     
-        
+        /**GIVE USER UPDATE*/
         public static void giveuser_update() {
                
         if (dao_admin.giveuser_update()==false) {
@@ -549,9 +558,8 @@ public class bll_admin {
             }
         }
         
-                   
-        public static void givepassword_update() {
-        
+        /**GIVE PASS UPDATE*/           
+        public static void givepassword_update() {        
         
         if (dao_admin.givepassword_update()==false) {
             admin_jframe_update.eti_pass_update.setBackground(Color.red);
@@ -563,7 +571,7 @@ public class bll_admin {
             }
         }
       
-        
+        /**GIVE ACTIVITY UPDATE*/
          public static void giveactivity_update() {
            
            if (dao_admin.giveactivity_update()==false) {
@@ -576,6 +584,7 @@ public class bll_admin {
             }
         }
        
+       /**GIVE SALARY UPDATE*/
        public static void givesalary_update() {
            
         if (dao_admin.givesalary_update()==false) {
@@ -588,6 +597,7 @@ public class bll_admin {
             }
         }
        
+       /**GIVE SALARY UPDATE*/
        public static void giveincentive_update() {
         if (dao_admin.giveincentive_update()==false) {
             admin_jframe_update.eti_incentive_update.setBackground(Color.red);
@@ -599,6 +609,7 @@ public class bll_admin {
             }
         }
        
+       /**GIVE DATE BIRTHDAY UPDATE*/
         public static void Validatedatebirthday_update(Calendar birthdate) {
             if (dao_admin.give_date_birthday_update(birthdate)==false) {
             admin_jframe_update.eti_date_birthday_update.setBackground(Color.red);
@@ -610,6 +621,7 @@ public class bll_admin {
             }
         }
         
+        /**GIVE DATE EMPLOY*/
          public static void Validatedateemploy_update(Calendar birthdate, Calendar dateemploy) {
             if (dao_admin.give_date_employ_update(birthdate,dateemploy)==false) {
             admin_jframe_update.eti_date_employ_update.setBackground(Color.red);

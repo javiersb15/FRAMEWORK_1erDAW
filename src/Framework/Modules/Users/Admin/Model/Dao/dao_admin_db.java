@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
  */
 public class dao_admin_db {
     
+    /**INSSERT ADMIN*/
     public static int insert_admin_dao(Connection con) {
        
         PreparedStatement stmt = null;
@@ -58,7 +59,7 @@ public class dao_admin_db {
             stmt.setInt(17, Singleton_adm.adm.getactivity());
 
             correct = stmt.executeUpdate();
-            JOptionPane.showMessageDialog(null, "El usuario ha sido dado de alta correctamente!");
+            //JOptionPane.showMessageDialog(null, "El usuario ha sido dado de alta correctamente!");
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Ha habido un problema al insertar un nuevo usuario!");
@@ -74,6 +75,7 @@ public class dao_admin_db {
         return correct;
     }
     
+    /**SELECT ADMIN*/
     public static void select_admin_dao(Connection con) {
         boolean state=false;
         ResultSet rs = null;
@@ -128,6 +130,7 @@ public class dao_admin_db {
         }
     }
     
+    /**UPDATE ADMIN*/
     public static void update_admin_dao(Connection con) {
         int state=0;
         
@@ -182,6 +185,7 @@ public class dao_admin_db {
         }
     }
     
+    /**DELETE ADMIN*/
      public static boolean delete_admin_dao(Connection con) {
 
         PreparedStatement stmt = null;

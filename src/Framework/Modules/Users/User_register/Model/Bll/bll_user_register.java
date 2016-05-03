@@ -45,6 +45,7 @@ public class bll_user_register {
 	return usr_reg;
 	}
         
+        /**SELECT USER REGISTER*/
         public static Class_user_register select_user_register() {
             
             int selection, inicio, selection1, position=-1;
@@ -61,9 +62,7 @@ public class bll_user_register {
 				JOptionPane.showMessageDialog(null, "This DNI dosent't exist", "Error", JOptionPane.ERROR_MESSAGE);
                 }                
 	return usr_reg;
-	}
-        
-       
+	}       
        	
 	/**CREATE USER REGISTER*/
 	public static void create_user_register(){
@@ -80,7 +79,7 @@ public class bll_user_register {
 			JOptionPane.showMessageDialog(null, "This User Register is already exist", "Error User Register", JOptionPane.ERROR_MESSAGE);
 		}else{ usr_reg=dao_user_register.create();
 		Singleton.User_register_array.add(usr_reg);
-                    JOptionPane.showMessageDialog(null, "User create");
+                    //JOptionPane.showMessageDialog(null, "User create");
                     Json.auto_create_json_usr_reg();
 		}
                 }
@@ -167,51 +166,53 @@ public class bll_user_register {
          public static void delete_user_register() {
         String dni;
         int pos;
-        int n, selection, inicio, selection1;
+        int inicio, selection1;
+        int n = ((miniSimpleTableModel_user_register) pager_user_register.TABLA.getModel()).getRowCount();
+        Class_user_register userregister = null;
+        if (n != 0) {
 
-         
-        
-        n=((miniSimpleTableModel_user_register) pager_user_register.TABLA.getModel()).getRowCount();  
-        if(n!=0){
-            inicio=(pagina_user_register.currentPageIndex-1)*pagina_user_register.itemsPerPage; //nos situamos al inicio de la página en cuestión
-             selection=pager_user_register.TABLA.getSelectedRow(); //nos situamos en la fila
-             selection1=inicio+selection; //nos situamos en la fila correspondiente de esa página
-            if (selection1 == -1) {
-                JOptionPane.showMessageDialog(null, "There isn't anybody selected", "Error!", 2);
+            inicio = (pagina_user_register.currentPageIndex - 1) * pagina_user_register.itemsPerPage;
+            int selec = pager_user_register.TABLA.getSelectedRow();
+            selection1 = inicio + selec;
+
+            if (selec == -1) {
+                JOptionPane.showMessageDialog(null, "usernotselect");
             } else {
-                
                 dni = (String) pager_user_register.TABLA.getModel().getValueAt(selection1, 0);
-                Class_user_register usr_reg = new Class_user_register(dni);
-                pos = bll_user_register.search_user_register((Class_user_register) usr_reg);
-                
+                userregister = new Class_user_register(dni);
+                pos = bll_user_register.search_user_register(userregister);
                 int opc = JOptionPane.showConfirmDialog(null, "Do you want this person with DNI: " + dni +" "+"?",
                         "Info", JOptionPane.WARNING_MESSAGE);
 
                 if (opc == 0) {
                     ((miniSimpleTableModel_user_register) pager_user_register.TABLA.getModel()).removeRow(selection1);
-                    pagina_user_register.initLinkBox();
-                    usr_reg = Singleton.User_register_array.get(pos);
-                    Singleton.User_register_array.remove(usr_reg);                    
-                    miniSimpleTableModel_user_register.datosaux.remove(usr_reg);
+                    userregister = Singleton.User_register_array.get(pos);
+
+                    Singleton.User_register_array.remove(pos);   
+                    miniSimpleTableModel_user_register.datosaux.remove(pos);
                     Json.auto_create_json_usr_reg();
                     ((miniSimpleTableModel_user_register) pager_user_register.TABLA.getModel()).cargar();
-                    jLabel3.setText(String.valueOf(Singleton.User_register_array.size()));
+                    pager_user_register.jLabel3.setText(String.valueOf(Singleton.User_register_array.size()));
                     pagina_user_register.initLinkBox();
                 }
-                if (pager_user_register.TABLA.getRowCount() == 0) {
-                    pagina_user_register.currentPageIndex-=1;
+
+                if (pager_user_register.TABLA.getRowCount()==0){
+                    pagina_user_register.currentPageIndex -= 1;
                     pagina_user_register.initLinkBox();
                 }
             }
+
         } else {
             JOptionPane.showMessageDialog(null, "Empty list", "Error!", 2);
         }
-    }      
-         
+    }
+        
+        /**GIVE AVATAR*/
         public static void giveavatar(){
             dao_user_register.giveavatar(dao_user_register.dialogoSelectorImagen());
         }
         
+        /**GIVE AVATAR UPDATE*/
         public static void giveavatar_update(){
             dao_user_register.giveavatar_update(dao_user_register.dialogoSelectorImagen_update());
         }
@@ -258,6 +259,7 @@ public class bll_user_register {
         }
     }
         
+        /**GIVE DNI*/
          public static void givedni() {
                 
         if (dao_user_register.givedni()==false) {
@@ -271,7 +273,7 @@ public class bll_user_register {
               }
         }
         
-        
+        /**GIVE NAME*/
         public static void givename() {        
         
         if (dao_user_register.givename()==false) {
@@ -284,7 +286,7 @@ public class bll_user_register {
               }
         }
      
-        
+        /**GIVE SURNAME*/
         public static void givesurname() {
                
         if (dao_user_register.givesurname()==false) {
@@ -298,7 +300,7 @@ public class bll_user_register {
             }
         }
      
-        
+        /**GIVE MOBILE*/
         public static void givemobile() {
        
         if (dao_user_register.givemobile()==false){
@@ -312,8 +314,8 @@ public class bll_user_register {
             }
         }
          
-         public static void givemail() {
-        
+        /**GIVE MAIL*/
+         public static void givemail() {        
        
         if (dao_user_register.givemail()==false) {
             user_register_jframe_create.eti_email_create.setBackground(Color.red);
@@ -326,7 +328,7 @@ public class bll_user_register {
             }
         }
     
-        
+        /**GIVE USER*/
         public static void giveuser() {
                
         if (dao_user_register.giveuser()==false) {
@@ -339,9 +341,8 @@ public class bll_user_register {
             }
         }
         
-                   
-        public static void givepassword() {
-        
+        /**GIVE PASS*/           
+        public static void givepassword() {        
         
         if (dao_user_register.givepassword()==false) {
             user_register_jframe_create.eti_pass_create.setBackground(Color.red);
@@ -353,7 +354,7 @@ public class bll_user_register {
             }
         }
       
-        
+        /**GIVE ACTIVITY*/
          public static void giveactivity() {
            
            if (dao_user_register.giveactivity()==false) {
@@ -366,6 +367,7 @@ public class bll_user_register {
             }
         }
        
+        /**GIVE DATE BIRTHDAY*/
         public static void Validatedatebirthday(Calendar birthdate) {
             if (dao_user_register.give_date_birthday(birthdate)==false) {
             user_register_jframe_create.eti_date_birthday_create.setBackground(Color.red);
@@ -377,7 +379,7 @@ public class bll_user_register {
             }
         }
         
-         /**GIVE DATES*/
+         /**GIVE DATES UPDATE*/
         public static void givedates_update(String type) {
         
         switch (type) {
@@ -417,6 +419,7 @@ public class bll_user_register {
         }
     }
         
+        /**GIVE DNI UPDATE*/
          public static void givedni_update() {
                 
         if (dao_user_register.givedni_update()==false) {
@@ -430,7 +433,7 @@ public class bll_user_register {
               }
         }
         
-        
+        /**GIVE NAME UPDATE*/
         public static void givename_update() {        
         
         if (dao_user_register.givename_update()==false) {
@@ -443,7 +446,7 @@ public class bll_user_register {
               }
         }
      
-        
+        /**GIVE SURNAME UPDATE*/
         public static void givesurname_update() {
                
         if (dao_user_register.givesurname_update()==false) {
@@ -457,7 +460,7 @@ public class bll_user_register {
             }
         }
      
-        
+        /**GIVE MOBILE UPDATE*/
         public static void givemobile_update() {
        
         if (dao_user_register.givemobile_update()==false){
@@ -471,8 +474,8 @@ public class bll_user_register {
             }
         }
          
-         public static void givemail_update() {
-        
+        /**GIVE MAIL UPDATE*/
+         public static void givemail_update() {        
        
         if (dao_user_register.givemail_update()==false) {
             user_register_jframe_update.eti_email_update.setBackground(Color.red);
@@ -485,7 +488,7 @@ public class bll_user_register {
             }
         }
     
-        
+        /**GIVE USER UPDATE*/
         public static void giveuser_update() {
                
         if (dao_user_register.giveuser_update()==false) {
@@ -498,9 +501,8 @@ public class bll_user_register {
             }
         }
         
-                   
-        public static void givepassword_update() {
-        
+        /**GIVE PASS UPDATE*/           
+        public static void givepassword_update() {        
         
         if (dao_user_register.givepassword_update()==false) {
             user_register_jframe_update.eti_pass_update.setBackground(Color.red);
@@ -512,7 +514,7 @@ public class bll_user_register {
             }
         }
       
-        
+        /**GIVE ACTIVITY UPDATE*/
          public static void giveactivity_update() {
            
            if (dao_user_register.giveactivity_update()==false) {
@@ -524,7 +526,8 @@ public class bll_user_register {
                 
             }
         }
-         
+        
+        /**GIVE DATE BIRTHDAY UPDATE*/
         public static void Validatedatebirthday_update(Calendar birthdate) {
             if (dao_user_register.Validatedatebirthday_update(birthdate)==false) {
             user_register_jframe_update.eti_date_birthday_update.setBackground(Color.red);

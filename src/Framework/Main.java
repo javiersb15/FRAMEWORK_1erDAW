@@ -5,9 +5,8 @@
  */
 package Framework;
 
-import Framework.Modules.Login.Controller.Controller_login;
-import Framework.Modules.Login.View.login_frame;
 import Framework.Modules.Menu.Model.Clases.Class_config;
+import Framework.Modules.Menu.View.load_frame;
 
 
 /**
@@ -23,7 +22,7 @@ public class Main {
         /* Create and display the form */
        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Controller_login(new login_frame()).began();      
+                new load_frame().setVisible(true);    
             }
         });
     }

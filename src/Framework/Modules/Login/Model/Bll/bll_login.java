@@ -13,10 +13,14 @@ import static Framework.Class.Mongo_DB.getPort;
 import Framework.Class.Singleton_tools;
 import static Framework.Class.Singleton_tools.client;
 import static Framework.Class.Singleton_tools.db;
+import Framework.Modules.Login.Model.Clases.Singleton_login;
 import Framework.Modules.Login.Model.Dao.dao_login;
 import Framework.Modules.Login.View.login_frame;
+import Framework.Modules.Users.Client.Controller.Controller_client;
 import com.mongodb.Mongo;
 import java.sql.Connection;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -70,6 +74,17 @@ public class bll_login {
         login=dao_login.select_client_dao()==true;
     }
    
+   public static boolean login_client(){        
+        boolean login=false;
+                DNI_login = login_frame.eti_dni_login.getText();
+                password = login_frame.eti_pass_login.getText();
+
+                dao_login logindao_client = new dao_login();
+                login = logindao_client.select_client_dao();
+                
+                return login;
+    }
+   
    /*public static boolean login_client(){
        boolean login=false;
        
@@ -78,7 +93,32 @@ public class bll_login {
        return login;
    }*/
     
-   
+   /*public static void login_client (JFrame jframe) {
+        boolean correcto1 = dao_login.login_client();
+        
+        if (correcto1 == true){
+            Singleton_login.admin = false;
+            Singleton_login.dni = login_frame.eti_dni_login.getText();
+            Singleton_login.tabla = false;
+            Singleton_login.login = true;
+            Singleton_login.tipo = "client";
+            jframe.dispose();
+            new Controller_client(new Update_client(), 2).iniciar(2);
+        }else{
+            boolean correcto2 = dao_login.login_admin_dao(con, DNI, pass);
+            if (correcto2 == true){
+                Singleton_login.admin = true;
+                Singleton_login.dni = login_frame.eti_dni_login.getText();
+                Singleton_login.tabla = false;
+                Singleton_login.login = true;
+                Singleton_login.tipo = "admin";
+                jframe.dispose();
+                new Controller_client(new List_client(), 0).iniciar(0);
+            }else{
+                JOptionPane.showMessageDialog(null, "Error login");
+            }
+        }
+    }*/
     
     public static int type_user(){
         int find=0;
