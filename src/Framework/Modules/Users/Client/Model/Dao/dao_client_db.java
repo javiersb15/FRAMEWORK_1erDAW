@@ -42,8 +42,8 @@ public class dao_client_db {
     }
     
     /**GIVE DELETE CLIENT */
-     public static void delete_client_dao() {
-        collection.remove(new BasicDBObject().append("DNI", Singleton_cli.cli.getDNI()));
+     public static void delete_client_dao(Class_client cli) {
+        collection.remove(new BasicDBObject().append("DNI", cli.getDNI()));
     }
     
      /**GIVE SELECT CLIENT*/

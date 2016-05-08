@@ -45,7 +45,9 @@ public class dao_client {
             client_jframe_update.eti_tipeclient_update.setText(c_1.getclient_type());
         }
                 
-        /**CREATE CLIENT*/
+        /**CREATE CLIENT
+         * @return client
+         */
         public static Class_client create() {
            Class_client client=null;           
        
@@ -100,7 +102,9 @@ public class dao_client {
         return client;
     }
         
-        /**CREATE CLIENT UPDATE*/
+        /**CREATE CLIENT UPDATE
+         *@return client
+         */
         public static Class_client create_update() {
            Class_client client=null;           
        
@@ -155,7 +159,9 @@ public class dao_client {
         return client;
     }
         
-        /**GIVE STATE*/
+        /**GIVE STATE
+         *@return correct
+         */
         public static boolean state(){
             boolean correct=false;
             
@@ -166,7 +172,9 @@ public class dao_client {
             return correct;
         }
         
-        /**GIVE PREMIUM*/
+        /**GIVE PREMIUM
+         *@return correct
+         */
         public static boolean premium(){
             boolean correct=false;
             
@@ -177,7 +185,9 @@ public class dao_client {
             return correct;
         }
         
-        /**GIVE DNI*/
+        /**GIVE DNI
+         *@return correct
+         */
         public static boolean givedni() {
         boolean correct = false;
         
@@ -198,7 +208,9 @@ public class dao_client {
         return correct;
     }
         
-        /**GIVE NAME*/
+        /**GIVE NAME
+         *@return correct
+         */
         public static boolean givename() {
         boolean correct = false;
         
@@ -219,7 +231,9 @@ public class dao_client {
         return correct;
     }
         
-        /**GIVE SURNAME*/
+        /**GIVE SURNAME
+         *@return correct
+         */
         public static boolean givesurname() {
         boolean correct = false;
         
@@ -240,7 +254,10 @@ public class dao_client {
         return correct;
     }
         
-        /**GIVE DATE BIRTHDAY*/
+        /**GIVE DATE BIRTHDAY
+         *@param birthdate
+         *@return correct
+         */
         public static boolean give_date_birthday(Calendar birthdate) {
             boolean correct = false;
             Class_date fecha = new Class_date(birthdate);
@@ -279,7 +296,9 @@ public class dao_client {
             return correct;
         }
         
-        /**GIVE MOBILE*/
+        /**GIVE MOBILE
+         *@return correct
+         */
          public static boolean givemobile() {
         boolean correct = false;
        
@@ -295,7 +314,9 @@ public class dao_client {
         return correct;
     }
          
-        /**GIVE MAIL*/
+        /**GIVE MAIL
+         *@return correct
+         */
         public static boolean givemail() {
         boolean correct = false;
        
@@ -311,7 +332,9 @@ public class dao_client {
         return correct;
     }
         
-        /**GIVE USER*/
+        /**GIVE USER
+         *@return correct
+         */
         public static boolean giveuser() {
         boolean correct = false;
        
@@ -332,7 +355,9 @@ public class dao_client {
         return correct;
     }
         
-        /**GIVE PASS*/
+        /**GIVE PASS
+         *@return correct
+         */
         public static boolean givepassword() {
         boolean correct = false;
         
@@ -348,7 +373,9 @@ public class dao_client {
         return correct;
     }
      
-       /**GIVE BUY*/
+       /**GIVE BUY
+        *@return correct
+        */
        public static boolean givebuy() {
         float buy=0.0f;
         boolean correct = false;
@@ -362,7 +389,9 @@ public class dao_client {
         return correct;
        }
        
-       /**GIVE TYPE CLIENT*/
+       /**GIVE TYPE CLIENT
+        *@return correct
+        */
        public static boolean givetypeclient() {
         boolean correct = false;
         
@@ -378,7 +407,9 @@ public class dao_client {
         return correct;
     }
        
-       /**GIVE SELECTOR IMAGEN*/
+       /**GIVE SELECTOR IMAGEN
+        *@return img
+        */
        public static String dialogoSelectorImagen() {
         String img = "";
 
@@ -401,7 +432,9 @@ public class dao_client {
         return img;
     }
        
-       /**GIVE AVATAR*/
+       /**GIVE AVATAR
+        *@param img
+        */
        public static void giveavatar(String img){
            ImageIcon temporal=new ImageIcon(img);
            ImageIcon imagen=new ImageIcon(temporal.getImage().getScaledInstance(160, -1, Image.SCALE_DEFAULT));

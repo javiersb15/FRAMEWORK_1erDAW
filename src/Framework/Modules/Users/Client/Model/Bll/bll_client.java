@@ -205,7 +205,7 @@ public class bll_client {
                     ((miniSimpleTableModel_client) pager_client.TABLA.getModel()).removeRow(selection1);
                     client = Singleton.Client_array.get(pos);
 
-                    bll_client_db.delete_client_bll();
+                    bll_client_db.delete_client_bll(client);
                     Singleton.Client_array.remove(client);     
                     miniSimpleTableModel_client.datosaux.remove(pos);
                     ((miniSimpleTableModel_client) pager_client.TABLA.getModel()).cargar();

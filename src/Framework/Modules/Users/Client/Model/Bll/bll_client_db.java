@@ -5,6 +5,7 @@
  */
 package Framework.Modules.Users.Client.Model.Bll;
 
+import Framework.Modules.Users.Client.Model.Clases.Class_client;
 import Framework.Modules.Users.Client.Model.Dao.dao_client_db;
 
 /**
@@ -24,8 +25,8 @@ public class bll_client_db {
      }
      
      /**DDELTE CLIENT*/
-     public static void delete_client_bll() {
-         dao_client_db.delete_client_dao();
+     public static void delete_client_bll(Class_client cli) {
+         dao_client_db.delete_client_dao(cli);
      }
     
      /**SELECT CLIENT*/

@@ -18,8 +18,7 @@ public class Functions_dummy_usr_reg{
 	private static String mail_usr_reg[]={"luis1987@hotmail.com","lucas2004@gmail.com","luciabeniel@hotmail.com","pep@gmail.com","litrets23@gmail.com","anthony@gmail.com"};
 	private static String user_usr_reg[]={"Pepito123","Lalllama23","Poasdm23s","Contrase�a123","Contra123","busta123"};
 	private static String pass_usr_reg[]={"1234qwerTY","1234qwerTY","1234qwerTY","1234qwerTY","1234qwerTY","1234qwerTY"};
-	private static int activity_usr_reg[]={12,200,400,5000,2212,2241};
-	
+	private static int activity_usr_reg[]={12,200,400,5000,2212,2241};	
 		
 	public static void cargar_user_register() { 
 		Class_user_register usr_reg=null;
