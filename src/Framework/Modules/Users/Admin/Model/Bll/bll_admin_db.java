@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author usuario
+ * @author Javier
  */
 public class bll_admin_db {
     

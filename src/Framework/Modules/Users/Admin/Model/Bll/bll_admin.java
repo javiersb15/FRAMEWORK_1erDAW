@@ -61,8 +61,7 @@ public class bll_admin {
 				JOptionPane.showMessageDialog(null, "This DNI dosent't exist", "Error", JOptionPane.ERROR_MESSAGE);
                 }                
 	return adm;
-	}
-              
+	}              
        	
 	/**CREATE ADMIN*/
 	public static void create_admin(){

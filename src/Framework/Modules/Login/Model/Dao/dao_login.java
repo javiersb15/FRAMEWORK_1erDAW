@@ -7,11 +7,10 @@ package Framework.Modules.Login.Model.Dao;
 
 import static Framework.Class.Singleton_tools.collection;
 import Framework.Modules.Login.View.login_frame;
-import Framework.Modules.Users.Admin.Model.Bll.bll_admin_db;
-import Framework.Modules.Users.Client.Model.Bll.bll_client_db;
 import Framework.Modules.Users.Client.Model.Clases.Class_client;
 import Framework.Modules.Users.Client.Model.Clases.Singleton_cli;
 import Framework.Modules.Users.User.Model.Clases.Singleton;
+import Framework.Modules.Users.User_register.Model.Clases.Singleton_usr_reg;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCursor;
 import java.sql.Connection;
@@ -22,7 +21,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author usuario
+ * @author Javier
  */
 
 public class dao_login {
@@ -73,81 +72,48 @@ public class dao_login {
      
      /**CLIENT*/
      
-     public static boolean insert_client_dao() {
-         boolean login=false;
-        collection.insert(Singleton_cli.cli.client_to_DB_login());
-        login =true;
-        
-        return true;
-    }
-     
      public static boolean select_client_dao() {
-        boolean login=false;
         DBCursor cursor = null;
         Class_client cli = new Class_client();
+        boolean correcto = false;
+        BasicDBObject query = new BasicDBObject();
         try {
-            cursor = collection.find().sort(new BasicDBObject("DNI", -1));
-            cursor = collection.find().sort(new BasicDBObject("pass", -1));
-            if(cursor.count()!=0){
-                while(cursor.hasNext()){
+            query.put("DNI", login_frame.eti_dni_login.getText());
+            query.put("pass", login_frame.eti_pass_login.getText());
+            cursor = collection.find(query);
+            if (cursor.count() != 0) {
+                while (cursor.hasNext()) {
                     BasicDBObject document = (BasicDBObject) cursor.next();
-                    cli=cli.to_DB_client(document);
+                    cli = cli.to_DB_client(document);
                     Singleton.Client_array.add(cli);
-                    login=true;
+                    Singleton_cli.cli = cli;
+                    if (cli == null) {
+                        correcto = false;
+                    } else {
+                        correcto = true;
+                    }
                 }
-            }else{
-                System.out.println("NOT DATA"); 
+            } else {
+                //System.out.println("NOT DATA");
             }
         } finally {
-            if (cursor != null){
-		cursor.close();
-            }
-	}
-        return login;
-    }
-     
-     public static boolean login_client () {
-        boolean correcto = false;
-        //BLL_BD_client.find_BD(Login.txtDNI.getText());
-         bll_client_db.Find_client_bll(login_frame.eti_dni_login.getText());
-        if (Singleton_cli.cli==null){
-            correcto=false;
-        }else{
-            if (Singleton_cli.cli.getDNI().equals(login_frame.eti_dni_login.getText())) {
-                correcto=true;
-                if (Singleton_cli.cli.getpass().equals(login_frame.eti_pass_login.getText())) {
-                    correcto=true;
-                }else{
-                    correcto=false;
-                }
+            if (cursor != null) {
+                cursor.close();
             }
         }
         return correcto;
     }
      
-     /*public static void insert_client_dao() {
-        collection.insert(Singleton_cli.cli.client_to_DB_login());
-    }
-     
-     public static void select_client_dao() {
-        DBCursor cursor = null;
-        Class_client cli = new Class_client();
-        try {
-            cursor = collection.find().sort(new BasicDBObject("DNI", -1));
-            cursor = collection.find().sort(new BasicDBObject("pass", -1));
-            if(cursor.count()!=0){
-                while(cursor.hasNext()){
-                    BasicDBObject document = (BasicDBObject) cursor.next();
-                    cli=cli.to_DB_client(document);
-                    Singleton.Client_array.add(cli);
-                }
-            }else{
-                System.out.println("NOT DATA"); 
-            }
-        } finally {
-            if (cursor != null){
-		cursor.close();
-            }
-	}	
-    }*/
+    /**USER REGISTER*/
+     public static boolean search_user_register(){ 
+            boolean correct=false;
+         
+		for (int i = 0; i<=(Singleton.User_register_array.size()-1); i++){
+			if((Singleton.User_register_array.get(i)).getDNI().equals(login_frame.eti_dni_login.getText()) && (Singleton.User_register_array.get(i)).getpass().equals(login_frame.eti_pass_login.getText())){
+                            Singleton_usr_reg.usr_reg=Singleton.User_register_array.get(i);
+                            correct=true;
+                        }
+		}
+		return correct;
+    }     
 }

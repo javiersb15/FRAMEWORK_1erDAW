@@ -17,7 +17,6 @@ import javax.swing.JFileChooser;
 
 
 public class dao_user_register {
-
 	
 	/**MODIFY USER REGISTER*/
 	public static void modifyuser_register() {

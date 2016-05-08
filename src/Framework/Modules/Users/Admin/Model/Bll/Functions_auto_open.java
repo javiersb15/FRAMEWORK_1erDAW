@@ -4,8 +4,6 @@ import Framework.Modules.Users.Admin.Model.Utils.Extensions.Json;
 import Framework.Modules.Users.Admin.Model.Utils.Extensions.Txt;
 import Framework.Modules.Users.Admin.Model.Utils.Extensions.Xml;
 
-
-
 public class Functions_auto_open {
 
 	public static void auto_open() {

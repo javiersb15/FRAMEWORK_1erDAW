@@ -16,7 +16,7 @@ import java.text.SimpleDateFormat;
 
 /**
  *
- * @author usuario
+ * @author Javier
  */
 public class dao_client_db {
     

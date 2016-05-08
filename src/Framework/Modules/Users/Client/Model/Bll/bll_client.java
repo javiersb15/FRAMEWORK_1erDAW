@@ -2,6 +2,11 @@ package Framework.Modules.Users.Client.Model.Bll;
 
 import static Framework.Class.Singleton_tools.cancel;
 import static Framework.Class.Singleton_tools.okey;
+import Framework.Modules.Login.Controller.Controller_login;
+import Framework.Modules.Login.Model.Clases.Singleton_login;
+import Framework.Modules.Login.View.login_frame;
+import Framework.Modules.Menu.Controller.Controller_menu;
+import Framework.Modules.Menu.View.choose_frame;
 import Framework.Modules.Users.Client.Controller.Controller_client;
 import Framework.Modules.Users.Client.Model.Clases.Class_client;
 import Framework.Modules.Users.Client.Model.Clases.Singleton_cli;
@@ -14,8 +19,12 @@ import Framework.Modules.Users.Client.View.pager_client;
 import Framework.Modules.Users.User.Model.Clases.Singleton;
 import Framework.Utils.Menus;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Calendar;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 
 public class bll_client {
@@ -45,25 +54,27 @@ public class bll_client {
 	return cli;
 	}
         
+        /**SELECT CLIENT*/
         public static Class_client select_client() {
-            
-            int selection, inicio, selection1, position=-1;
-                
-		inicio=(pagina_client.currentPageIndex-1)*pagina_client.itemsPerPage; //nos situamos al inicio de la página en cuestión
-                selection=pager_client.TABLA.getSelectedRow(); //nos situamos en la fila
-                selection1=inicio+selection; //nos situamos en la fila correspondiente de esa página
-		Singleton.DNI=(String)pager_client.TABLA.getModel().getValueAt(selection1, 0);
-		Class_client cli=new Class_client(Singleton.DNI);
-                position=bll_client.search_client(cli);
-                if(position !=-1){
-                    cli=Singleton.Client_array.get(position);                                            
-			}else {
-				JOptionPane.showMessageDialog(null, "This DNI dosent't exist", "Error", JOptionPane.ERROR_MESSAGE);
-                }                
-	return cli;
-	}
-        
-       
+        Class_client cli = null;
+        String ID = "";
+        int position = -1, selection, inicio, selection1;
+        if (Singleton_login.tabla==true){
+        inicio=(pagina_client.currentPageIndex-1)*pagina_client.itemsPerPage; //nos situamos al inicio de la página en cuestión
+        selection=pager_client.TABLA.getSelectedRow(); //nos situamos en la fila
+        selection1=inicio+selection; //nos situamos en la fila correspondiente de esa página
+        ID = (String) pager_client.TABLA.getModel().getValueAt(selection1, 0);
+        cli = new Class_client (ID);
+        }else{
+            cli = new Class_client (Singleton_login.dni);
+        }
+        position = -1;
+        position = bll_client.search_client(cli);
+        if (position != -1) {
+            cli = Singleton.Client_array.get(position);
+        }
+        return cli;		
+    }
        	
 	/**CREATE CLIENT*/
 	public static void create_client(){
@@ -213,7 +224,24 @@ public class bll_client {
             JOptionPane.showMessageDialog(null, "Empty list", "Error!", 2);
         }
     }
-       
+         
+         /**TIMER CLIENT*/
+         public static void timer(JFrame jframe) {
+        Timer timer = new Timer (2000, new ActionListener() {
+        
+            public void actionPerformed(ActionEvent e) {
+                jframe.dispose();
+                if (Singleton_login.admin==true){
+                    new Controller_client(new pager_client(), 0).begin(0);
+                }else{
+                    new Controller_login(new login_frame()).began();
+                }
+            }
+        });
+        timer.setRepeats(false);
+        timer.start();
+    }
+
        /**GIVE AVATAR*/
         public static void giveavatar(){
             dao_client.giveavatar(dao_client.dialogoSelectorImagen());

@@ -3,7 +3,6 @@ package Framework.Modules.Users.Admin.Model.Dao;
 import Framework.Class.Class_date;
 import Framework.Modules.Users.Admin.Model.Bll.bll_admin;
 import Framework.Modules.Users.Admin.Model.Clases.Class_admin;
-import Framework.Modules.Users.Admin.Model.Clases.Singleton_adm;
 import Framework.Modules.Users.Admin.View.admin_jframe_create;
 import Framework.Modules.Users.Admin.View.admin_jframe_update;
 import Framework.Modules.Users.User.Model.Clases.Files_class;
@@ -15,8 +14,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import static Framework.Modules.Users.Admin.View.admin_jframe_create.eti_avatar_create;
 import static Framework.Modules.Users.Admin.View.admin_jframe_update.eti_avatar_update;
-import Framework.Modules.Users.User.Model.Clases.Singleton;
-import javax.swing.JOptionPane;
 
 public class dao_admin {
 
@@ -47,6 +44,7 @@ public class dao_admin {
             admin_jframe_update.eti_incentive_update.setText(a_1.getincentive() + "");
             admin_jframe_update.eti_activity_update.setText(a_1.getactivity() + "");
         }
+        
     }
 
     /**CREATE ADMIN*/

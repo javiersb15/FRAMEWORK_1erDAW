@@ -46,16 +46,7 @@ public class Class_client extends Class_user implements Serializable {
         
 	return cli;
     }
-      
-      public Class_client to_DB_client_login(DBObject dBObjectWorker) {                         
-             
-             Class_client cli=new Class_client();
-        cli.setDNI((String) dBObjectWorker.get("DNI"));
-        cli.setpass((String) dBObjectWorker.get("pass"));
-        
-	return cli;
-    }
-         
+    
          //date_clase passar a string i els floats passar-los a string i viceversa.
 
     public BasicDBObject client_to_DB() {
@@ -66,7 +57,7 @@ public class Class_client extends Class_user implements Serializable {
 	cli2.append("surname", this.getsurname());
         cli2.append("date_birthday", this.getdate_birthday().toString());
         cli2.append("age", this.getage());
-        cli2.append("movil", this.getmobile());
+        cli2.append("mobile", this.getmobile());
         cli2.append("avatar", this.getavatar());
         cli2.append("state", this.isstate());
         cli2.append("email", this.getemail());
@@ -80,17 +71,7 @@ public class Class_client extends Class_user implements Serializable {
         cli2.append("client_type", this.getclient_type());       
         
 	return cli2;
-    }
-    
-    public BasicDBObject client_to_DB_login() {
-                           
-	BasicDBObject cli3 = new BasicDBObject();
-	cli3.append("DNI", this.getDNI());
-        cli3.append("pass", this.getpass());     
-        
-	return cli3;
-    }
-        
+    }        
         
 	/**CONSTRUCTOR*/
 	public Class_client(String DNI, String name, String surname, Class_date date_birthday, String mobile,

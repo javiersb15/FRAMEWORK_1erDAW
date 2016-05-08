@@ -14,44 +14,37 @@ import java.util.Calendar;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 
-
-
 public class dao_client {
-
 	
 	/**MODIFY CLIENT*/
 	public static void modifyclient() {
-            Class_client a_1=null;
-            a_1=bll_client.select_client();
+                 
+            Class_client c_1=bll_client.select_client();            
             
-            
-            if (a_1!=null){
-            client_jframe_update.eti_dni_update.setText(a_1.getDNI());
-            client_jframe_update.eti_name_update.setText(a_1.getname());
-            client_jframe_update.eti_surname_update.setText(a_1.getsurname());
-            client_jframe_update.eti_date_birthday_update.setCalendar(a_1.getdate_birthday().stringtocalendar());
-            client_jframe_update.eti_mobile_update.setText(a_1.getmobile());
-            client_jframe_update.eti_avatar_update.setText(a_1.getavatar());            
-            if (a_1.isstate()==true){
+            client_jframe_update.eti_dni_update.setText(c_1.getDNI());
+            client_jframe_update.eti_name_update.setText(c_1.getname());
+            client_jframe_update.eti_surname_update.setText(c_1.getsurname());
+            client_jframe_update.eti_date_birthday_update.setCalendar(c_1.getdate_birthday().stringtocalendar());
+            client_jframe_update.eti_mobile_update.setText(c_1.getmobile());
+            client_jframe_update.eti_avatar_update.setText(c_1.getavatar());            
+            if (c_1.isstate()==true){
                 client_jframe_update.eti_state_co_update.setSelected(true);
             }else{ 
                 client_jframe_update.eti_state_di_update.setSelected(true);
             }
-            client_jframe_update.eti_email_update.setText(a_1.getemail());
-            client_jframe_update.eti_user_update.setText(a_1.getuser());
-            client_jframe_update.eti_pass_update.setText(a_1.getpass());
-            client_jframe_update.eti_date_start_update.setCalendar(a_1.getdate_start().stringtocalendar());
-            client_jframe_update.eti_buy_update.setText(a_1.getbuy()+"");
-            if (a_1.getpremium()==true){
+            client_jframe_update.eti_email_update.setText(c_1.getemail());
+            client_jframe_update.eti_user_update.setText(c_1.getuser());
+            client_jframe_update.eti_pass_update.setText(c_1.getpass());
+            client_jframe_update.eti_date_start_update.setCalendar(c_1.getdate_start().stringtocalendar());
+            client_jframe_update.eti_buy_update.setText(c_1.getbuy()+"");
+            if (c_1.getpremium()==true){
                 client_jframe_update.eti_premi_true_update.setSelected(true);
             }else{ 
                 client_jframe_update.eti_premi_false_update.setSelected(true);
             }
-            client_jframe_update.eti_tipeclient_update.setText(a_1.getclient_type());
-            	
-            }
+            client_jframe_update.eti_tipeclient_update.setText(c_1.getclient_type());
         }
-        
+                
         /**CREATE CLIENT*/
         public static Class_client create() {
            Class_client client=null;           

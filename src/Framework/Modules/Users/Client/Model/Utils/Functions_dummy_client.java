@@ -8,7 +8,7 @@ import Framework.Modules.Users.User.Model.Clases.Singleton;
 public class Functions_dummy_client{	
 	
 	/**CLIENT*/
-	private static String dni_cli[]={"73099467Q","00000023T","00000001R","00000002W","00000003A","00000003B"};
+	private static String dni_cli[]={"90694305S","43879668S","76230318S","26878591D","58603727A","56945911G"};
 	private static String name_cli[]={"Luis","Lucas","Lucia","Pep","Lirios","Frederick"};
 	private static String surname_cli[]={"Perico","Delgado","Garcia","Sanabria","Albelda","Lara"};
 	private static Class_date date_birthday_cli[]={new Class_date("15/04/1993", "1"),new Class_date("20/05/1987", "1"),new Class_date("12/07/1963", "1"),new Class_date("28/07/1941", "1"),new Class_date("02/12/1973", "1"),new Class_date("28/12/1974", "1")};

@@ -26,7 +26,7 @@ import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 
 /**
  *
- * @author usuario
+ * @author Javier
  */
 public class Controller_menu implements ActionListener {
 

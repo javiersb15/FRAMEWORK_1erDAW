@@ -74,7 +74,7 @@ import javax.swing.table.TableRowSorter;
 
 /**
  *
- * @author usuario
+ * @author Javier
  */
 public class Controller_admin implements ActionListener, MouseListener, KeyListener, FocusListener{
     
@@ -259,11 +259,7 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
                 this.begin_create.setVisible(true);
                 begin_create.setTitle("Create Administrator");
                 begin_create.setLocationRelativeTo(null);
-                //this.setSize(525,425);//ancho x alto
                 begin_create.setResizable(true);
-                //Image icono=Toolkit.getDefaultToolkit().getImage("p1.jpg");
-                //this.setIconImage(icono);
-                //this.setExtendedState(JFrame.MAXIMIZED_BOTH); //la aplicación se abre maximizada
 
                 addWindowListener(new WindowAdapter() {
                     @Override
@@ -358,11 +354,7 @@ public class Controller_admin implements ActionListener, MouseListener, KeyListe
                 
                 begin_update.setTitle("Update Administrator");
                 begin_update.setLocationRelativeTo(null);
-                //this.setSize(525,425);//ancho x alto
                 begin_update.setResizable(true);
-                //Image icono=Toolkit.getDefaultToolkit().getImage("p1.jpg");
-                //this.setIconImage(icono);
-                //this.setExtendedState(JFrame.MAXIMIZED_BOTH); //la aplicación se abre maximizada
 
                 addWindowListener(new WindowAdapter() {
                     @Override

@@ -10,7 +10,7 @@ import javax.swing.filechooser.FileFilter;
 
 /**
  *
- * @author usuario
+ * @author Javier
  */
 public class Files_class extends FileFilter {
 
@@ -61,4 +61,3 @@ public class Files_class extends FileFilter {
         return "";
     }
 }
-

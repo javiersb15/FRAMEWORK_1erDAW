@@ -2,10 +2,7 @@ package Framework.Utils;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-//import java.text.SimpleDateFormat;
 import java.util.Locale;
-
-
 
 public class Format {
 		

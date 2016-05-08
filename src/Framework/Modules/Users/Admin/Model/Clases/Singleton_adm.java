@@ -7,7 +7,7 @@ package Framework.Modules.Users.Admin.Model.Clases;
 
 /**
  *
- * @author usuario
+ * @author Javier
  */
 public class Singleton_adm {
     public static Class_admin adm;

@@ -6,11 +6,13 @@ import Framework.Class.Singleton_tools;
 import Framework.Modules.Menu.Model.Functions.json_auto_config;
 import Framework.Modules.Users.Admin.Model.Clases.Class_admin;
 import Framework.Modules.Users.Admin.Model.Utils.Functions_dummy_admin;
+import Framework.Modules.Users.Client.Model.Bll.bll_client_db;
 import Framework.Modules.Users.Client.Model.Clases.Class_client;
 import Framework.Modules.Users.Client.Model.Utils.Functions_dummy_client;
 import Framework.Modules.Users.User.Model.Clases.Singleton;
 import Framework.Modules.Users.User_register.Model.Clases.Class_user_register;
 import Framework.Modules.Users.User_register.Model.Utils.Extensions.Json;
+import Framework.Modules.Users.User_register.Model.Utils.Functions_dummy_usr_reg;
 import Framework.Utils.Theme;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import java.io.Serializable;
@@ -61,6 +63,7 @@ public class Class_config implements Serializable{
 		Singleton.Client_array=new ArrayList <Class_client>();
 		Singleton.User_register_array=new ArrayList <Class_user_register>();		
 		
+                bll_client_db.select_client_bll();
                 Json.auto_open_json_usr_reg();
 		//Functions_dummy_admin.cargar_admin();
                 //Functions_dummy_client.cargar_client();
@@ -132,10 +135,4 @@ public class Class_config implements Serializable{
                 string.append(Class_language.getInstance().getProperty("Decimal")+": "+this.getDecimal_number()+"\n");
                 return string.toString();
 	}
-        
-        /*public String toString() {
-		return "Configuration [format_data="+format_date+", Currency="+currency
-				+", Languages="+language+", Theme="+theme+", "
-						+ "Decimal number="+decimal_number+"]";
-	}*/
 }

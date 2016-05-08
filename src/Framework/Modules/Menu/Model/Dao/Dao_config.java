@@ -13,8 +13,9 @@ import javax.swing.ButtonGroup;
 
 /**
  *
- * @author usuario
+ * @author Javier
  */
+
 public class Dao_config {
     
     /**FUNCTION BUTTON GROUP*/

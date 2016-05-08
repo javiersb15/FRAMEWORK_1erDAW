@@ -4,7 +4,6 @@ import Framework.Modules.Menu.Model.Clases.Class_config;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
-
 public class Theme {
 	public static void select_theme() {
 		try {

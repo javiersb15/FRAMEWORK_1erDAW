@@ -137,6 +137,18 @@ public class Class_date implements Serializable {
      * STRING TO CALENDAR
      */
     public Calendar stringtocalendar() {
+        Calendar date = Calendar.getInstance();
+
+        try {
+            date.set(this.getyear(), this.getmonth()-1, this.getday());
+        } catch (Exception e) {
+            return date;
+        }
+
+        return date;
+    }
+    
+    /*public Calendar stringtocalendar() {
 
         Calendar date = Calendar.getInstance();
         Date date2 = null;
@@ -149,14 +161,14 @@ public class Class_date implements Serializable {
             return date;
         }
         return date;
-    }
+    }*/
 
     /**
      * CALENDAR TO STRING
      */
     public String calendartostring(Calendar date) {
         int day = 0, month = 0, year = 0;
-        String date3 = null, date4 = "XX/XX/XX/XXXX";
+        String date3 = "", date4 = "XX/XX/XXXX";
 
         try {
             day = date.get(Calendar.DATE);
@@ -358,13 +370,19 @@ public class Class_date implements Serializable {
      * TO STRING
      */
     public String toString() {
+        StringBuffer string = new StringBuffer();
+        string.append(String.format("%02d", this.getday())+"/"+String.format("%02d", this.getmonth())+"/"+this.getyear());
+        return string.toString();   
+    }
+    
+     /*public String toString() {
         String cad = " ";
 
         cad = String.format("%02d", this.getday()) + "/" + String.format("%02d", this.getmonth()) + "/" + this.getyear();
 
         return cad;
-    }
-
+    }*/
+    
     /**
      * FORMAT
      */

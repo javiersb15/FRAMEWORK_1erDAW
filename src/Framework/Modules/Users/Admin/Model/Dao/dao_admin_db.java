@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author usuario
+ * @author Javier
  */
 public class dao_admin_db {
     

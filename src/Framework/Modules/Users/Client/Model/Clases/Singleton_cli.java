@@ -7,7 +7,7 @@ package Framework.Modules.Users.Client.Model.Clases;
 
 /**
  *
- * @author usuario
+ * @author Javier
  */
 public class Singleton_cli {
     

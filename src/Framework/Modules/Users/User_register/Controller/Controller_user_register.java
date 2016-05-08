@@ -5,6 +5,7 @@
  */
 package Framework.Modules.Users.User_register.Controller;
 
+import Framework.Modules.Login.Model.Clases.Singleton_login;
 import Framework.Modules.Menu.Controller.Controller_menu;
 import Framework.Modules.Menu.View.choose_frame;
 import Framework.Modules.Users.User.Model.Clases.Singleton;
@@ -67,7 +68,7 @@ import javax.swing.table.TableRowSorter;
 
 /**
  *
- * @author usuario
+ * @author Javier
  */
 public class Controller_user_register implements ActionListener, MouseListener, KeyListener, FocusListener{
     
@@ -243,11 +244,7 @@ public class Controller_user_register implements ActionListener, MouseListener, 
         this.begin_create.setVisible(true);
         begin_create.setTitle("Create User Register");
 	begin_create.setLocationRelativeTo(null);
-	//this.setSize(525,425);//ancho x alto
 	begin_create.setResizable(true);
-	//Image icono=Toolkit.getDefaultToolkit().getImage("p1.jpg");
-	//this.setIconImage(icono);
-	//this.setExtendedState(JFrame.MAXIMIZED_BOTH); //la aplicación se abre maximizada
         
         addWindowListener(new WindowAdapter() {
             @Override
@@ -328,11 +325,7 @@ public class Controller_user_register implements ActionListener, MouseListener, 
         
         begin_update.setTitle("Update User Register");
 	begin_update.setLocationRelativeTo(null);
-	//this.setSize(525,425);//ancho x alto
-	begin_update.setResizable(true);
-	//Image icono=Toolkit.getDefaultToolkit().getImage("p1.jpg");
-	//this.setIconImage(icono);
-	//this.setExtendedState(JFrame.MAXIMIZED_BOTH); //la aplicación se abre maximizada
+	begin_update.setResizable(true);	
         
         addWindowListener(new WindowAdapter() {
             @Override
@@ -430,6 +423,7 @@ public class Controller_user_register implements ActionListener, MouseListener, 
                 if (select_update==-1){
                 JOptionPane.showMessageDialog(null, "Usuario no seleccionado");
                 }else{
+                Singleton_login.tabla=true;
                 begin_pager.dispose();       
                 new Controller_user_register(new user_register_jframe_update(), 2).begin(2);
                 }         
@@ -500,8 +494,7 @@ public class Controller_user_register implements ActionListener, MouseListener, 
             
             case btn_update_update:
                 bll_user_register.update_user_register();
-                begin_update.dispose();
-                new Controller_user_register(new pager_user_register(), 0).begin(0);
+                bll_user_register.timer(begin_update);
             break;
             
             case btn_cancel_update:

@@ -7,7 +7,7 @@ package Framework.Modules.Login.Model.Clases;
 
 /**
  *
- * @author usuario
+ * @author Javier
  */
 public class Singleton_login {
     

@@ -9,7 +9,7 @@ import Framework.Modules.Users.Client.Model.Dao.dao_client_db;
 
 /**
  *
- * @author usuario
+ * @author Javier
  */
 public class bll_client_db {
     

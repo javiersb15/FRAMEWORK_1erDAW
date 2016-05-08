@@ -5,6 +5,7 @@
  */
 package Framework.Modules.Users.Client.Controller;
 
+import Framework.Modules.Login.Model.Clases.Singleton_login;
 import Framework.Modules.Menu.Controller.Controller_menu;
 import Framework.Modules.Menu.View.choose_frame;
 import Framework.Modules.Users.Client.Model.Bll.bll_client;
@@ -69,10 +70,9 @@ import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-
 /**
  *
- * @author usuario
+ * @author Javier
  */
 public class Controller_client implements ActionListener, MouseListener, KeyListener, FocusListener{
     
@@ -252,11 +252,7 @@ public class Controller_client implements ActionListener, MouseListener, KeyList
         this.begin_create.setVisible(true);
         begin_create.setTitle("Create Client");
 	begin_create.setLocationRelativeTo(null);
-	//this.setSize(525,425);//ancho x alto
 	begin_create.setResizable(true);
-	//Image icono=Toolkit.getDefaultToolkit().getImage("p1.jpg");
-	//this.setIconImage(icono);
-	//this.setExtendedState(JFrame.MAXIMIZED_BOTH); //la aplicación se abre maximizada
         
         addWindowListener(new WindowAdapter() {
             @Override
@@ -343,11 +339,7 @@ public class Controller_client implements ActionListener, MouseListener, KeyList
         
         begin_update.setTitle("Update Client");
 	begin_update.setLocationRelativeTo(null);
-	//this.setSize(525,425);//ancho x alto
 	begin_update.setResizable(true);
-	//Image icono=Toolkit.getDefaultToolkit().getImage("p1.jpg");
-	//this.setIconImage(icono);
-	//this.setExtendedState(JFrame.MAXIMIZED_BOTH); //la aplicación se abre maximizada
         
         addWindowListener(new WindowAdapter() {
             @Override
@@ -444,11 +436,12 @@ public class Controller_client implements ActionListener, MouseListener, KeyList
                 if (select_update==-1){
                 JOptionPane.showMessageDialog(null, "Usuario no seleccionado");
                 }else{
+                Singleton_login.tabla=true;
                 begin_pager.dispose();       
                 new Controller_client(new client_jframe_update(), 2).begin(2);
                 }         
             break;
-            
+                        
             case btn_pager_delete:
                 bll_client.delete_client();
             break;
@@ -514,8 +507,7 @@ public class Controller_client implements ActionListener, MouseListener, KeyList
             
             case btn_update_update:
                 bll_client.update_client();
-                begin_update.dispose();
-                new Controller_client(new pager_client(), 0).begin(0);
+                bll_client.timer(begin_update);
             break;
             
             case btn_cancel_update:

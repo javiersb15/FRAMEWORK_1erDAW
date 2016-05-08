@@ -7,10 +7,9 @@ package Framework.Modules.Users.User_register.Model.Clases;
 
 /**
  *
- * @author usuario
+ * @author Javier
  */
 public class Singleton_usr_reg {
     
     public static Class_user_register usr_reg;
-    
 }

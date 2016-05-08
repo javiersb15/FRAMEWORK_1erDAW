@@ -2,6 +2,9 @@ package Framework.Modules.Users.User_register.Model.Bll;
 
 import static Framework.Class.Singleton_tools.cancel;
 import static Framework.Class.Singleton_tools.okey;
+import Framework.Modules.Login.Controller.Controller_login;
+import Framework.Modules.Login.Model.Clases.Singleton_login;
+import Framework.Modules.Login.View.login_frame;
 import Framework.Modules.Users.User.Model.Clases.Singleton;
 import Framework.Modules.Users.User_register.Controller.Controller_user_register;
 import Framework.Modules.Users.User_register.Model.Clases.Class_user_register;
@@ -15,8 +18,12 @@ import Framework.Modules.Users.User_register.View.user_register_jframe_create;
 import Framework.Modules.Users.User_register.View.user_register_jframe_update;
 import Framework.Utils.Menus;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Calendar;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 public class bll_user_register {
     public static boolean check;
@@ -47,22 +54,27 @@ public class bll_user_register {
         
         /**SELECT USER REGISTER*/
         public static Class_user_register select_user_register() {
-            
-            int selection, inicio, selection1, position=-1;
-                
-		inicio=(pagina_user_register.currentPageIndex-1)*pagina_user_register.itemsPerPage; //nos situamos al inicio de la página en cuestión
-                selection=pager_user_register.TABLA.getSelectedRow(); //nos situamos en la fila
-                selection1=inicio+selection; //nos situamos en la fila correspondiente de esa página
-		Singleton.DNI=(String)pager_user_register.TABLA.getModel().getValueAt(selection1, 0);
-		Class_user_register usr_reg=new Class_user_register(Singleton.DNI);
-                position=bll_user_register.search_user_register(usr_reg);
-                if(position !=-1){
-                    usr_reg=Singleton.User_register_array.get(position);                                            
-			}else {
-				JOptionPane.showMessageDialog(null, "This DNI dosent't exist", "Error", JOptionPane.ERROR_MESSAGE);
-                }                
-	return usr_reg;
-	}       
+            Class_user_register usr_reg = null;
+        String PK = "";
+        int position = -1, selection, inicio, selection1;
+        if (Singleton_login.tabla==true){
+            inicio=(pagina_user_register.currentPageIndex-1)*pagina_user_register.itemsPerPage; //nos situamos al inicio de la página en cuestión
+            selection=pager_user_register.TABLA.getSelectedRow(); //nos situamos en la fila
+            selection1=inicio+selection; //nos situamos en la fila correspondiente de esa página
+            PK = (String) pager_user_register.TABLA.getModel().getValueAt(selection1, 0);
+            usr_reg = new Class_user_register (PK);
+        }else{
+            usr_reg = new Class_user_register (Singleton_login.dni);
+        }
+        position = -1;
+        position = bll_user_register.search_user_register(usr_reg);
+        if (position != -1) {
+            usr_reg = Singleton.User_register_array.get(position);
+        }else{
+            usr_reg = null;
+        }
+        return usr_reg;
+	}   
        	
 	/**CREATE USER REGISTER*/
 	public static void create_user_register(){
@@ -205,6 +217,23 @@ public class bll_user_register {
         } else {
             JOptionPane.showMessageDialog(null, "Empty list", "Error!", 2);
         }
+    }
+         
+         /**TIMER USER CLIENT*/
+         public static void timer(JFrame jframe) {
+        Timer timer = new Timer (2000, new ActionListener() {
+        
+            public void actionPerformed(ActionEvent e) {
+                jframe.dispose();
+                if (Singleton_login.admin==true){
+                    new Controller_user_register(new pager_user_register(), 0).begin(0);
+                }else{
+                    new Controller_login(new login_frame()).began();
+                }
+            }
+        });
+        timer.setRepeats(false);
+        timer.start();
     }
         
         /**GIVE AVATAR*/
@@ -537,6 +566,5 @@ public class bll_user_register {
                 user_register_jframe_update.lab_date_birthday.setIcon(okey);
                 
             }
-        }
-        
+        }        
 }
